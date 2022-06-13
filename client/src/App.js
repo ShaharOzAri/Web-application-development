@@ -3,13 +3,18 @@ import ProductCardCart from "./components/shoppingCart/ProductCard";
 import ShoppingCart from "./components/shoppingCart/ShoppingCart";
 import * as React from "react";
 import "./app.css";
+import { Route, Switch } from "react-router-dom";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <>
-      <ProductCard></ProductCard>
-      <ShoppingCart></ShoppingCart>
-    </>
+    <div>
+      <Switch>
+        <Route path='/' exact>
+          <HomePage />
+        </Route>
+      </Switch>
+    </div>
   );
 }
 
