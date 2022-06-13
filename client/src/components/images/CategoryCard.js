@@ -1,0 +1,39 @@
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
+import Grid from "@mui/material/Grid";
+
+export default function CategoryCard(props) {
+  return (
+    <Card
+      sx={{
+        bgcolor: "#eaece5",
+        maxWidth: 550,
+        ...props.sx,
+      }}
+    >
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="550"
+          width="300"
+          image={props.item.src}
+          alt={props.item.alt}
+        />
+        <CardContent>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{ fontFamily: "monospace", letterSpacing: 4 }}
+          >
+            {props.item.Title}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  );
+}
