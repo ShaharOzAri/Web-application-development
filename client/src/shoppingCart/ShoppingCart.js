@@ -99,7 +99,7 @@ export default function PersistentDrawerRight() {
             <CloseIcon />
           </IconButton>
           <Typography sx={{ textAlign: "center", margin: "auto" }}>
-            Shopping Cart
+            OMER
           </Typography>
         </DrawerHeader>
         <Divider />
