@@ -1,6 +1,6 @@
-import ProductCard from "./product/ProductCard";
-import ProductCardCart from "./shoppingCart/ProductCard";
-import ShoppingCart from "./shoppingCart/ShoppingCart";
+import ProductCard from "./components/product/ProductCard";
+import ProductCardCart from "./components/shoppingCart/ProductCard";
+import ShoppingCart from "./components/shoppingCart/ShoppingCart";
 import * as React from "react";
 import "./app.css";
 
