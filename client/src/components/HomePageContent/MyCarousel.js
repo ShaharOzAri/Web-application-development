@@ -1,8 +1,8 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import SliderImage from "./SliderImage";
-import Banner1 from "./banner1.png";
-import Banner2 from "./banner2.png";
+import SliderImage from "./CarouselImage";
+import Banner1 from "../images/banner1.png";
+import Banner2 from "../images/banner2.png";
 
 function MyCarousel(props) {
   var items = [

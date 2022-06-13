@@ -1,11 +1,9 @@
 import * as React from "react";
-import MyCarousel from "../components/images/MyCarousel";
+import MyCarousel from "./MyCarousel";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
-import "../app.css";
-import ResponsiveAppBar from "../components/TempTopBar";
 import { Container } from "@mui/system";
-import CategorySection from "../components/images/CatrgorySection";
-import BestSeller from "../components/images/BestSeller";
+import CategorySection from "./CatrgorySection";
+import BestSeller from "./BestSeller";
 
 function Temp() {
   return (
@@ -14,7 +12,6 @@ function Temp() {
         maxWidth="xxxl"
         sx={{ bgcolor: "#eaece5", fontFamily: "monospace", letterSpacing: 4 }}
       >
-        <ResponsiveAppBar></ResponsiveAppBar>
         <MyCarousel></MyCarousel>
         <CategorySection></CategorySection>
         <BestSeller></BestSeller>

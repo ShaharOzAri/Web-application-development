@@ -1,7 +1,7 @@
 import * as React from "react";
 import Grid from "@mui/material/Grid";
-import marroco from "./maroco.png";
-import italic from "./italic.png";
+import marroco from "../images/maroco.png";
+import italic from "../images/italic.png";
 import CategoryCard from "./CategoryCard";
 import { Paper } from "@mui/material";
 import { Box } from "@mui/system";
