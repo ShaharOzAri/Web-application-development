@@ -8,10 +8,7 @@ import BestSeller from "./BestSeller";
 function Temp() {
   return (
     <>
-      <Container
-        maxWidth="xxxl"
-        sx={{ bgcolor: "#eaece5", fontFamily: "monospace", letterSpacing: 4 }}
-      >
+      <Container maxWidth="xxxl">
         <MyCarousel></MyCarousel>
         <CategorySection></CategorySection>
         <BestSeller></BestSeller>

@@ -32,9 +32,10 @@ export default function CategorySection(props) {
       {items.map((item, i) => (
         <Grid
           item
-          xs={12}
+          xs={24}
+          md={12}
           justifyContent="center"
-          sx={{ alignContent: "center" }}
+          sx={{ alignContent: "center", padding: "20px" }}
         >
           <CategoryCard sx={{ margin: "auto" }} key={i} item={item} />
         </Grid>

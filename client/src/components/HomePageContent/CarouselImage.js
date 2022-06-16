@@ -9,12 +9,11 @@ function SliderImage(props) {
         <Box
           component="img"
           sx={{
-            height: 550,
             width: "100%",
             maxHeight: { md: 550 },
           }}
-          src={props.item.src}
-          alt={props.item.alt}
+          src={props.image.src}
+          alt={props.image.alt}
         />
       </Container>
     </Paper>

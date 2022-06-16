@@ -2,16 +2,21 @@ import * as React from "react";
 import "./app.css";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+
+const THEME = createTheme({});
 
 function App() {
   return (
-    <div>
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-      </Switch>
-    </div>
+    <ThemeProvider theme={THEME}>
+      <div>
+        <Switch>
+          <Route path="/">
+            <HomePage />
+          </Route>
+        </Switch>
+      </div>
+    </ThemeProvider>
   );
 }
 

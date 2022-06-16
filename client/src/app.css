@@ -1,7 +1,8 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body,
+html {
+  background-color: #eaece5;
+  font-family: monospace;
+  letter-spacing: 10px;
 }
 
 li {
@@ -17,14 +18,12 @@ nav {
   justify-content: space-around;
   min-height: 10vh;
   align-items: center;
-  font-family: inter;
   background-color: #ff5f6d;
   color: #fff;
 }
 
 nav .logo {
   font-size: 22px;
-  font-weight: 700;
   text-transform: uppercase;
 }
 
