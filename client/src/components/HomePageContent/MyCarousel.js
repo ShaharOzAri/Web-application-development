@@ -17,7 +17,7 @@ function MyCarousel(props) {
   ];
 
   return (
-    <Carousel sx={{ marginBottom: 5 }}>
+    <Carousel sx={{ marginBottom: 5, marginTop: 10 }}>
       {images.map((image, i) => (
         <SliderImage key={i} image={image} />
       ))}

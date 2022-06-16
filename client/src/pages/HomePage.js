@@ -1,10 +1,11 @@
-import NavigationBar from "../components/layout/MainNavigation";
 import HomePageContent from "../components/HomePageContent/HomePageContent";
+import NavigationBar from "../components/NavBar/NavigationBar";
 
 function HomePage() {
   return (
     <div>
-      <NavigationBar />
+      <NavigationBar></NavigationBar>
+      {/* <NavigationBar /> */}
       <HomePageContent></HomePageContent>
     </div>
   );
