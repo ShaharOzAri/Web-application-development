@@ -25,7 +25,7 @@ function App() {
     <ThemeProvider theme={customTheme}>
       <MyThemeComponent>
         <Switch>
-          <Route path="/">
+          <Route path='/'>
             <HomePage />
           </Route>
         </Switch>
