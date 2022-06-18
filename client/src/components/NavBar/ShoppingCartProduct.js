@@ -12,7 +12,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function ProductCard() {
+export default function ShoppingCartProduct() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={1}>

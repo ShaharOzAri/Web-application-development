@@ -24,12 +24,7 @@ export default function CategoryCard(props) {
           alt={props.item.alt}
         />
         <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={{ fontFamily: "monospace", letterSpacing: 4 }}
-          >
+          <Typography component="div" letterSpacing={4} variant="h5">
             {props.item.Title}
           </Typography>
         </CardContent>

@@ -1,16 +1,17 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import CloseIcon from "@mui/icons-material/Close";
-import ProductCard from "./ProductCard";
+import ShoppingCartButton from "./ShoppingCartButton";
+import PersonIcon from "@mui/icons-material/Person";
+import SignInButton from "./SignInButton";
+import SignUpButton from "./SignUpButton";
 
 const drawerWidth = 400;
 
@@ -31,26 +32,23 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  textAlign: "center",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  // justifyContent: "flex-start",
-}));
-
-export default function PersistentDrawerRight() {
+export default function NavigationBar() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [openShopping, setOpenShopping] = useState(false);
+  const [openSignIn, setOpenSignIn] = useState(false);
+  const [openSignUp, setOpenSignUp] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  // useEffect(() => {
+  //   setScreenMode(screenMode);
+  // }, [screenMode]);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpenShopping(true);
   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
+  const handleClickOpen = () => {
+    setOpenSignIn(true);
   };
 
   return (
@@ -66,35 +64,35 @@ export default function PersistentDrawerRight() {
             aria-label="open drawer"
             edge="end"
             onClick={handleDrawerOpen}
-            sx={{ ...(open && { display: "none" }) }}
+            sx={{ ...(open && { display: "none", mx: "15px" }) }}
           >
-            <ShoppingCartIcon />
+            <ShoppingCartIcon sx={{ fontSize: "25px" }} />
+          </IconButton>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="end"
+            onClick={handleClickOpen}
+            sx={{ ...(open && { display: "none", mx: "15px" }) }}
+          >
+            <PersonIcon sx={{ fontSize: "25px" }} />
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-          },
-        }}
-        variant="persistent"
-        anchor="right"
-        open={open}
-      >
-        <DrawerHeader sx={{ width: "100%" }}>
-          <IconButton onClick={handleDrawerClose}>
-            <CloseIcon />
-          </IconButton>
-          <Typography sx={{ textAlign: "center", margin: "auto" }}>
-            OMER
-          </Typography>
-        </DrawerHeader>
-        <Divider />
-        <ProductCard></ProductCard>
-      </Drawer>
+      <ShoppingCartButton
+        setOpen={setOpenShopping}
+        open={openShopping}
+      ></ShoppingCartButton>
+      <SignInButton
+        setOpen={setOpenSignIn}
+        open={openSignIn}
+        signUp={setOpenSignUp}
+      ></SignInButton>
+      <SignUpButton
+        setOpen={setOpenSignUp}
+        open={openSignUp}
+        signIn={setOpenSignIn}
+      ></SignUpButton>
     </Box>
   );
 }
