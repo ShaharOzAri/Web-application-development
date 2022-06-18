@@ -1,6 +1,10 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useState } from "react";
+import SignIn from "../SignIn";
 
 function MainNavigation() {
+  const [openSignInModal, setSignInModal] = useState(false);
+
   return (
     <div>
       <nav>
@@ -19,9 +23,10 @@ function MainNavigation() {
         <AccountCircleIcon
           sx={{ fontSize: "40px", cursor: "pointer" }}
           onClick={() => {
-            alert("work");
+            setSignInModal(true);
           }}
         />
+        {openSignInModal && <SignIn />}
       </nav>
     </div>
   );
