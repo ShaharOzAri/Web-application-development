@@ -1,13 +1,8 @@
 import axios from "axios";
 
 export const AddNewUser = (user) => {
-  // http request to the server to fetch the product
-  //   return axios.get("https://api.npms.io/v2/search?q=react").then((response) => {
-  //     console.log("sdfsdf");
-  //   });
-  const API_URL = "http://localhost:5000/";
   return axios
-    .post(API_URL + "signup/", {
+    .post(process.env.REACT_APP_API_URL + "user/signup/", {
       params: user,
       headers: {
         "Content-Type": "application/json",
