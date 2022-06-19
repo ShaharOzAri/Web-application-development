@@ -1,5 +1,5 @@
 import * as React from "react";
-import MyCarousel from "./MyCarousel";
+import MyCarousel from "../UI/Carousel/Carousel";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import { Container } from "@mui/system";
 import CategorySection from "./CatrgorySection";

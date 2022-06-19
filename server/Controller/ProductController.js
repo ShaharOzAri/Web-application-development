@@ -1,8 +1,17 @@
 const express = require("express");
-const userService = require("../Service/ProductService");
+const UserService = require("../Service/ProductService");
 const router = express.Router();
 
-router.route("/create").post((request, response) => {});
+router.route("/create").post(async (request, response) => {
+  var result = await UserService.createProduct(request.body);
+  if (result != null) {
+    response.status(200).send({
+      msg: result,
+    });
+  } else {
+    response.status(403).send();
+  }
+});
 
 router.route("/getAll").get((request, response) => {});
 

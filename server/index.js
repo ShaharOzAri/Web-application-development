@@ -25,6 +25,12 @@ mongoose
 
 //Routes API
 const userAPI = require("./Controller/UserController");
+const productAPI = require("./Controller/ProductController");
+const orderAPI = require("./Controller/OrderController");
+const categoryAPI = require("./Controller/CategoryController");
 
 //Route use
 app.use("/user", userAPI);
+app.use("/product", productAPI);
+app.use("/order", orderAPI);
+app.use("/category", categoryAPI);

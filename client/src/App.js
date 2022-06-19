@@ -1,8 +1,9 @@
 import * as React from "react";
 import "./app.css";
 import { Route, Switch } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+import HomePage from "./components/HomePage/HomePageContent";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import NavigationBar from "./components/NavBar/NavigationBar";
 
 const customTheme = createTheme({
   palette: {
@@ -24,8 +25,9 @@ function App() {
   return (
     <ThemeProvider theme={customTheme}>
       <MyThemeComponent>
+        <NavigationBar></NavigationBar>
         <Switch>
-          <Route path='/'>
+          <Route path="/">
             <HomePage />
           </Route>
         </Switch>

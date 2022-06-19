@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
+const SchemaTypes = mongoose.Schema.Types;
 
 const OrderSchema = new mongoose.Schema({
   date: Date,
   productIds: Array,
-  totalSum: Double,
-  userId: ObjectId,
+  totalSum: Number,
+  userId: SchemaTypes.ObjectId,
   address: {
     city: String,
     street: String,
