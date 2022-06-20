@@ -19,7 +19,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   // justifyContent: "flex-start",
 }));
 
-export default function ShoppingCartButton(props) {
+export default function ShoppingCartDrawer(props) {
   const handleDrawerClose = () => {
     props.setOpen(false);
   };

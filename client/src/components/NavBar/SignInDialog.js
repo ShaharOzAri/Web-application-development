@@ -1,21 +1,24 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import Dialog from "@mui/material/Dialog";
-import SignUpPopUp from "./SignUpPopUp";
+import SignInDialogContent from "./SignInDialogContent";
 
-export default function SignUpButton(props) {
+export default function SignInDialog(props) {
   const handleClose = () => {
     props.setOpen(false);
   };
 
   return (
     <Dialog onClose={handleClose} open={props.open}>
-      <SignUpPopUp signIn={props.signIn} signUp={props.setOpen}></SignUpPopUp>
+      <SignInDialogContent
+        signUp={props.signUp}
+        signIn={props.setOpen}
+      ></SignInDialogContent>
     </Dialog>
   );
 }
 
-SignUpButton.propTypes = {
+SignInDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
 };

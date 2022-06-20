@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
 
-export default function SignInPopUp(props) {
+export default function SignInDialog(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 

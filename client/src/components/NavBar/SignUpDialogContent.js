@@ -16,7 +16,7 @@ import { AddNewUser } from "../../controller/UserController";
 
 const theme = createTheme();
 
-export default function SignUp(props) {
+export default function SignUpDialogContent(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

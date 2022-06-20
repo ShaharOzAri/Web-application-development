@@ -8,10 +8,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import ShoppingCartButton from "./ShoppingCartButton";
+import ShoppingCartDrawer from "../ShoppingCart/ShoppingCartDrawer";
 import PersonIcon from "@mui/icons-material/Person";
-import SignInButton from "./SignInButton";
-import SignUpButton from "./SignUpButton";
+import SignInDialog from "./SignInDialog";
+import SignUpDialog from "./SignUpDialog";
 
 const drawerWidth = 400;
 
@@ -79,20 +79,20 @@ export default function NavigationBar() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <ShoppingCartButton
+      <ShoppingCartDrawer
         setOpen={setOpenShopping}
         open={openShopping}
-      ></ShoppingCartButton>
-      <SignInButton
+      ></ShoppingCartDrawer>
+      <SignInDialog
         setOpen={setOpenSignIn}
         open={openSignIn}
         signUp={setOpenSignUp}
-      ></SignInButton>
-      <SignUpButton
+      ></SignInDialog>
+      <SignUpDialog
         setOpen={setOpenSignUp}
         open={openSignUp}
         signIn={setOpenSignIn}
-      ></SignUpButton>
+      ></SignUpDialog>
     </Box>
   );
 }
