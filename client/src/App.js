@@ -3,6 +3,7 @@ import "./app.css";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import AboutUsPage from "./pages/AboutUsPage";
 
 const customTheme = createTheme({
   palette: {
@@ -25,8 +26,11 @@ function App() {
     <ThemeProvider theme={customTheme}>
       <MyThemeComponent>
         <Switch>
-          <Route path='/'>
+          <Route path='/' exact>
             <HomePage />
+          </Route>
+          <Route path='/aboutus'>
+            <AboutUsPage />
           </Route>
         </Switch>
       </MyThemeComponent>
