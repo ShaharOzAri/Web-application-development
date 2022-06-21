@@ -3,7 +3,7 @@ const OrderService = require("../Service/OrderService");
 const router = express.Router();
 
 router.route("/create").post(async (request, response) => {
-  var result = await OrderService.insertOrder(request.query);
+  var result = await OrderService.insertOrder(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -14,7 +14,7 @@ router.route("/create").post(async (request, response) => {
 });
 
 router.route("/getOrdersByDate").get(async (request, response) => {
-  var result = await OrderService.getOrdersByDate(request.query.date);
+  var result = await OrderService.getOrdersByDate(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -24,7 +24,7 @@ router.route("/getOrdersByDate").get(async (request, response) => {
 });
 
 router.route("/getOrdersByUser").get(async (request, response) => {
-  var result = await OrderService.getOrdersByUser(request.query.userId);
+  var result = await OrderService.getOrdersByUser(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -34,7 +34,7 @@ router.route("/getOrdersByUser").get(async (request, response) => {
 });
 
 router.route("/getOrderById").get(async (request, response) => {
-  var result = await OrderService.getOrderById(request.query.id);
+  var result = await OrderService.getOrderById(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -45,7 +45,7 @@ router.route("/getOrderById").get(async (request, response) => {
 });
 
 router.route("/update").post(async (request, response) => {
-  var result = await OrderService.update(request.query);
+  var result = await OrderService.update(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -56,7 +56,7 @@ router.route("/update").post(async (request, response) => {
 });
 
 router.route("/delete").post(async (request, response) => {
-  var result = await OrderService.delete(request.query.id);
+  var result = await OrderService.delete(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,

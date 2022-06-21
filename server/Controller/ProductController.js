@@ -3,7 +3,7 @@ const ProductService = require("../Service/ProductService");
 const router = express.Router();
 
 router.route("/create").post(async (request, response) => {
-  var result = await ProductService.createProduct(request.body);
+  var result = await ProductService.createProduct(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -25,7 +25,7 @@ router.route("/getAll").get(async (request, response) => {
 });
 
 router.route("/getProductById").get(async (request, response) => {
-  var result = await ProductService.getProductById(request.query.id);
+  var result = await ProductService.getProductById(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -36,7 +36,7 @@ router.route("/getProductById").get(async (request, response) => {
 });
 
 router.route("/getProductByName").get(async (request, response) => {
-  var result = await ProductService.getProductByName(request.query.name);
+  var result = await ProductService.getProductByName(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -47,9 +47,7 @@ router.route("/getProductByName").get(async (request, response) => {
 });
 
 router.route("/getProductsByCategory").get(async (request, response) => {
-  var result = await ProductService.getProductsByCategory(
-    request.query.category
-  );
+  var result = await ProductService.getProductsByCategory(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -60,7 +58,7 @@ router.route("/getProductsByCategory").get(async (request, response) => {
 });
 
 router.route("/update").post(async (request, response) => {
-  var result = await ProductService.update(request.query);
+  var result = await ProductService.update(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -71,7 +69,7 @@ router.route("/update").post(async (request, response) => {
 });
 
 router.route("/delete").post(async (request, response) => {
-  var result = await ProductService.delete(request.query.id);
+  var result = await ProductService.delete(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,

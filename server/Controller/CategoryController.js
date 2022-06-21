@@ -3,7 +3,7 @@ const CategoryService = require("../Service/CategoryService");
 const router = express.Router();
 
 router.route("/create").post(async (request, response) => {
-  var result = await CategoryService.insertCategory(request.query);
+  var result = await CategoryService.insertCategory(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -25,7 +25,7 @@ router.route("/getAll").get(async (request, response) => {
 });
 
 router.route("/getCategoryById").get(async (request, response) => {
-  var result = await CategoryService.getCategoryById(request.query.id);
+  var result = await CategoryService.getCategoryById(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -36,7 +36,7 @@ router.route("/getCategoryById").get(async (request, response) => {
 });
 
 router.route("/update").post(async (request, response) => {
-  var result = await CategoryService.update(request.query);
+  var result = await CategoryService.update(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -47,7 +47,7 @@ router.route("/update").post(async (request, response) => {
 });
 
 router.route("/delete").post(async (request, response) => {
-  var result = await CategoryService.delete(request.query.id);
+  var result = await CategoryService.delete(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,

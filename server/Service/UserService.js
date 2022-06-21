@@ -5,9 +5,11 @@ module.exports = class UserService {
     return users
       .insertMany(user)
       .then((value) => {
+        console.log(value);
         return value;
       })
       .catch((error) => {
+        console.log(error);
         return null;
       });
   }

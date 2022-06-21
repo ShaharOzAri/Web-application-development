@@ -3,18 +3,18 @@ const UserService = require("../Service/UserService");
 const router = express.Router();
 
 router.route("/signup").post(async (request, response) => {
-  var result = await UserService.insertUser(request.query);
+  var result = await UserService.insertUser(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
     });
   } else {
-    response.status(403).send();
+    response.status(403).send({});
   }
 });
 
 router.route("/signin").post(async (request, response) => {
-  var result = await UserService.getUserByEmail(request.query.email);
+  var result = await UserService.getUserByEmail(request.body.params.email);
   if (result != null) {
     if (result[0].password == request.query.password) {
       response.status(200).send();
@@ -35,7 +35,7 @@ router.route("/getAll").get(async (request, response) => {
 });
 
 router.route("/getUserById").get(async (request, response) => {
-  var result = await UserService.getUserById(request.query.id);
+  var result = await UserService.getUserById(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -46,7 +46,7 @@ router.route("/getUserById").get(async (request, response) => {
 });
 
 router.route("/update").post(async (request, response) => {
-  var result = await UserService.update(request.query);
+  var result = await UserService.update(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -57,7 +57,7 @@ router.route("/update").post(async (request, response) => {
 });
 
 router.route("/delete").post(async (request, response) => {
-  var result = await UserService.delete(request.query.id);
+  var result = await UserService.delete(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,
