@@ -1,17 +1,70 @@
 const express = require("express");
-const userService = require("../Service/UserService");
+const UserService = require("../Service/UserService");
 const router = express.Router();
 
-router.route("/signup").post((request, response) => {
-  // console.log(request.body.params);
-  var user = request.body.params;
-  userService.insertUser(user);
+router.route("/signup").post(async (request, response) => {
+  var result = await UserService.insertUser(request.query);
+  if (result != null) {
+    response.status(200).send({
+      msg: result,
+    });
+  } else {
+    response.status(403).send();
+  }
 });
 
-router.route("/signin").post((request, response) => {});
+router.route("/signin").post(async (request, response) => {
+  var result = await UserService.getUserByEmail(request.query.email);
+  if (result != null) {
+    if (result[0].password == request.query.password) {
+      response.status(200).send();
+    }
+  }
+  response.status(403).send();
+});
 
-router.route("/update").post((request, response) => {});
+router.route("/getAll").get(async (request, response) => {
+  var result = await UserService.getAllUsers();
+  if (result != null) {
+    response.status(200).send({
+      msg: result,
+    });
+  } else {
+    response.status(403).send();
+  }
+});
 
-router.route("/delete").post((request, response) => {});
+router.route("/getUserById").get(async (request, response) => {
+  var result = await UserService.getUserById(request.query.id);
+  if (result != null) {
+    response.status(200).send({
+      msg: result,
+    });
+  } else {
+    response.status(403).send();
+  }
+});
+
+router.route("/update").post(async (request, response) => {
+  var result = await UserService.update(request.query);
+  if (result != null) {
+    response.status(200).send({
+      msg: result,
+    });
+  } else {
+    response.status(403).send();
+  }
+});
+
+router.route("/delete").post(async (request, response) => {
+  var result = await UserService.delete(request.query.id);
+  if (result != null) {
+    response.status(200).send({
+      msg: result,
+    });
+  } else {
+    response.status(403).send();
+  }
+});
 
 module.exports = router;
