@@ -7,6 +7,6 @@ export const getProduct = () => {
   //   });
   return {
     status: 200,
-    data: { productName: "classic name necklace", productPrice: "29.90" },
+    data: { productName: "Classic Name Necklace", productPrice: "$29.90" },
   };
 };

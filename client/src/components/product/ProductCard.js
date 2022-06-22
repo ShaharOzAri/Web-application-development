@@ -8,10 +8,10 @@ import Typography from "@mui/material/Typography";
 import { getProduct } from "./ProductData";
 import { useEffect } from "react";
 import { useState } from "react";
-import { TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 
-const ProductCard = () => {
-  const [product, setProduct] = useState(null);
+const ProductCard = (props) => {
+  const [product, setProduct] = useState(props.product);
 
   const getProductData = async () => {
     let result = await getProduct();
@@ -23,35 +23,45 @@ const ProductCard = () => {
   };
 
   useEffect(() => {
-    console.log("asd");
-    getProductData();
+    // getProductData();
   }, []);
 
   return product != null ? (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-        alt="green iguana"
+        height="250"
+        image={product.images[0]}
+        alt="Classic Name Necklace"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {product.productName}
+        <Typography
+          gutterBottom
+          variant="h6"
+          component="div"
+          textAlign="center"
+        >
+          {product.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {product.productPrice}
+        <Typography
+          variant="body2"
+          color="black"
+          textAlign="center"
+          fontSize="15px"
+        >
+          {product.price}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button variant="contained" size="small">
-          Share
-        </Button>
-        <Button variant="outlined" size="small">
-          Learn More
+      <CardActions style={{ justifyContent: "center" }}>
+        <Button
+          variant="outlined"
+          size="small"
+          color="secondary"
+          style={{ color: "black" }}
+        >
+          Quick View
         </Button>
       </CardActions>
-      <TextField></TextField>
     </Card>
   ) : (
     ""
