@@ -37,7 +37,7 @@ const ProductCard = (props) => {
       <CardContent>
         <Typography
           gutterBottom
-          variant="h6"
+          variant="h7"
           component="div"
           textAlign="center"
         >
@@ -47,7 +47,7 @@ const ProductCard = (props) => {
           variant="body2"
           color="black"
           textAlign="center"
-          fontSize="15px"
+          fontSize="20px"
         >
           {product.price}
         </Typography>
