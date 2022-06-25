@@ -4,6 +4,10 @@ import { Route, Switch } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePageContent";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import NavigationBar from "./components/NavBar/NavigationBar";
+import AboutUsPage from "./pages/AboutUsPage";
+import Chat from "./components/Chat/Chat";
+import Map from "./components/Map/Map";
+import CreateLocations from "./components/Map/CreateLocations";
 
 const customTheme = createTheme({
   palette: {
@@ -21,17 +25,27 @@ const MyThemeComponent = styled("div")(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
 }));
 
+//<NavigationBar></NavigationBar>
+
 function App() {
   return (
     <ThemeProvider theme={customTheme}>
       <MyThemeComponent>
-        <NavigationBar></NavigationBar>
         <Switch>
           <Route path='/' exact>
             <HomePage />
           </Route>
           <Route path='/aboutus'>
             <AboutUsPage />
+          </Route>
+          <Route path='/chat'>
+            <Chat />
+          </Route>
+          <Route path='/createLocation'>
+            <CreateLocations />
+          </Route>
+          <Route path='/maps'>
+            <Map />
           </Route>
         </Switch>
       </MyThemeComponent>
