@@ -25,26 +25,25 @@ const MyThemeComponent = styled("div")(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
 }));
 
-//<NavigationBar></NavigationBar>
-
 function App() {
   return (
     <ThemeProvider theme={customTheme}>
       <MyThemeComponent>
+        <NavigationBar></NavigationBar>
         <Switch>
-          <Route path='/' exact>
+          <Route exact path="/">
             <HomePage />
           </Route>
-          <Route path='/aboutus'>
+          <Route path="/aboutus">
             <AboutUsPage />
           </Route>
-          <Route path='/chat'>
+          <Route path="/chat">
             <Chat />
           </Route>
-          <Route path='/createLocation'>
+          <Route path="/createLocation">
             <CreateLocations />
           </Route>
-          <Route path='/maps'>
+          <Route path="/maps">
             <Map />
           </Route>
         </Switch>

@@ -27,20 +27,13 @@ export default function Map() {
 
   return (
     <Flex
-      position='relative'
-      flexDirection='column'
-      alignItems='center'
-      h='100vh'
-      w='100vw'
+      position="relative"
+      flexDirection="column"
+      alignItems="center"
+      h="100vh"
+      w="100vw"
     >
-      <Box>
-        <h1>{locations[0].latitude}</h1>
-        {locations.map((marker) => {
-          return <h1>{marker.shop_name}</h1>;
-        })}
-      </Box>
-
-      <Box position='absolute' left={"25%"} bottom={0} h='50%' w='50%'>
+      <Box position="absolute" left={"25%"} bottom={0} h="50%" w="50%">
         <GoogleMap
           zoom={10}
           center={{ lat: 32.03514, lng: 34.876912 }}
