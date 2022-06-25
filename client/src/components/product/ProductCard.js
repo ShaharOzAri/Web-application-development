@@ -27,10 +27,10 @@ const ProductCard = (props) => {
   }, []);
 
   return product != null ? (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 370 }}>
       <CardMedia
         component="img"
-        height="250"
+        height="300"
         image={product.images[0]}
         alt="Classic Name Necklace"
       />

@@ -15,10 +15,16 @@ const ProductSection = (props) => {
   const products = props.products;
 
   return (
-    <Grid container spacing={2}>
+    <Grid
+      container
+      spacing={1}
+      direction="row"
+      alignItems="center"
+      justifyContent="center"
+    >
       {products.map((product) => {
         return (
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <ProductCard product={product} />;
           </Grid>
         );
