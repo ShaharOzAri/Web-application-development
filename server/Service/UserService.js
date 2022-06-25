@@ -5,11 +5,11 @@ module.exports = class UserService {
     return users
       .insertMany(user)
       .then((value) => {
-        console.log(value);
+        // console.log(value);
         return value;
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         return null;
       });
   }
@@ -18,12 +18,14 @@ module.exports = class UserService {
     return users
       .find({ email: userEmail })
       .then((value) => {
+        // console.log(value);
         if (value.length == 0) {
           return null;
         }
         return value;
       })
       .catch((error) => {
+        // console.log(error);
         return null;
       });
   }

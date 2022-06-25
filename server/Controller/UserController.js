@@ -15,9 +15,12 @@ router.route("/signup").post(async (request, response) => {
 
 router.route("/signin").post(async (request, response) => {
   var result = await UserService.getUserByEmail(request.body.params.email);
+  // console.log(result);
   if (result != null) {
-    if (result[0].password == request.query.password) {
-      response.status(200).send();
+    if (result[0].password == request.body.params.password) {
+      response.status(200).send({
+        msg: result,
+      });
     }
   }
   response.status(403).send();

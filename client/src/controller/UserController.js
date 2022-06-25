@@ -1,43 +1,37 @@
 import axios from "axios";
 const url = process.env.REACT_APP_API_URL + "user/";
 
-export const AddNewUser = (user) => {
-  return axios
-    .post(url + "signup/", {
+export const AddNewUser = async (user) => {
+  try {
+    var res = await axios.post(url + "signup/", {
       params: user,
       headers: {
         "Content-Type": "application/json",
       },
-    })
-    .then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    });
+    sessionStorage.setItem("user", res.data.msg);
+    return res;
+  } catch (error) {
+    return error.response;
+  }
 };
 
-export const checkUserPassword = (user) => {
-  return (axios.post(url + "signin/"),
-  {
-    params: user,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(
-    (response) => {
-      console.log(response);
-    },
-    (error) => {
-      console.log(error);
-    }
-  );
+export const checkUserPassword = async (user) => {
+  try {
+    var res = await axios.post(url + "signin/", {
+      params: user,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res;
+  } catch (error) {
+    return error.response;
+  }
 };
 
 export const getAllUsers = () => {
-  return (axios.post(url + "getAll/"),
+  return (axios.get(url + "getAll/"),
   {
     headers: {
       "Content-Type": "application/json",

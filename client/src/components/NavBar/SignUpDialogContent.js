@@ -17,7 +17,7 @@ import { AddNewUser } from "../../controller/UserController";
 const theme = createTheme();
 
 export default function SignUpDialogContent(props) {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const user = {
@@ -25,8 +25,15 @@ export default function SignUpDialogContent(props) {
       first_name: data.get("firstName"),
       last_name: data.get("lastName"),
       password: data.get("password"),
+      role: "client",
     };
-    AddNewUser(user);
+    var response = await AddNewUser(user);
+    if (response.status == 200) {
+      props.signUp(false);
+      props.isSignedIn(true);
+    } else if (response.status == 403) {
+      alert("email already exist , please try another email");
+    }
   };
 
   const ChangeToSignIn = () => {
