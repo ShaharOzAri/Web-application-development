@@ -33,15 +33,11 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 export default function NavigationBar() {
-  const theme = useTheme();
   const [openShopping, setOpenShopping] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
   const [openSignUp, setOpenSignUp] = useState(false);
-  const [open, setOpen] = useState(false);
 
-  // useEffect(() => {
-  //   setScreenMode(screenMode);
-  // }, [screenMode]);
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpenShopping(true);
@@ -52,12 +48,16 @@ export default function NavigationBar() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", mb: 5 }}>
       <CssBaseline />
       <AppBar position="fixed" open={open} sx={{ bgcolor: "#e0d9cc" }}>
         <Toolbar>
           <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
-            MikMikFood
+            <img
+              src="https://cdn.onecklace.com/images/logos/autographed_logo.webp"
+              style={{ width: 120, height: 40 }}
+              alt="Logo"
+            />
           </Typography>
           <IconButton
             color="inherit"

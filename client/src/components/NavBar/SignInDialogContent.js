@@ -12,18 +12,26 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { checkUserPassword } from "../../controller/UserController";
 
 const theme = createTheme();
 
 export default function SignInDialog(props) {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
     const data = new FormData(event.currentTarget);
-    console.log({
+    const user = {
       email: data.get("email"),
       password: data.get("password"),
-    });
+    };
+
+    var response = await checkUserPassword(user);
+    if (response.status == 200) {
+      props.signIn(false);
+      alert("you sign in");
+    } else if (response.status == 403) {
+      alert("email or passeord is not correct , Please try again!");
+    }
   };
 
   const ChangeToSignUp = () => {
@@ -74,10 +82,6 @@ export default function SignInDialog(props) {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             />
             <Button
               type="submit"
