@@ -48,7 +48,7 @@ export default function NavigationBar() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", mb: 5 }}>
       <CssBaseline />
       <AppBar position="fixed" open={open} sx={{ bgcolor: "#e0d9cc" }}>
         <Toolbar>
