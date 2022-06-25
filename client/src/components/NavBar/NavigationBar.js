@@ -57,7 +57,11 @@ export default function NavigationBar() {
       <AppBar position="fixed" open={open} sx={{ bgcolor: "#e0d9cc" }}>
         <Toolbar>
           <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
-            MikMikFood
+            <img
+              src="https://cdn.onecklace.com/images/logos/autographed_logo.webp"
+              style={{ width: 120, height: 40 }}
+              alt="Logo"
+            />
           </Typography>
           <IconButton
             color="inherit"
