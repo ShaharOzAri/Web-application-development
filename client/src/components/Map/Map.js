@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 export default function Map() {
   const [locations, setLocations] = useState(false);
+
   const getAllLocations = async () => {
     const recivedLocatios = await getLocations();
     console.log(recivedLocatios.data.msg);
@@ -20,7 +21,7 @@ export default function Map() {
   //console.log(locations);
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAirgb_ESgT3BISdOZL8D-_189_aEL0R7g",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
   });
 
   if (!isLoaded) return <div>Loading...</div>;

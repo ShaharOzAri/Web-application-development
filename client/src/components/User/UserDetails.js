@@ -1,64 +1,51 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
+import { useAuth } from "../Utils/auth";
+import { useNavigate } from "react-router-dom";
+import { Container, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { AddNewUser } from "../../controller/UserController";
-import { useAuth } from "../Utils/auth";
+import { updateUser } from "../../controller/UserController";
 
-const theme = createTheme();
-
-export default function SignUpDialogContent(props) {
+export const UserDetails = () => {
   const auth = useAuth();
+  var user = auth.user;
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    auth.logout();
+    navigate("/");
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const user = {
-      email: data.get("email"),
-      first_name: data.get("firstName"),
-      last_name: data.get("lastName"),
-      password: data.get("password"),
-      role: "client",
-    };
-    var response = await AddNewUser(user);
+    const response = await updateUser(user);
     if (response.status == 200) {
-      props.signUp(false);
-      sessionStorage.setItem("user", JSON.stringify(response.data.msg[0]));
-      auth.login(response.data.msg[0]);
-    } else if (response.status == 403) {
-      alert("email already exist , please try another email");
+      auth.update(user);
+      alert("user Details updated");
+    } else {
+      alert("somrthing went wrong");
     }
   };
-
-  const ChangeToSignIn = () => {
-    props.signIn(true);
-    props.signUp(false);
-  };
-
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+    <Container sx={{ textAlign: "center", maxWidth: 200, bgcolor: "#e0d9cc" }}>
+      <Box sx={{ my: 5 }}>
+        <Typography sx={{ fontSize: 40, color: "black" }}>
+          Welcom {auth.user.first_name}
+        </Typography>
+        <Button
+          variant="contained"
+          sx={{ mb: 2, color: "black" }}
+          onClick={handleLogout}
+        >
+          LogOut
+        </Button>
         <Box
           sx={{
-            marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
           <Box
             component="form"
             noValidate
@@ -69,43 +56,52 @@ export default function SignUpDialogContent(props) {
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
+                  defaultValue={auth.user.first_name}
                   name="firstName"
-                  required
                   fullWidth
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={(event) =>
+                    (user["first_name"] = event.target.value)
+                  }
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
+                  defaultValue={auth.user.last_name}
                   id="lastName"
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={(event) => (user["last_name"] = event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
+                  defaultValue={auth.user.email}
                   id="email"
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={(event) => (user["email"] = event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
+                  defaultValue={auth.user.password}
                   name="password"
                   label="Password"
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={(event) => (user["password"] = event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}></Grid>
@@ -114,9 +110,9 @@ export default function SignUpDialogContent(props) {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, color: "black" }}
             >
-              Sign Up
+              Update User Details
             </Button>
             <Grid
               container
@@ -127,16 +123,10 @@ export default function SignUpDialogContent(props) {
                 alignItems: "center",
                 marginBottom: 5,
               }}
-            >
-              <Grid item>
-                <Button onClick={ChangeToSignIn} variant="body2">
-                  Already have an account? Sign in
-                </Button>
-              </Grid>
-            </Grid>
+            ></Grid>
           </Box>
         </Box>
-      </Container>
-    </ThemeProvider>
+      </Box>
+    </Container>
   );
-}
+};

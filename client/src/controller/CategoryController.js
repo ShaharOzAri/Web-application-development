@@ -19,21 +19,14 @@ export const AddNewCategory = (category) => {
     );
 };
 
-export const getAllCategories = () => {
-  return axios
-    .post(url + "getAll/", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+export const getAllCategories = async () => {
+  const result = await axios.get(url + "getAll/", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  return result;
 };
 
 export const getCategoryById = (id) => {

@@ -13,10 +13,15 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { checkUserPassword } from "../../controller/UserController";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Utils/auth";
 
 const theme = createTheme();
 
 export default function SignInDialog(props) {
+  const navigate = useNavigate();
+  const auth = useAuth();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -28,7 +33,10 @@ export default function SignInDialog(props) {
     var response = await checkUserPassword(user);
     if (response.status == 200) {
       props.signIn(false);
-      alert("you sign in");
+      auth.login(response.data.msg[0]);
+      if (response.data.msg[0].role == "admin") {
+        navigate("/admin");
+      }
     } else if (response.status == 403) {
       alert("email or passeord is not correct , Please try again!");
     }

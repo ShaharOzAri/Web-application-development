@@ -63,21 +63,18 @@ export const getUserById = (id) => {
   );
 };
 
-export const updateUser = (user) => {
-  return (axios.post(url + "update/"),
-  {
-    params: user,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(
-    (response) => {
-      console.log(response);
-    },
-    (error) => {
-      console.log(error);
-    }
-  );
+export const updateUser = async (user) => {
+  try {
+    var res = await axios.post(url + "update/", {
+      params: user,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res;
+  } catch (error) {
+    return error.response;
+  }
 };
 
 export const deleteuser = (id) => {
