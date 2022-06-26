@@ -8,6 +8,7 @@ import AboutUsPage from "./pages/AboutUsPage";
 import Chat from "./components/Chat/Chat";
 import Map from "./components/Map/Map";
 import CreateLocations from "./components/Map/CreateLocations";
+import ProductPage from "./components/product/ProductPage";
 
 const customTheme = createTheme({
   palette: {
@@ -45,6 +46,9 @@ function App() {
           </Route>
           <Route path="/maps">
             <Map />
+          </Route>
+          <Route path="/productPage">
+            <ProductPage />
           </Route>
         </Switch>
       </MyThemeComponent>

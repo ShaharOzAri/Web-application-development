@@ -4,9 +4,10 @@ import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import { Container } from "@mui/system";
 import CategorySection from "./CatrgorySection";
 import BestSeller from "./BestSeller";
-<<<<<<< HEAD
 import ProductCard from "../product/ProductCard";
 import ProductSection from "../product/ProductSection";
+import VideoPlayer from "./VideoPlayer";
+import Footer from "./Footer";
 
 const products = [
   {
@@ -48,10 +49,6 @@ const products = [
     category: "necklace",
   },
 ];
-=======
-import VideoPlayer from "./VideoPlayer";
-import Footer from "./Footer";
->>>>>>> origin/main
 
 function Temp() {
   return (
@@ -60,12 +57,9 @@ function Temp() {
         <MyCarousel></MyCarousel>
         <CategorySection></CategorySection>
         <BestSeller></BestSeller>
-<<<<<<< HEAD
-        <ProductSection products={products}></ProductSection>
-=======
+        <ProductSection></ProductSection>
         <VideoPlayer></VideoPlayer>
         <Footer></Footer>
->>>>>>> origin/main
       </Container>
     </>
   );

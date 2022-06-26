@@ -5,33 +5,19 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { getProduct } from "./ProductData";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Box, TextField } from "@mui/material";
 
 const ProductCard = (props) => {
-  const [product, setProduct] = useState(props.product);
-
-  const getProductData = async () => {
-    let result = await getProduct();
-    if (result.status == 200) {
-      setProduct(result.data);
-    } else {
-      //error
-    }
-  };
-
-  useEffect(() => {
-    // getProductData();
-  }, []);
+  const product = props.product;
 
   return product != null ? (
     <Card sx={{ maxWidth: 370 }}>
       <CardMedia
         component="img"
         height="300"
-        image={product.images[0]}
+        image={product.images[1]}
         alt="Classic Name Necklace"
       />
       <CardContent>
@@ -52,12 +38,12 @@ const ProductCard = (props) => {
           {product.price}
         </Typography>
       </CardContent>
-      <CardActions style={{ justifyContent: "center" }}>
+      <CardActions sx={{ justifyContent: "center" }}>
         <Button
           variant="outlined"
           size="small"
           color="secondary"
-          style={{ color: "black" }}
+          sx={{ color: "black" }}
         >
           Quick View
         </Button>
