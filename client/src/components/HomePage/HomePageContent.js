@@ -50,7 +50,7 @@ const products = [
   },
 ];
 
-function Temp() {
+function HomePageContent() {
   return (
     <>
       <Container maxWidth="xxxl">
@@ -65,4 +65,4 @@ function Temp() {
   );
 }
 
-export default Temp;
+export default HomePageContent;
