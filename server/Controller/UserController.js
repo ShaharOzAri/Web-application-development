@@ -49,6 +49,7 @@ router.route("/getUserById").get(async (request, response) => {
 });
 
 router.route("/update").post(async (request, response) => {
+  console.log(request.body.params);
   var result = await UserService.update(request.body.params);
   if (result != null) {
     response.status(200).send({

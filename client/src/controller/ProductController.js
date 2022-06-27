@@ -20,20 +20,19 @@ export const AddNewProduct = (product) => {
 };
 
 export const getAllProducts = () => {
-  return axios
-    .post(url + "getAll/", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  return axios.get(url + "getAll/", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  // .then(
+  //   (response) => {
+  //     console.log(response);
+  //   },
+  //   (error) => {
+  //     console.log(error);
+  //   }
+  // );
 };
 
 export const getProductById = (id) => {
