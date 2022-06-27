@@ -27,6 +27,6 @@ export const getLocations = async () => {
       },
     }
   );
-    
+
   return result;
 };
