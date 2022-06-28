@@ -52,7 +52,7 @@ export default function NavigationBar() {
       setOpenSignIn(true);
     } else {
       if (auth.user.role == "admin") {
-        navigate(`admin/user/`);
+        navigate(`admin/userDetails/`);
       } else {
         navigate(`user/`);
       }
