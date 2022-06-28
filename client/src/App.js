@@ -91,7 +91,6 @@ function App() {
                 }
               />
             </Routes>
-            <ChatIcon></ChatIcon>
           </BrowserRouter>
         </MyThemeComponent>
       </ThemeProvider>
