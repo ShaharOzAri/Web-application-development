@@ -5,10 +5,13 @@ import { useAuth } from "./auth";
 export const RequireAuth = (props) => {
   const auth = useAuth();
   if (!auth.user) {
+    console.log("no connect");
     return <Navigate to="/"></Navigate>;
   }
-  if (auth.user.role == "client") {
+  if (JSON.parse(auth.getUser()).role == "client") {
+    console.log("client");
     return <Navigate to="/"></Navigate>;
   }
+  console.log("admin");
   return props.children;
 };
