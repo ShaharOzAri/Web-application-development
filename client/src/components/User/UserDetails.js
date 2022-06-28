@@ -33,7 +33,7 @@ export const UserDetails = () => {
     const response = await updateUser(user);
     if (response.status == 200) {
       auth.update(user);
-      if (!auth.user || auth.user.role == "client") {
+      if (!auth.user || JSON.parse(auth.getUser()).role == "client") {
         navigate("/ ");
       } else {
         navigate("/admin/");

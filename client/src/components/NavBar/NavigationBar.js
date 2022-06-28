@@ -51,7 +51,7 @@ export default function NavigationBar() {
     if (!auth.user) {
       setOpenSignIn(true);
     } else {
-      if (auth.user.role == "admin") {
+      if (JSON.parse(auth.getUser()).role == "admin") {
         navigate(`admin/userDetails/`);
       } else {
         navigate(`user/`);
@@ -60,7 +60,7 @@ export default function NavigationBar() {
   };
 
   const imageClick = () => {
-    if (auth.user && auth.user.role == "admin") {
+    if (auth.user && JSON.parse(auth.getUser()).role == "admin") {
       navigate("/admin");
     } else {
       navigate("/");
@@ -89,7 +89,7 @@ export default function NavigationBar() {
               onClick={() => imageClick()}
             />
           </Typography>
-          {!auth.user || auth.user.role == "cilent" ? (
+          {!auth.user || JSON.parse(auth.getUser()).role == "cilent" ? (
             <IconButton
               color="inherit"
               aria-label="open drawer"
