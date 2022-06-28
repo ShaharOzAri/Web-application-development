@@ -46,7 +46,7 @@ function App() {
               <Route path="/chat" element={<Chat />} />
               <Route path="/createLocation" element={<CreateLocations />} />
               <Route path="/category/:category" element={<CategoryPage />} />
-              <Route path="admin/products" element={<ProductSection />} />
+
               {/* <Route path="/user" element={<UserDetails />} /> */}
               <Route path="/user/" element={<UserDetails />} />
               <Route
@@ -79,6 +79,14 @@ function App() {
                 element={
                   <RequireAuth>
                     <UserDetailsAdmin />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="admin/products"
+                element={
+                  <RequireAuth>
+                    <ProductSection />
                   </RequireAuth>
                 }
               />

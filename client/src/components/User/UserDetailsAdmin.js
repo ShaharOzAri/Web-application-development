@@ -41,11 +41,9 @@ export default function UserDetailsAdmin() {
     event.preventDefault();
     const response = await updateUser(updatedUser);
     if (response.status == 200) {
-      //   console.log(response.data.msg);
-      //   alert("user Details updated");
       setSnackbarMsg("User Details Updated!");
       setSnackbar(true);
-      navigate("../users");
+      navigate("/admin/users");
     } else {
       alert("somrthing went wrong");
     }
@@ -162,7 +160,6 @@ export default function UserDetailsAdmin() {
       ) : (
         ""
       )}
-      ;
       <SuccessSnackbar
         status={snackbar}
         message={snackbarMsg}
