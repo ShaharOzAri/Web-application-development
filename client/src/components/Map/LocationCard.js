@@ -15,16 +15,23 @@ export default function LocationCard(props) {
       }}
     >
       <CardActionArea>
+      <CardContent>
+          <Typography component='div' letterSpacing={4} variant='h5'>
+            {props.item.Title}
+          </Typography>
+        </CardContent>
         <CardMedia
           component='img'
           height='550'
-          width='300'
+          width='200'
           image={props.item.src}
           alt={props.item.alt}
         />
         <CardContent>
-          <Typography component='div' letterSpacing={4} variant='h5'>
-            {props.item.Title}
+          <Typography component='div' letterSpacing={4} variant='h8'>
+          <p>{props.item.city}</p>
+          <p>{props.item.address}</p>
+          <p>{props.item.hours}</p>
           </Typography>
         </CardContent>
       </CardActionArea>

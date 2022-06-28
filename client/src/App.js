@@ -14,6 +14,7 @@ import { UserDetails } from "./components/User/UserDetails";
 import { AdminHomePage } from "./components/Admin/AdminHomePage";
 import { RequireAuth } from "./components/Utils/RequireAuth";
 import UserListItem from "./components/User/UserListItem";
+import ChatIcon from "./components/HomePage/ChatIcon";
 
 const customTheme = createTheme({
   palette: {
@@ -71,6 +72,7 @@ function App() {
                 }
               />
             </Routes>
+            <ChatIcon></ChatIcon>
           </BrowserRouter>
         </MyThemeComponent>
       </ThemeProvider>

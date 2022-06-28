@@ -20,7 +20,7 @@ export default function Map() {
   }, []);
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
+    googleMapsApiKey: "AIzaSyAirgb_ESgT3BISdOZL8D-_189_aEL0R7g",
   });
 
   if (!isLoaded) return <div>Loading...</div>;
@@ -33,7 +33,7 @@ export default function Map() {
       h='100vh'
       w='100vw'
     >
-      <Box position='absolute' left={"25%"} bottom={0} h='50%' w='50%'>
+      <Box position='absolute'   bottom={0} h='85%' w='80%'>
         <GoogleMap
           zoom={10}
           center={{ lat: 32.03514, lng: 34.876912 }}
