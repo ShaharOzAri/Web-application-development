@@ -19,6 +19,8 @@ export default function ToolbarButtons() {
     if (categories.status == 200) {
       categories = Array.from(categories.data.msg);
       setNavItems(categories);
+    } else {
+      console.log(categories.data);
     }
   };
 
@@ -36,7 +38,7 @@ export default function ToolbarButtons() {
     navigate(`/admin/${filter}`);
   };
 
-  if (!auth.user || auth.user.role == "client") {
+  if (!auth.user || JSON.parse(auth.getUser()).role == "client") {
     return (
       <Box
         sx={{

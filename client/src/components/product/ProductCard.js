@@ -44,7 +44,7 @@ const ProductCard = (props) => {
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: "center" }}>
-        {!auth.user || auth.user.role == "client" ? (
+        {!auth.user || JSON.parse(auth.getUser()).role == "client" ? (
           <Button
             variant="outlined"
             size="small"
