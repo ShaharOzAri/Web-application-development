@@ -1,61 +1,66 @@
 import { useAuth } from "../Utils/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Container, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { updateUser } from "../../controller/UserController";
 import { useEffect, useState } from "react";
+import { getUserById, updateUser } from "../../controller/UserController";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import { SuccessSnackbar } from "../Utils/Snackbar";
 
-export const UserDetails = () => {
-  const auth = useAuth();
-  const [userDetails, setUser] = useState(null);
-  var user = JSON.parse(auth.getUser());
-  // var user = auth.user;
+export default function UserDetailsAdmin() {
+  const { userId } = useParams();
+  console.log(userId);
+  const [user, setUser] = useState(null);
+  const [snackbar, setSnackbar] = useState(false);
+  const [snackbarMsg, setSnackbarMsg] = useState(null);
 
-  const setUserDetails = () => {
-    setUser(JSON.parse(auth.getUser()));
+  const getUser = async (id) => {
+    console.log(id);
+    var recivedUser = await getUserById(id);
+    if (recivedUser.status == 200) {
+      setUser(recivedUser.data.msg);
+    }
   };
 
   useEffect(() => {
-    setUserDetails();
+    getUser(userId);
   }, []);
 
+  var updatedUser = user;
+  console.log(updatedUser);
   const navigate = useNavigate();
-  const handleLogout = () => {
-    auth.logout();
-    navigate("/");
+  const handleAllUsers = () => {
+    navigate(-1);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await updateUser(user);
+    const response = await updateUser(updatedUser);
     if (response.status == 200) {
-      auth.update(user);
-      if (!auth.user || auth.user.role == "client") {
-        navigate("/ ");
-      } else {
-        navigate("/admin/");
-      }
-      alert("user Details updated");
+      setSnackbarMsg("User Details Updated!");
+      setSnackbar(true);
+      navigate("/admin/users");
     } else {
       alert("somrthing went wrong");
     }
   };
   return (
     <Container sx={{ textAlign: "center", maxWidth: 200, bgcolor: "#e0d9cc" }}>
-      {userDetails != null ? (
+      {user != null ? (
         <Box sx={{ my: 5 }}>
           <Typography sx={{ fontSize: 40, color: "black" }}>
-            Welcom {userDetails.first_name}
+            {user.first_name} {user.last_name} User Details
           </Typography>
           <Button
             variant="contained"
             sx={{ mb: 2, color: "black" }}
-            onClick={handleLogout}
+            onClick={handleAllUsers}
           >
-            LogOut
+            Back to All Users
           </Button>
           <Box
             sx={{
@@ -74,14 +79,14 @@ export const UserDetails = () => {
                 <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="given-name"
-                    defaultValue={userDetails.first_name}
+                    defaultValue={user.first_name}
                     name="firstName"
                     fullWidth
                     id="firstName"
                     label="First Name"
                     autoFocus
                     onChange={(event) =>
-                      (user["first_name"] = event.target.value)
+                      (updatedUser["first_name"] = event.target.value)
                     }
                   />
                 </Grid>
@@ -89,13 +94,13 @@ export const UserDetails = () => {
                   <TextField
                     required
                     fullWidth
-                    defaultValue={userDetails.last_name}
+                    defaultValue={user.last_name}
                     id="lastName"
                     label="Last Name"
                     name="lastName"
                     autoComplete="family-name"
                     onChange={(event) =>
-                      (user["last_name"] = event.target.value)
+                      (updatedUser["last_name"] = event.target.value)
                     }
                   />
                 </Grid>
@@ -103,30 +108,33 @@ export const UserDetails = () => {
                   <TextField
                     required
                     fullWidth
-                    defaultValue={userDetails.email}
+                    defaultValue={user.email}
                     id="email"
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    onChange={(event) => (user["email"] = event.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    defaultValue={userDetails.password}
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="new-password"
                     onChange={(event) =>
-                      (user["password"] = event.target.value)
+                      (updatedUser["email"] = event.target.value)
                     }
                   />
                 </Grid>
                 <Grid item xs={12}></Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <Select
+                  fullWidth
+                  id="role"
+                  name="Role"
+                  defaultValue={user.role}
+                  label="role"
+                  onChange={(event) => {
+                    updatedUser["role"] = event.target.value;
+                    console.log(updatedUser);
+                  }}
+                >
+                  <MenuItem value="client">Client</MenuItem>
+                  <MenuItem value="admin">Admin</MenuItem>
+                </Select>
               </Grid>
               <Button
                 type="submit"
@@ -152,6 +160,10 @@ export const UserDetails = () => {
       ) : (
         ""
       )}
+      <SuccessSnackbar
+        status={snackbar}
+        message={snackbarMsg}
+      ></SuccessSnackbar>
     </Container>
   );
-};
+}

@@ -4,7 +4,7 @@ import SliderImage from "./CarouselImage";
 import Banner1 from "../../images/banner1.png";
 import Banner2 from "../../images/banner2.png";
 
-function MyCarousel(props) {
+function MyCarousel() {
   var images = [
     {
       src: Banner1,
