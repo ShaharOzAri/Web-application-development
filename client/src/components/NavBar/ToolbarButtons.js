@@ -46,14 +46,14 @@ export default function ToolbarButtons() {
         }}
       >
         {navItems != null
-          ? navItems.map((item) => (
+          ? navItems.map((category) => (
               <Button
                 edge="end"
-                key={item.name}
+                key={category.name}
                 sx={{ color: "#fff" }}
-                onClick={() => navigateToCategory(item.name)}
+                onClick={() => navigateToCategory(category.name)}
               >
-                {item.name}
+                {category.name}
               </Button>
             ))
           : ""}

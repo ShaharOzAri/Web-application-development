@@ -17,7 +17,7 @@ import { Divider } from "@mui/material";
 
 const theme = createTheme();
 
-export default function StandardProductPage(props) {
+export default function StandardProductPage() {
   const [Length, setLength] = React.useState("");
 
   const handleChangeLength = (event) => {
