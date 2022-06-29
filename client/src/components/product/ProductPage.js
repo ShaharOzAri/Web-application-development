@@ -5,26 +5,36 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import { Divider } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getProductById } from "../../controller/ProductController";
+import ProductPageIcons from "./ProductPageIcons";
 
 const theme = createTheme();
 
-export default function StandardProductPage(props) {
-  const [Length, setLength] = React.useState("");
+export default function ProductPage() {
+  let { id } = useParams();
+  const [PageData, setPageData] = useState(null);
 
-  const handleChangeLength = (event) => {
-    setLength(event.target.value);
+  const getProductData = async () => {
+    const response = await getProductById(id);
+    if (response.status == 200) {
+      //console.log(response.data.msg.images);
+      setPageData(response.data.msg);
+    } else {
+      alert("something went wrong");
+    }
   };
 
-  return (
+  useEffect(() => {
+    getProductData();
+  }, []);
+
+  return PageData != null ? (
     <Container maxWidth="xxxl">
       <Grid
         container
@@ -32,7 +42,7 @@ export default function StandardProductPage(props) {
         columns={12}
         alignItems="center"
         justify="center"
-        mt="auto"
+        mt="-110px"
       >
         <Grid
           item
@@ -40,15 +50,14 @@ export default function StandardProductPage(props) {
           md={6}
           alignItems="center"
           justify="center"
-          sx={{ mb: "250px" }}
+          sx={{ mb: 15 }}
         >
           <ImageList sx={{ width: 720, height: 720 }} cols={2} rowHeight={0}>
-            {imageData.map((item) => (
-              <ImageListItem key={item.img}>
+            {PageData.images.map((item) => (
+              <ImageListItem>
                 <img
-                  src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                  srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                  alt={item.title}
+                  src={`${item}?w=164&h=164&fit=crop&auto=format`}
+                  srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                   loading="lazy"
                 />
               </ImageListItem>
@@ -63,6 +72,7 @@ export default function StandardProductPage(props) {
                 mb: 45,
                 display: "flex",
                 flexDirection: "column",
+                mt: 5,
               }}
             >
               <Typography
@@ -71,7 +81,7 @@ export default function StandardProductPage(props) {
                 color={"black"}
                 align="center"
               >
-                Classic Name Necklace
+                {PageData.name}
               </Typography>
               <Typography
                 component="h2"
@@ -80,9 +90,9 @@ export default function StandardProductPage(props) {
                 fontWeight="bold"
                 align="center"
               >
-                $29.90
+                ${PageData.price}
               </Typography>
-              <Divider sx={{ my: "10px" }} />
+              <Divider sx={{ my: "20px" }} />
               <Typography
                 component="h2"
                 color={"black"}
@@ -92,94 +102,33 @@ export default function StandardProductPage(props) {
                 Product Description
               </Typography>
               <Typography component="h3" color={"black"} align="center">
-                Looking for that perfect way to showcase your imaginative
-                personality? Our iconic Classic Name Necklace is a bestseller
-                for a good reason, with its simple and stylized classic font and
-                three different sizes available to suit your style. Crafted from
-                the finest solid Sterling Silver, 24K Gold Plating, Rose Gold,
-                14K Solid Gold and White Gold, this Name Necklace comes with a
-                quality chain in the length of your choice. Custom made with any
-                name or word of your choice, we will ensure your name necklace
-                is crafted to meet the highest standards of workmanship and
-                style. Pair your name necklace with any outfit, to make your
-                style shine through and boost your confidence to the next level.
-                Also available as Rings and Bracelets.
+                {PageData.description}
               </Typography>
-              <Divider sx={{ my: "10px" }} />
-              <Typography
-                component="h2"
-                color={"black"}
-                fontWeight="bold"
-                align="center"
-                mt="7px"
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  bgcolor: "black",
+                  height: "55px",
+                  mt: "40px",
+                }}
               >
-                Please Fill Your Product Details ♥
-              </Typography>
-              <Box
-                component="form"
-                //onSubmit={handleSubmit}
-                noValidate
-                sx={{ mt: 1 }}
-              >
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="Name/Word"
-                  label="Please Enter Name/Word"
-                  type="Name/Word"
-                  id="Name/Word"
-                />
-                <Box sx={{ minWidth: 120 }}>
-                  <FormControl fullWidth required>
-                    <InputLabel id="Length">
-                      Please Select Chain Length
-                    </InputLabel>
-                    <Select
-                      labelId="Length"
-                      id="Length"
-                      value={Length}
-                      label="Length"
-                      onChange={handleChangeLength}
-                    >
-                      <MenuItem value={18}>18"</MenuItem>
-                      <MenuItem value={20}>20"</MenuItem>
-                      <MenuItem value={22}>22"</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Box>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2, bgcolor: "black", height: "55px" }}
-                >
-                  Add To Cart
-                </Button>
-              </Box>
+                Add To Cart
+              </Button>
+              <Divider sx={{ my: "20px" }} />
+
+              <ProductPageIcons></ProductPageIcons>
+              <Divider sx={{ my: "20px" }} />
             </Box>
           </ThemeProvider>
         </Grid>
       </Grid>
     </Container>
+  ) : (
+    ""
   );
 }
-
-const imageData = [
-  {
-    img: "https://cdn.onecklace.com/products/1330/product_1330_2_730.jpeg",
-    title: "Breakfast",
-  },
-  {
-    img: "https://cdn.onecklace.com/products/1330/product_1330_information_3_730.jpeg",
-    title: "Burger",
-  },
-  {
-    img: "https://cdn.onecklace.com/products/1330/product_1330_model_1_730.jpeg",
-    title: "Camera",
-  },
-  {
-    img: "https://cdn.onecklace.com/products/1330/product_1330_main_material_730.jpeg",
-    title: "Coffee",
-  },
-];

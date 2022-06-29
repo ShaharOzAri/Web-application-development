@@ -8,7 +8,7 @@ const ProductSchema = new mongoose.Schema({
   images: { type: Array, required: true },
   material: { type: String, required: true },
   type: String,
-  category: SchemaTypes.ObjectId,
+  category: String,
 });
 
 const products = mongoose.model("Products", ProductSchema);

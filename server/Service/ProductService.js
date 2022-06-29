@@ -8,7 +8,7 @@ module.exports = class ProductService {
         return value;
       })
       .catch((error) => {
-        //save error in log file
+        //return error;
         return null;
       });
   }

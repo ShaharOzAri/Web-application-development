@@ -16,6 +16,7 @@ import { RequireAuth } from "./components/Utils/RequireAuth";
 import UserDetailsAdmin from "./components/User/UserDetailsAdmin";
 import UserListItem from "./components/User/UserListItem";
 import ProductSection from "./components/product/ProductSection";
+import ProductPage from "./components/product/ProductPage";
 
 const customTheme = createTheme({
   palette: {
@@ -46,6 +47,7 @@ function App() {
               <Route path="/chat" element={<Chat />} />
               <Route path="/createLocation" element={<CreateLocations />} />
               <Route path="/category/:category" element={<CategoryPage />} />
+              <Route path="/productPage/:id" element={<ProductPage />} />
 
               {/* <Route path="/user" element={<UserDetails />} /> */}
               <Route path="/user/" element={<UserDetails />} />

@@ -3,7 +3,8 @@ const ProductService = require("../Service/ProductService");
 const router = express.Router();
 
 router.route("/create").post(async (request, response) => {
-  var result = await ProductService.createProduct(request.body.params);
+  var result = await ProductService.createProduct(request.query);
+  console.log(result);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -26,7 +27,7 @@ router.route("/getAll").get(async (request, response) => {
 });
 
 router.route("/getProductById").get(async (request, response) => {
-  var result = await ProductService.getProductById(request.body.params);
+  var result = await ProductService.getProductById(request.query.id);
   if (result != null) {
     response.status(200).send({
       msg: result,

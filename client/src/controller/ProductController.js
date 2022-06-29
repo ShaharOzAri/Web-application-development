@@ -35,22 +35,14 @@ export const getAllProducts = () => {
   // );
 };
 
-export const getProductById = (id) => {
-  return axios
-    .post(url + "getProductById/", {
-      params: id,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+export const getProductById = async (id) => {
+  var res = await axios.get(url + "getProductById/", {
+    params: { id: id },
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return res;
 };
 
 export const getProductByName = (name) => {
