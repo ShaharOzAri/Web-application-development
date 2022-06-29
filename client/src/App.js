@@ -18,6 +18,9 @@ import UserListItem from "./components/User/UserListItem";
 import ProductSection from "./components/product/ProductSection";
 import ProductPage from "./components/product/ProductPage";
 
+import CheckoutPage from "./pages/CheckoutPage";
+import img from "./components/images/maroco.png";
+
 const customTheme = createTheme({
   palette: {
     primary: {
@@ -35,6 +38,20 @@ const MyThemeComponent = styled("div")(({ theme }) => ({
 }));
 
 function App() {
+  const ARRAY = [{
+    id:1,
+    name: "first",
+    image: img, 
+    price: 5,
+  }, {
+    id:2,
+    name: "second",
+    image: img, 
+    price: 20,
+  }];
+
+
+
   return (
     <AuthProvider>
       <ThemeProvider theme={customTheme}>
@@ -92,6 +109,9 @@ function App() {
                   </RequireAuth>
                 }
               />
+              <Route 
+              path="checkout" 
+              element={<CheckoutPage productList={ARRAY} />}/>
             </Routes>
           </BrowserRouter>
         </MyThemeComponent>
