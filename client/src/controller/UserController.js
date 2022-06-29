@@ -30,69 +30,59 @@ export const checkUserPassword = async (user) => {
   }
 };
 
-export const getAllUsers = () => {
-  return (axios.get(url + "getAll/"),
-  {
+export const getAllUsers = async () => {
+  var res = await axios.get(url + "getAll/", {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then(
-    (response) => {
-      console.log(response);
-    },
-    (error) => {
-      console.log(error);
-    }
-  );
+  });
+  return res;
 };
 
-export const getUserById = (id) => {
-  return (axios.post(url + "getUserById/"),
-  {
-    params: id,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(
-    (response) => {
-      console.log(response);
-    },
-    (error) => {
-      console.log(error);
-    }
-  );
+export const getUserById = async (userId) => {
+  try {
+    var res = await axios.get(url + "getUserById/", {
+      params: {
+        id: userId,
+      },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res;
+  } catch (error) {
+    return error.response;
+  }
 };
 
-export const updateUser = (user) => {
-  return (axios.post(url + "update/"),
-  {
-    params: user,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(
-    (response) => {
-      console.log(response);
-    },
-    (error) => {
-      console.log(error);
-    }
-  );
+export const updateUser = async (user) => {
+  try {
+    var res = await axios.post(url + "update/", {
+      params: user,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return res;
+  } catch (error) {
+    return error.response;
+  }
 };
 
 export const deleteuser = (id) => {
-  return (axios.post(url + "delete/"),
-  {
-    params: id,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(
-    (response) => {
-      console.log(response);
-    },
-    (error) => {
-      console.log(error);
-    }
-  );
+  return axios
+    .get(url + "delete/", {
+      params: id,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 };

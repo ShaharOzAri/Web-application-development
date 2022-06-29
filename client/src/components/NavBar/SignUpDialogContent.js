@@ -10,10 +10,12 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AddNewUser } from "../../controller/UserController";
+import { useAuth } from "../Utils/auth";
 
 const theme = createTheme();
 
 export default function SignUpDialogContent(props) {
+  const auth = useAuth();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -27,7 +29,8 @@ export default function SignUpDialogContent(props) {
     var response = await AddNewUser(user);
     if (response.status == 200) {
       props.signUp(false);
-      props.isSignedIn(true);
+      sessionStorage.setItem("user", JSON.stringify(response.data.msg[0]));
+      auth.login(response.data.msg[0]);
     } else if (response.status == 403) {
       alert("email already exist , please try another email");
     }

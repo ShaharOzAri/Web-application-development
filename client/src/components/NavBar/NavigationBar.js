@@ -12,6 +12,9 @@ import ShoppingCartDrawer from "../ShoppingCart/ShoppingCartDrawer";
 import PersonIcon from "@mui/icons-material/Person";
 import SignInDialog from "./SignInDialog";
 import SignUpDialog from "./SignUpDialog";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Utils/auth";
+import ToolbarButtons from "./ToolbarButtons";
 
 const drawerWidth = 400;
 
@@ -36,38 +39,69 @@ export default function NavigationBar() {
   const [openShopping, setOpenShopping] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
   const [openSignUp, setOpenSignUp] = useState(false);
-
   const [open, setOpen] = useState(false);
+  const auth = useAuth();
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpenShopping(true);
   };
 
   const handleClickOpen = () => {
-    setOpenSignIn(true);
+    if (!auth.user) {
+      setOpenSignIn(true);
+    } else {
+      if (JSON.parse(auth.getUser()).role == "admin") {
+        navigate(`admin/userDetails/`);
+      } else {
+        navigate(`user/`);
+      }
+    }
+  };
+
+  const imageClick = () => {
+    if (auth.user && JSON.parse(auth.getUser()).role == "admin") {
+      navigate("/admin");
+    } else {
+      navigate("/");
+    }
   };
 
   return (
-    <Box sx={{ display: "flex", mb: 5 }}>
+    <Box sx={{ display: "block", mb: 5, textAlign: "center", height: 90 }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} sx={{ bgcolor: "#e0d9cc" }}>
+      <AppBar
+        position="fixed"
+        open={open}
+        sx={{
+          bgcolor: "#e0d9cc",
+          justifyContent: "center",
+          height: 80,
+        }}
+      >
         <Toolbar>
+          <ToolbarButtons></ToolbarButtons>
           <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
             <img
               src="https://cdn.onecklace.com/images/logos/autographed_logo.webp"
-              style={{ width: 120, height: 40 }}
+              style={{ width: 160, height: "90%", cursor: "pointer" }}
               alt="Logo"
+              onClick={() => imageClick()}
             />
           </Typography>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="end"
-            onClick={handleDrawerOpen}
-            sx={{ ...(open && { display: "none", mx: "15px" }) }}
-          >
-            <ShoppingCartIcon sx={{ fontSize: "25px" }} />
-          </IconButton>
+          {!auth.user || JSON.parse(auth.getUser()).role == "cilent" ? (
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="end"
+              onClick={handleDrawerOpen}
+              sx={{ ...(open && { display: "none", mx: "15px" }) }}
+            >
+              <ShoppingCartIcon sx={{ fontSize: "25px" }} />
+            </IconButton>
+          ) : (
+            " "
+          )}
           <IconButton
             color="inherit"
             aria-label="open drawer"

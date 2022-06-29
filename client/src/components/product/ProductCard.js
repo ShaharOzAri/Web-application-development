@@ -5,53 +5,67 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { getProduct } from "./ProductData";
-import { useEffect } from "react";
-import { useState } from "react";
-import { TextField } from "@mui/material";
+import { useAuth } from "../Utils/auth";
+import { useNavigate } from "react-router-dom";
 
-const ProductCard = () => {
-  const [product, setProduct] = useState(null);
+const ProductCard = (props) => {
+  const product = props.product;
+  const auth = useAuth();
+  const navigate = useNavigate();
 
-  const getProductData = async () => {
-    let result = await getProduct();
-    if (result.status == 200) {
-      setProduct(result.data);
-    } else {
-      //error
-    }
+  const handleClick = () => {
+    navigate(`../product/${product._id}`);
   };
 
-  useEffect(() => {
-    console.log("asd");
-    getProductData();
-  }, []);
-
   return product != null ? (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 370, mx: 5 }}>
       <CardMedia
         component="img"
-        height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-        alt="green iguana"
+        height="200"
+        image={product.images[0]}
+        alt="Classic Name Necklace"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {product.productName}
+        <Typography
+          gutterBottom
+          variant="h7"
+          component="div"
+          textAlign="center"
+        >
+          {product.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {product.productPrice}
+        <Typography
+          variant="body2"
+          color="black"
+          textAlign="center"
+          fontSize="20px"
+        >
+          {product.price}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button variant="contained" size="small">
-          Share
-        </Button>
-        <Button variant="outlined" size="small">
-          Learn More
-        </Button>
+      <CardActions sx={{ justifyContent: "center" }}>
+        {!auth.user || JSON.parse(auth.getUser()).role == "client" ? (
+          <Button
+            variant="outlined"
+            size="small"
+            color="secondary"
+            sx={{ color: "black" }}
+            onClick={handleClick}
+          >
+            Quick View
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            size="small"
+            color="secondary"
+            sx={{ color: "black" }}
+            onClick={handleClick}
+          >
+            Edit
+          </Button>
+        )}
       </CardActions>
-      <TextField></TextField>
     </Card>
   ) : (
     ""

@@ -4,7 +4,7 @@ import SliderImage from "./CarouselImage";
 import Banner1 from "../../images/banner1.png";
 import Banner2 from "../../images/banner2.png";
 
-function MyCarousel(props) {
+function MyCarousel() {
   var images = [
     {
       src: Banner1,
@@ -17,7 +17,7 @@ function MyCarousel(props) {
   ];
 
   return (
-    <Carousel sx={{ marginBottom: 5, marginTop: 10 }}>
+    <Carousel>
       {images.map((image, i) => (
         <SliderImage key={i} image={image} />
       ))}

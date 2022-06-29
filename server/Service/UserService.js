@@ -46,7 +46,7 @@ module.exports = class UserService {
   }
 
   static async update(user) {
-    const res = await users.findByIdAndUpdate(user.id, user);
+    const res = await users.findByIdAndUpdate(user._id, user);
     if (res) {
       return res;
     } else {
