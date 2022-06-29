@@ -49,7 +49,9 @@ router.route("/getProductByName").get(async (request, response) => {
 });
 
 router.route("/getProductsByCategory").get(async (request, response) => {
-  var result = await ProductService.getProductsByCategory(request.body.params);
+  var result = await ProductService.getProductsByCategory(
+    request.query.category
+  );
   if (result != null) {
     response.status(200).send({
       msg: result,

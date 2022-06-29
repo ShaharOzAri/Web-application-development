@@ -47,7 +47,7 @@ module.exports = class ProductService {
       .find({ category: productCategory })
       .then((value) => {
         if (value.length == 0) {
-          return null;
+          return [];
         }
         return value;
       })
