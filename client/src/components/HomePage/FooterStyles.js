@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const Box = styled.div`
-  box-sizing: box-size;
+ 
   bottom: 0;
   background-color: #FEF8F0
   color: black;
+  height:100%;
+  width:100%;
   padding: 0.5rem 0.5rem;
   font-family: acumin-pro, system-ui, sans-serif;
   @media (max-width: 1000px) {
@@ -19,6 +21,7 @@ export const Container = styled.div`
   min-heigth: 100vh;
   margin: 0 auto;
   background-color: #e0d9cc;
+  box-sizing: inherit;
 `;
 
 export const Column = styled.div`
@@ -26,16 +29,17 @@ export const Column = styled.div`
   width: 100%;
   flex-direction: column;
   line-height: normal;
-  padding: 0 2em;
-  min-height: 15em;
+  padding: 0.5em 1em;
+  min-height: 100%;
 `;
 
 export const Row = styled.div`
   display: flex;
-  padding: 1em 1em;
+  padding: 10px 1px;
   grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
   grid-gap: 20px;
-  line-height: 0.5em;
+  line-height: normal;
+  min-width: 100%;
   @media (max-width: 1000px) {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
