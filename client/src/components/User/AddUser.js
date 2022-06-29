@@ -1,21 +1,23 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AddNewUser } from "../../controller/UserController";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Utils/auth";
 
 const theme = createTheme();
 
-export default function SignUpDialogContent(props) {
-  const auth = useAuth();
+export default function AddUser() {
+  var auth = useAuth();
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -24,20 +26,16 @@ export default function SignUpDialogContent(props) {
       first_name: data.get("firstName"),
       last_name: data.get("lastName"),
       password: data.get("password"),
-      role: "client",
+      role: data.get("role"),
     };
     var response = await AddNewUser(user);
     if (response.status == 200) {
-      props.signUp(false);
-      auth.login(response.data.msg[0]);
+      alert("vfjkvn");
+      auth.login(JSON.parse(auth.getUser()));
+      //   navigate(-1);
     } else if (response.status == 403) {
       alert("email already exist , please try another email");
     }
-  };
-
-  const ChangeToSignIn = () => {
-    props.signIn(true);
-    props.signUp(false);
   };
 
   return (
@@ -52,11 +50,8 @@ export default function SignUpDialogContent(props) {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
+          <Typography component="h1" color="black" variant="contained">
+            Add New User
           </Typography>
           <Box
             component="form"
@@ -107,15 +102,26 @@ export default function SignUpDialogContent(props) {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}></Grid>
+              <Grid item xs={12}>
+                <Select
+                  fullWidth
+                  id="role"
+                  name="role"
+                  defaultValue="client"
+                  label="Role"
+                >
+                  <MenuItem value="client">Client</MenuItem>
+                  <MenuItem value="admin">Admin</MenuItem>
+                </Select>
+              </Grid>
             </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, bgcolor: "black" }}
             >
-              Sign Up
+              Add User
             </Button>
             <Grid
               container
@@ -126,13 +132,7 @@ export default function SignUpDialogContent(props) {
                 alignItems: "center",
                 marginBottom: 5,
               }}
-            >
-              <Grid item>
-                <Button onClick={ChangeToSignIn} variant="body2">
-                  Already have an account? Sign in
-                </Button>
-              </Grid>
-            </Grid>
+            ></Grid>
           </Box>
         </Box>
       </Container>

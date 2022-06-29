@@ -5,6 +5,8 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 import { getAllUsers } from "../../controller/UserController";
 import { useState, useEffect } from "react";
 import { SuccessSnackbar } from "../Utils/Snackbar";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
@@ -50,29 +52,45 @@ export default function DataGridDemo() {
     }
   };
 
+  const handleAddUser = () => {
+    navigate("/admin/addUser");
+  };
+
   useEffect(() => {
     getAll();
   }, []);
 
   const navigate = useNavigate();
   return (
-    <Container style={{ height: 400, width: "60%" }}>
-      <DataGrid
-        sx={{
-          backgroundColor: "#e0d9cc",
-          borderColor: "black",
-        }}
-        onRowClick={(params, event) => {
-          event.preventDefault();
-          navigate(`/admin/user/${params.row._id}`);
-        }}
-        rows={users != null ? users : []}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        // checkboxSelection
-        disableSelectionOnClick
-      />
-    </Container>
+    <Box>
+      <Container style={{ width: "60%" }}>
+        <Button
+          fullWidth
+          variant="contained"
+          sx={{ color: "black", mb: 5 }}
+          onClick={handleAddUser}
+        >
+          Add User
+        </Button>
+      </Container>
+      <Container style={{ height: 400, width: "60%" }}>
+        <DataGrid
+          sx={{
+            backgroundColor: "#e0d9cc",
+            borderColor: "black",
+          }}
+          onRowClick={(params, event) => {
+            event.preventDefault();
+            navigate(`/admin/user/${params.row._id}`);
+          }}
+          rows={users != null ? users : []}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          // checkboxSelection
+          disableSelectionOnClick
+        />
+      </Container>
+    </Box>
   );
 }

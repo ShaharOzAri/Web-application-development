@@ -16,6 +16,9 @@ import { RequireAuth } from "./components/Utils/RequireAuth";
 import UserDetailsAdmin from "./components/User/UserDetailsAdmin";
 import UserListItem from "./components/User/UserListItem";
 import ProductSection from "./components/product/ProductSection";
+import ProductPage from "./components/product/ProductPage";
+import EditProductAdmin from "./components/product/EditProductAdmin";
+import AddUser from "./components/User/AddUser";
 
 const customTheme = createTheme({
   palette: {
@@ -46,7 +49,7 @@ function App() {
               <Route path="/chat" element={<Chat />} />
               <Route path="/createLocation" element={<CreateLocations />} />
               <Route path="/category/:category" element={<CategoryPage />} />
-
+              <Route path="productpage" element={<ProductPage />} />
               {/* <Route path="/user" element={<UserDetails />} /> */}
               <Route path="/user/" element={<UserDetails />} />
               <Route
@@ -87,6 +90,22 @@ function App() {
                 element={
                   <RequireAuth>
                     <ProductSection />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="admin/product/:productId"
+                element={
+                  <RequireAuth>
+                    <EditProductAdmin />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="admin/addUser"
+                element={
+                  <RequireAuth>
+                    <AddUser />
                   </RequireAuth>
                 }
               />

@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import ProductCard from "./ShoppingCartProduct";
+import ShoppingCartProduct from "./ShoppingCartProduct";
 
 const drawerWidth = 400;
 
@@ -45,7 +45,7 @@ export default function ShoppingCartDrawer(props) {
         </Typography>
       </DrawerHeader>
       <Divider />
-      <ProductCard></ProductCard>
+      <ShoppingCartProduct></ShoppingCartProduct>
     </Drawer>
   );
 }

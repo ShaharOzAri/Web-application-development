@@ -6,7 +6,11 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { useEffect, useState } from "react";
-import { getUserById, updateUser } from "../../controller/UserController";
+import {
+  deleteuser,
+  getUserById,
+  updateUser,
+} from "../../controller/UserController";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { SuccessSnackbar } from "../Utils/Snackbar";
@@ -48,6 +52,17 @@ export default function UserDetailsAdmin() {
       alert("somrthing went wrong");
     }
   };
+
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    const response = await deleteuser(updatedUser._id);
+    if (response.status == 200) {
+      alert("delete");
+      navigate("/admin/users");
+    } else {
+      alert("somrthing went wrong");
+    }
+  };
   return (
     <Container sx={{ textAlign: "center", maxWidth: 200, bgcolor: "#e0d9cc" }}>
       {user != null ? (
@@ -61,6 +76,14 @@ export default function UserDetailsAdmin() {
             onClick={handleAllUsers}
           >
             Back to All Users
+          </Button>
+
+          <Button
+            variant="contained"
+            sx={{ mb: 2, color: "black" }}
+            onClick={handleDelete}
+          >
+            Delete User
           </Button>
           <Box
             sx={{

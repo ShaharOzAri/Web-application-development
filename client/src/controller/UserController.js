@@ -69,20 +69,12 @@ export const updateUser = async (user) => {
   }
 };
 
-export const deleteuser = (id) => {
-  return axios
-    .get(url + "delete/", {
-      params: id,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+export const deleteuser = async (id) => {
+  var res = await axios.post(url + "delete/", {
+    params: id,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return res;
 };

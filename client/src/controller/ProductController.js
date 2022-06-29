@@ -22,7 +22,9 @@ export const getAllProducts = async () => {
 
 export const getProductById = async (id) => {
   var res = await axios.get(url + "getProductById/", {
-    params: id,
+    params: {
+      id: id,
+    },
     headers: {
       "Content-Type": "application/json",
     },
