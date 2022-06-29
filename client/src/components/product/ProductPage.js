@@ -120,7 +120,6 @@ export default function ProductPage() {
                 Add To Cart
               </Button>
               <Divider sx={{ my: "20px" }} />
-
               <ProductPageIcons></ProductPageIcons>
               <Divider sx={{ my: "20px" }} />
             </Box>
