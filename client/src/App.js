@@ -49,7 +49,7 @@ function App() {
               <Route path="/chat" element={<Chat />} />
               <Route path="/createLocation" element={<CreateLocations />} />
               <Route path="/category/:category" element={<CategoryPage />} />
-              <Route path="/productPage/:id" element={<ProductPage />} />
+              <Route path="/product/:id" element={<ProductPage />} />
 
               {/* <Route path="/user" element={<UserDetails />} /> */}
               <Route path="/user/" element={<UserDetails />} />
