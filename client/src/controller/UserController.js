@@ -9,7 +9,6 @@ export const AddNewUser = async (user) => {
         "Content-Type": "application/json",
       },
     });
-    sessionStorage.setItem("user", res.data.msg);
     return res;
   } catch (error) {
     return error.response;

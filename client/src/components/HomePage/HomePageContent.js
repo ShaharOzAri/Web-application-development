@@ -18,7 +18,6 @@ function HomePageContent() {
         <BestSeller></BestSeller>
         <ProductSection></ProductSection>
         <VideoPlayer></VideoPlayer>
-        <Footer></Footer>
       </Container>
     </>
   );

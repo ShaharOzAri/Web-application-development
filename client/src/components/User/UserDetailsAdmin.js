@@ -72,7 +72,7 @@ export default function UserDetailsAdmin() {
           </Typography>
           <Button
             variant="contained"
-            sx={{ mb: 2, color: "black" }}
+            sx={{ m: 2, color: "black" }}
             onClick={handleAllUsers}
           >
             Back to All Users
@@ -80,7 +80,7 @@ export default function UserDetailsAdmin() {
 
           <Button
             variant="contained"
-            sx={{ mb: 2, color: "black" }}
+            sx={{ m: 2, color: "black" }}
             onClick={handleDelete}
           >
             Delete User
