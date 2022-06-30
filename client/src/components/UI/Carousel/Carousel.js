@@ -1,8 +1,9 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import SliderImage from "./CarouselImage";
+import CarouselImage from "./CarouselImage";
 import Banner1 from "../../images/banner1.png";
 import Banner2 from "../../images/banner2.png";
+import { Box } from "@mui/system";
 
 function MyCarousel() {
   var images = [
@@ -17,11 +18,13 @@ function MyCarousel() {
   ];
 
   return (
-    <Carousel>
-      {images.map((image, i) => (
-        <SliderImage key={i} image={image} />
-      ))}
-    </Carousel>
+    <Box>
+      <Carousel>
+        {images.map((image, i) => (
+          <CarouselImage key={i} image={image} />
+        ))}
+      </Carousel>
+    </Box>
   );
 }
 

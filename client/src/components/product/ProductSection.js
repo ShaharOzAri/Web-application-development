@@ -3,8 +3,14 @@ import { Grid } from "@mui/material";
 import ProductCard from "./ProductCard";
 import { useState, useEffect } from "react";
 import { getAllProducts } from "../../controller/ProductController";
+import { useAuth } from "../Utils/auth";
+import Button from "@mui/material/Button";
+import { Container } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 const ProductSection = () => {
+  const auth = useAuth();
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
 
   const getAll = async () => {
@@ -14,6 +20,10 @@ const ProductSection = () => {
     } else {
       alert("something went wrong");
     }
+  };
+
+  const handleAddProduct = () => {
+    navigate("/admin/addProduct");
   };
 
   useEffect(() => {
@@ -28,6 +38,22 @@ const ProductSection = () => {
       alignItems="center"
       justifyContent="center"
     >
+      {auth.user == null || JSON.parse(auth.getUser()).role == "client" ? (
+        ""
+      ) : (
+        <Grid xs={12}>
+          <Container>
+            <Button
+              fullWidth
+              variant="contained"
+              sx={{ m: 2, color: "black" }}
+              onClick={handleAddProduct}
+            >
+              Add Product
+            </Button>
+          </Container>
+        </Grid>
+      )}
       {products.map((product) => {
         return (
           <Grid item xs={3}>

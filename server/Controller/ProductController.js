@@ -3,8 +3,8 @@ const ProductService = require("../Service/ProductService");
 const router = express.Router();
 
 router.route("/create").post(async (request, response) => {
-  var result = await ProductService.createProduct(request.query);
-  console.log(result);
+  console.log(request.body.params);
+  var result = await ProductService.createProduct(request.body.params);
   if (result != null) {
     response.status(200).send({
       msg: result,

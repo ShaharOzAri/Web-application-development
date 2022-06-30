@@ -2,7 +2,7 @@ import { Paper } from "@mui/material";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
-function SliderImage(props) {
+function CarouselImage(props) {
   return (
     <Paper>
       <Container maxWidth="xl" sx={{ bgcolor: "#eaece5" }}>
@@ -20,4 +20,4 @@ function SliderImage(props) {
   );
 }
 
-export default SliderImage;
+export default CarouselImage;

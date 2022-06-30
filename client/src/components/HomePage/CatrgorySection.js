@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import marroco from "../images/maroco.png";
 import italic from "../images/italic.png";
 import CategoryCard from "../Category/CategoryCard";
-
+import { Box } from "@mui/material";
 
 export default function CategorySection() {
   var items = [
@@ -33,7 +33,7 @@ export default function CategorySection() {
           item
           xs={24}
           md={12}
-          justifyContent='center'
+          justifyContent="center"
           sx={{ alignContent: "center", padding: "20px" }}
         >
           <CategoryCard sx={{ margin: "auto" }} key={i} item={item} />

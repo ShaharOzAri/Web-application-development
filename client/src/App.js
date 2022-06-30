@@ -19,6 +19,8 @@ import ProductSection from "./components/product/ProductSection";
 import ProductPage from "./components/product/ProductPage";
 import EditProductAdmin from "./components/product/EditProductAdmin";
 import AddUser from "./components/User/AddUser";
+import Footer from "./components/HomePage/Footer";
+import AddProduct from "./components/product/AddProduct";
 
 const customTheme = createTheme({
   palette: {
@@ -110,7 +112,16 @@ function App() {
                   </RequireAuth>
                 }
               />
+              <Route
+                path="admin/addProduct"
+                element={
+                  <RequireAuth>
+                    <AddProduct />
+                  </RequireAuth>
+                }
+              />
             </Routes>
+            <Footer></Footer>
           </BrowserRouter>
         </MyThemeComponent>
       </ThemeProvider>
