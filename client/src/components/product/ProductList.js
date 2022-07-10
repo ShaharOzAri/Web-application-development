@@ -21,35 +21,44 @@ import CardMedia from "@mui/material/CardMedia";
 import ImageListItem from "@mui/material/ImageListItem";
 import { CardContent } from '@mui/material';
 import { useState } from 'react';
+import Button from "@mui/material/Button";
+
 
 
 
 export default function ProductList(props){
-//   const products=props.productList; 
+   const products=props.productList; 
 
-  const [productList, updateList] = useState(props.productList);
+  const [list, updateList] = useState(products);
 
-  const handleRemoveItem= (id)=>{
-   updateList(productList.filter(product => product.id !== id));
+  const removeItemHandler= (e)=>{
+    let name=e.target.getAttribute("removeProduct");
+   updateList(list.filter(product => product.name !== name));
   };
-
-//   function onDelete(i) {
-//     const res =  orders.findByIdAndRemove(i);
-//   }
-
 
     return(
      
         <Box sx={{boxShadow: 10,  }}>
         {/* <TitleDivider Title="" /> */}
-       <Typography sx={{fontWeight: 'bold', alignContent: 'center'}}> Product list</Typography>
+       <Typography sx={{fontWeight: 'bold', alignContent: 'center', color:'black'}}> Product list</Typography>
+
+       {/* {list.map(p=>{
+        return(
+
+            <div>
+{p.name}
+<button removeProduct={p.name} onClick={removeItemHandler}>X</button>
+
+            </div>
+        );
+       })} */}
         <List sx={{display: 'flex', flexDirection: 'column' }}> 
 
             
             {/* <Card><ListItem>{props.ProductList.map(product => product.name)}</ListItem></Card> */}
         
-        {productList.map((product, id) => 
-        <ListItem sx={{display: 'flex', flexDirection: 'row',  width: '100%'}} key={id} >
+        {list.map(product => {return(
+        <ListItem sx={{display: 'flex', flexDirection: 'row',  width: '100%'}}  >
             <Card sx={{display: 'flex', flexDirection: 'row', width: '100%'}}>
                     <ImageListItem sx={{ width: 100, height: 100, boxShadow:3 }}>
                          <img src={`${product.image}`} sx={{width: '10px'}}/>
@@ -58,12 +67,13 @@ export default function ProductList(props){
             <Typography sx={{fontWeight: 'bold', alignContent: 'right'}} > {product.name} </Typography>
             <Typography sx={{alignContent: 'left'}} > {product.price} </Typography>
             <Typography sx={{alignContent: 'left'}}>     </Typography>
-             <IconButton edge="end" aria-label="delete" product={product} onClick={{handleRemoveItem}}><DeleteIcon /></IconButton>
-                
+             {/* <button removeProduct={product.name} onClick={removeItemHandler}><IconButton><DeleteIcon /></IconButton></button> */}
+             {/* edge="end" aria-label="delete"  */}
+             <Button sx={{color:'black', fontSize:'12'}} removeProduct={product.name} onClick={removeItemHandler}><DeleteIcon />remove</Button>
 
             </CardContent>
             </Card>
-        </ListItem>)}
+        </ListItem> );})}
         
         </List>
         </Box>
