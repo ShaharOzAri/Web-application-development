@@ -34,7 +34,14 @@ export default function ProductList(props){
   const removeItemHandler= (e)=>{
     let name=e.target.getAttribute("removeProduct");
    updateList(list.filter(product => product.name !== name));
+    updateTotalSum();
   };
+
+  const updateTotalSum= ()=>{
+    // let sum=list.reduce((total, currentValue)=> total = total + currentValue.price, 0);
+    return list.reduce((total, currentValue)=> total = total + currentValue.price, 0);
+
+  }
 
     return(
      
@@ -74,7 +81,8 @@ export default function ProductList(props){
             </CardContent>
             </Card>
         </ListItem> );})}
-        
+
+        <Typography sx={{alignContent: 'left', color: 'black', fontFamily:'monospace', backgroundColor:'#f4f4f4'}}> Total price: {updateTotalSum()}    </Typography>
         </List>
         </Box>
     );
