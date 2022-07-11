@@ -1,4 +1,4 @@
-import { Container, Typography } from "@mui/material";
+import { Button, Container, IconButton, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -12,45 +12,23 @@ export default function Deliveries(props){
     
     const addressHandler=()=>{
         setAddress(!isValidAddress);
-        // alert("yes");
-        // setAddress(<div>{address ? ( <p>  <TextField
-        //     error
-        //     id="outlined-error-helper-text"
-        //     label="City"
-        //     defaultValue="address"
-        //     helperText="Incorrect entry."
-        //     /></p>) : (<p>   <TextField
-        //         disabled
-        //         id="outlined-disabled"
-        //         label="Disabled"
-        //         defaultValue="Hello World"
-        //         /></p> )}</div>);
-        // setAddress(<div>{address ? ( <p>  <TextField
-        //     error
-        //     id="outlined-error-helper-text"
-        //     label="City"
-        //     defaultValue="address"
-        //     helperText="Incorrect entry."
-        //     /></p>) : (<p>   <TextField
-        //         disabled
-        //         id="outlined-disabled"
-        //         label="Disabled"
-        //         defaultValue="Hello World"
-        //         /></p> )}</div>);
     }
 
     return (
-    <Container sx={{ height: 400, width: "80%", backgroundColor:"#fff", textAlign: "center", mt: 3, borderRadius: 2 , boxShadow: 3 }}>
+    <Container sx={{ height: 450, width: "80%", backgroundColor:"#fff", textAlign: "center", mt: 3, borderRadius: 2 , boxShadow: 3 }}>
          <Box   sx={{
-              display: "flex",
+              display: "-ms-inline-flexbox",
+              position: 'sticky',
               flexDirection: "column",
               alignItems: "center",
             }}>
-                <Grid item xs={20} sm={6}>
+                <Grid item xs={20} sm={6} >
                 <Typography 
-                sx={{fontWeight: 'bold',justifyContent:'center', alignContent: 'center', color:'black', mt: 3, fontSize: 25}}>
+                sx={{fontWeight: 'bold',justifyContent:'center', alignContent: 'center', color:'black', fontSize: 25}}>
                     DELIVERY ADDRESS
                 </Typography>
+                </Grid>
+                <Grid item xs={20} sm={6} >
                 </Grid>
                 <Box
                 component="form"
@@ -77,6 +55,8 @@ export default function Deliveries(props){
                     label="Address"
                     defaultValue="Address"
                     placeholder="Street & House number"
+                    helperText=" "
+
                     sx={{ width: 400 }}
                 /> :  <TextField
                         required
@@ -95,6 +75,8 @@ export default function Deliveries(props){
                     label="Zip / Postcode"
                     placeholder="Zip number"
                     sx={{ width: 400 }}
+                    helperText=" "
+
                     /> :  <TextField
                         required
                         disabled
@@ -105,7 +87,19 @@ export default function Deliveries(props){
                         sx={{ width: 400 }}
 
                         />}
-                   
+                </Grid>
+                <Grid item xs={14} sm={12} mt={3} >
+                    <IconButton variant="contained"
+                    size='large'
+                    sx={{backgroundColor:'#dbc49dd2', position:'static'}}><LocalShippingIcon />SAVE ADDRESS</IconButton>
+                
+                    <Button 
+                    variant="contained"
+                    size='large'
+                    sx={{backgroundColor:'#dbc49dd2', position:'static'}}>
+                        <LocalShippingIcon />
+                        SAVE ADDRESS
+                    </Button>
                 </Grid>
 
        
