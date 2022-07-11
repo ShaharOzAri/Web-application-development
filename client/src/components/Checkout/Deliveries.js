@@ -1,10 +1,11 @@
-import { Button, Container, IconButton, Typography } from "@mui/material";
+import { Button, Container, IconButton, ImageListItem, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import { useState } from "react";
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import image from '../images/checkout_image.png';
 
 export default function Deliveries(props){
 
@@ -13,29 +14,41 @@ export default function Deliveries(props){
     const addressHandler=()=>{
         setAddress(!isValidAddress);
     }
-
+    // textAlign: "center",
     return (
-    <Container sx={{ height: 450, width: "80%", backgroundColor:"#fff", textAlign: "center", mt: 3, borderRadius: 2 , boxShadow: 3 }}>
-         <Box   sx={{
-              display: "-ms-inline-flexbox",
-              position: 'sticky',
-              flexDirection: "column",
-              alignItems: "center",
-            }}>
-                <Grid item xs={20} sm={6} >
+    <Container sx={{ height: 450, width: "80%", backgroundColor:"#fff",  mt: 3, borderRadius: 2 , boxShadow: 3 }}>
+               <Box  xs={20} sm={6} >
                 <Typography 
-                sx={{fontWeight: 'bold',justifyContent:'center', alignContent: 'center', color:'black', fontSize: 25}}>
+                sx={{display: 'flex',fontWeight: 'bold',justifyContent:'center', alignContent: 'center', color:'black', fontSize: 25}}>
                     DELIVERY ADDRESS
                 </Typography>
-                </Grid>
-                <Grid item xs={20} sm={6} >
-                </Grid>
+                <ImageListItem sx={{ width: 300, height: 300, boxShadow:3, justifyItems:'left', display:'inline-flex',flexDirection: "row" }}> 
+                         <img src={image} sx={{ width: '5'}}/>
+                         </ImageListItem>
+                </Box>
+         <Box   sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              whiteSpace:'normal'
+            }}>
                 <Box
                 component="form"
                 // sx={{'& .MuiTextField-root': { m: 1, width: '25ch' },}}
                 noValidate
                 autoComplete="off"
                  > 
+                    {/* <Grid item xs={24} md={12} sm={6} 
+                      sx={{justifyItems:'left', flexDirection: "row", display: 'flex'}}>
+                        <ImageListItem sx={{ width: 300, height: 300, boxShadow:3, justifyItems:'left', display:'inline-flex',flexDirection: "row" }}> 
+                         <img src={image} sx={{ width: '5'}}/>
+                         </ImageListItem>
+                </Grid> */}
+
+                <Grid> 
+                    <ImageListItem sx={{ width: 300, height: 300, boxShadow:3, justifyItems:'left', display:'inline-flex',flexDirection: "row" }}> 
+                         <img src={image} sx={{ width: '5'}}/>
+                         </ImageListItem></Grid>
                  <Grid item xs={14} sm={20} mt={3}>
                 <Autocomplete
                     disablePortal
@@ -49,6 +62,7 @@ export default function Deliveries(props){
                 />
                 </Grid>
                 <Grid item xs={14} sm={20} mt={3} >
+                    
                 {isValidAddress ? <TextField
                     required
                     id="disabledAddress"
@@ -88,16 +102,16 @@ export default function Deliveries(props){
 
                         />}
                 </Grid>
-                <Grid item xs={14} sm={12} mt={3} >
-                    <IconButton variant="contained"
+                <Grid item xs={14} sm={20} mt={3} >
+                    {/* <IconButton variant="contained"
                     size='large'
                     sx={{backgroundColor:'#dbc49dd2', position:'static'}}><LocalShippingIcon />SAVE ADDRESS</IconButton>
-                
+                 */}
                     <Button 
                     variant="contained"
                     size='large'
-                    sx={{backgroundColor:'#dbc49dd2', position:'static'}}>
-                        <LocalShippingIcon />
+                    sx={{backgroundColor:'#dbc49dd2', alignItems: 'center', width: 400}}>
+                        
                         SAVE ADDRESS
                     </Button>
                 </Grid>
@@ -105,10 +119,6 @@ export default function Deliveries(props){
        
             </Box>  
         </Box>
-
-
-
-
 
 
 

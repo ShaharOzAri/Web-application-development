@@ -62,7 +62,7 @@ export default function CheckoutPage(props){
   /> */}
 
 <Deliveries cities={cities} />
-  <CreditCratPayment />
+  {/* <CreditCratPayment /> */}
     </Container>
     ); 
 }
