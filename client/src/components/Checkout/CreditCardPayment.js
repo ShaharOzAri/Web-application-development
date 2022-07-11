@@ -26,9 +26,11 @@ export default function CreditCratPayment(){
   const handleChangeMonth = (event) => {
     setMonth(event.target.value);
   };
+
     return (
         <Container sx={{ textAlign: "center", maxWidth: 200}}>
-        <Card  sx={{ textAlign: "center" }}>
+            <Grid item xs={12} sm={6}>
+        <Card  sx={{ textAlign: "center", mt: 3 }}>
 
             <div>hey</div>
             <Box
@@ -42,10 +44,10 @@ export default function CreditCratPayment(){
                     required
                     // fullWidth
                     // defaultValue={userDetails.password}
-                    name="password"
-                    label="CSV"
-                    type="password"
-                    id="CSV"
+                    name="full-name"
+                    label="Full Name"
+                    type="text"
+                    id="fullName"
                     // autoComplete="new-password"
                     // onChange={(event) =>
                     //   (user["password"] = event.target.value)
@@ -83,31 +85,33 @@ export default function CreditCratPayment(){
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
-                  required
-                    autoComplete="given-name"
-                    defaultValue= "**** **** **** 7048"
-                    name="firstName"
-                    fullWidth
-                    id="cardNumber"
-                    label="Card Number"
-                    autoFocus
-                    // onChange={(event) =>
-                    //   (user["first_name"] = event.target.value)
-                    // }
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
+             
                     required
                     fullWidth
                     // defaultValue={userDetails.last_name}
-                    id="lastName"
-                    label="Last Name"
-                    name="lastName"
+                    id="fullName"
+                    label="Full Name"
+                    name="fullName"
                     autoComplete="family-name"
                     // onChange={(event) =>
                     //   (user["last_name"] = event.target.value)
                     // }
+                      />
+                
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+           required
+           autoComplete="given-name"
+           defaultValue= "**** **** **** 7048"
+           name="firstName"
+           fullWidth
+           id="cardNumber"
+           label="Card Number"
+           autoFocus
+           // onChange={(event) =>
+           //   (user["first_name"] = event.target.value)
+           // }
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -124,18 +128,32 @@ export default function CreditCratPayment(){
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    // required
-                    // fullWidth
-                    // defaultValue={userDetails.password}
-                    // name="password"
-                    // label="Password"
-                    // type="password"
-                    // id="password"
-                    // autoComplete="new-password"
+                    required
+                    fullWidth
+                    defaultValue="2022-07"
+                    name="month"
+                    label="Month year"
+                    type="month"
+                    // placeholder="2022-07"
+                    min="July 2022"
+                    max="2026-07"
+            
+                    id="month"
+                    helperText="hey"
+                    // placeholder="YYYY-MM"
                     // onChange={(event) =>
                     //   (user["password"] = event.target.value)
                     // }
                   />
+                  <TextField
+  helperText="Please enter your name"
+  id="demo-helper-text-aligned"
+  label="Name"
+><input lable="Name" type="month" id="start" name="start"
+                 min="2018-07" value="2018-07" max="2026-07"/></TextField>
+                  <Typography item xs={12}><input lable="Name" type="month" id="start" name="start"
+                 min="2018-07" value="2018-07" max="2026-07" /></Typography>
+                  
                 </Grid>
                 <Grid item xs={12}></Grid>
               </Grid>
@@ -212,16 +230,47 @@ export default function CreditCratPayment(){
         </Select>
       </FormControl>
 
-
+      <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <InputLabel id="year-select-label">Year</InputLabel>
+        <Select
+          labelId="year-select-label"
+          id="day-select"
+          value={year}
+          label="Year"
+          type="month"
+        >
     
+      
+        </Select>
+      </FormControl>
+
+    <FormControl>
+        <InputLabel>ccc</InputLabel>
+    </FormControl>
 
             </Box>
         </Box>
         {/* <YearPicker/> */}
-<Box> <InputUnstyled error/> </Box>
-        
+        <InputUnstyled 
+        type='month'
+        lable="Name"
+        min="2018-07" value="2018-07" max="2026-07">
+  <TextField
+                    required
+                    fullWidth
+                    // defaultValue={userDetails.email}
+              
+                    // onChange={(event) => (user["email"] = event.target.value)}
+                  />
+
+        </InputUnstyled>
    
         </Card>
+        </Grid>
+
+        <Typography item xs={12}><input lable="Name" type="month" id="start" name="start"
+                 min="2018-07" value="2018-07" max="2026-07" /></Typography>
+        
 </Container>
 
 

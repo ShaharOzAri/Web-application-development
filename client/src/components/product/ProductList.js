@@ -22,6 +22,8 @@ import ImageListItem from "@mui/material/ImageListItem";
 import { CardContent } from '@mui/material';
 import { useState } from 'react';
 import Button from "@mui/material/Button";
+import { DataGrid } from "@mui/x-data-grid";
+
 
 
 
@@ -38,28 +40,19 @@ export default function ProductList(props){
   };
 
   const updateTotalSum= ()=>{
-    // let sum=list.reduce((total, currentValue)=> total = total + currentValue.price, 0);
-    return list.reduce((total, currentValue)=> total = total + currentValue.price, 0);
+    let sum=list.reduce((total, currentValue)=> total = total + currentValue.price, 0);
+
+    return (<div>{!sum ? ( <p>no products yet.....</p>) : (<p>Total price: {sum}</p> )}</div>);
 
   }
 
     return(
      
-        <Box sx={{boxShadow: 10,  }}>
+        <Box sx={{boxShadow: 10, backgroundColor:'white'  }}>
         {/* <TitleDivider Title="" /> */}
        <Typography sx={{fontWeight: 'bold', alignContent: 'center', color:'black'}}> Product list</Typography>
 
-       {/* {list.map(p=>{
-        return(
-
-            <div>
-{p.name}
-<button removeProduct={p.name} onClick={removeItemHandler}>X</button>
-
-            </div>
-        );
-       })} */}
-        <List sx={{display: 'flex', flexDirection: 'column' }}> 
+        <List sx={{display: 'flex', flexDirection: 'column',   color:'#eadeba' }}> 
 
             
             {/* <Card><ListItem>{props.ProductList.map(product => product.name)}</ListItem></Card> */}
@@ -82,7 +75,7 @@ export default function ProductList(props){
             </Card>
         </ListItem> );})}
 
-        <Typography sx={{alignContent: 'left', color: 'black', fontFamily:'monospace', backgroundColor:'#f4f4f4'}}> Total price: {updateTotalSum()}    </Typography>
+        <Typography sx={{alignContent: 'left', color: 'black', fontFamily:'monospace', backgroundColor:'#f4f4f4'}}> {updateTotalSum()}    </Typography>
         </List>
         </Box>
     );
