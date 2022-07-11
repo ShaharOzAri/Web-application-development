@@ -5,6 +5,7 @@ import Container from "@mui/material/Grid";
 import ProductList from "../components/product/ProductList";
 import CardReactFormContainer from 'card-react';
 import CreditCratPayment from "../components/Checkout/CreditCardPayment";
+import Deliveries from "../components/Checkout/Deliveries";
 // import CreditCard from 'react-creditcard';
 
 
@@ -14,6 +15,7 @@ export default function CheckoutPage(props){
     <Container  maxWidth='xxl'>
          <TitleDivider Title="CHECKOUT" />
        <ProductList productList={props.productList}/>
+       <TitleDivider Title="" sx={{}} />
        {/* <CardReactFormContainer container="card-wrapper" 
        
           formInputsNames={
@@ -59,8 +61,13 @@ export default function CheckoutPage(props){
   backDescriptionText="Use of this card is governed by the conditions of use. You must not disclose your PIN to anyone."
   /> */}
 
+<Deliveries cities={cities} />
   <CreditCratPayment />
     </Container>
     ); 
 }
 
+const cities = [
+  { label: 'Tzfat'},
+  { label: 'Tel-Aviv'},
+];
