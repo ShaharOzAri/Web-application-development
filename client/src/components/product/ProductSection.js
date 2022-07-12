@@ -54,7 +54,7 @@ const ProductSection = () => {
           </Container>
         </Grid>
       )}
-      {products.map((product) => {
+      {products.slice(0, 4).map((product) => {
         return (
           <Grid item xs={3}>
             <ProductCard product={product} />;
