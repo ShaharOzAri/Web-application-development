@@ -23,7 +23,8 @@ export default function FilterSection(props) {
   const products = props.products;
   const setProducts = props.setProducts;
   const allProducts = props.allProducts;
-  const [filterTab, setFilterTab] = useState(false);
+  const filterTab = props.filterTab;
+  const setFilterTab = props.setFilterTab;
 
   const openFilterTab = () => {
     setFilterTab(!filterTab);

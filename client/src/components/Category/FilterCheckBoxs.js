@@ -15,6 +15,7 @@ import { Container } from "@mui/system";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import Slider from "@mui/material/Slider";
 
 export default function FilterCheckBoxes(props) {
   const setProducts = props.setProducts;
@@ -39,12 +40,39 @@ export default function FilterCheckBoxes(props) {
     }
   };
 
-  //   useEffect(() => {}, [allProducts]);
+  const handleMaterialChange = (e) => {
+    if (e.target.checked === true) {
+      setProductMaterial([...productMaterial, e.target.value]);
+    } else {
+      setProductMaterial(
+        productMaterial.filter((item) => item != e.target.value)
+      );
+    }
+  };
+
   useEffect(() => {
     setProducts([
       ...allProducts.filter((product) => productStyle.includes(product.type)),
     ]);
   }, [productStyle]);
+
+  useEffect(() => {
+    setProducts([
+      ...allProducts.filter((product) =>
+        productMaterial.includes(product.material)
+      ),
+    ]);
+  }, [productMaterial]);
+
+  function valuetext(value) {
+    return `${value}°C`;
+  }
+
+  const [value, setValue] = React.useState([20, 37]);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <Box>
@@ -70,10 +98,12 @@ export default function FilterCheckBoxes(props) {
               <FormControlLabel
                 control={<Checkbox defaultChecked value="zircon" />}
                 label="Zircon"
+                onChange={handleStyleChange}
               />
               <FormControlLabel
                 control={<Checkbox defaultChecked value="engraved" />}
                 label="Engraved"
+                onChange={handleStyleChange}
               />
             </FormGroup>
           </Grid>
@@ -93,14 +123,17 @@ export default function FilterCheckBoxes(props) {
               <FormControlLabel
                 control={<Checkbox defaultChecked value="sterling silver" />}
                 label="Sterling Silver"
+                onChange={handleMaterialChange}
               />
               <FormControlLabel
                 control={<Checkbox defaultChecked value="gold plated" />}
                 label="Gold Plated"
+                onChange={handleMaterialChange}
               />
               <FormControlLabel
                 control={<Checkbox defaultChecked value="rose gold" />}
                 label="Rose Gold"
+                onChange={handleMaterialChange}
               />
             </FormGroup>
           </Grid>
@@ -116,6 +149,15 @@ export default function FilterCheckBoxes(props) {
             >
               Price
             </Typography>
+            <Box sx={{ width: 300 }}>
+              <Slider
+                getAriaLabel={() => "Temperature range"}
+                value={value}
+                onChange={handleChange}
+                valueLabelDisplay="auto"
+                getAriaValueText={valuetext}
+              />
+            </Box>
           </Grid>
         </Grid>
       </Container>

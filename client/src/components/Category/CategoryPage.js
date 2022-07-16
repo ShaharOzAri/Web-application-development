@@ -12,12 +12,14 @@ export default function CategoryPage() {
 
   const [products, setProducts] = useState(null);
   const [allProducts, setAllProducts] = useState(null);
+  const [filterTab, setFilterTab] = useState(false);
 
   const getProducts = async () => {
     const res = await getProductsByCategory(category);
     if (res.status == 200) {
       setProducts(res.data.msg);
       setAllProducts(res.data.msg);
+      setFilterTab(false);
     }
   };
 
@@ -36,6 +38,8 @@ export default function CategoryPage() {
         products={products}
         setProducts={setProducts}
         allProducts={allProducts}
+        filterTab={filterTab}
+        setFilterTab={setFilterTab}
       ></FilterSection>
       {products != null ? (
         <Grid
