@@ -50,7 +50,7 @@ export default function ToolbarButtons() {
               <Button
                 edge="end"
                 key={category.name}
-                sx={{ color: "#fff" }}
+                sx={{ color: "black" }}
                 onClick={() => navigateToCategory(category.name)}
               >
                 {category.name}
@@ -71,7 +71,7 @@ export default function ToolbarButtons() {
               <Button
                 edge="end"
                 key={item}
-                sx={{ color: "#fff" }}
+                sx={{ color: "black" }}
                 onClick={() => navigateToPage(item)}
               >
                 {item}

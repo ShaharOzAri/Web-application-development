@@ -6,10 +6,9 @@ import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import NavigationBar from "./components/NavBar/NavigationBar";
 import AboutUsPage from "./pages/AboutUsPage";
 import Chat from "./components/Chat/Chat";
-import Map from "./components/Map/Map";
 import CreateLocations from "./components/Map/CreateLocations";
 import CategoryPage from "./components/Category/CategoryPage";
-import { AuthProvider, useAuth } from "./components/Utils/auth";
+import { AuthProvider } from "./components/Utils/auth";
 import { UserDetails } from "./components/User/UserDetails";
 import { AdminHomePage } from "./components/Admin/AdminHomePage";
 import { RequireAuth } from "./components/Utils/RequireAuth";
@@ -19,7 +18,8 @@ import ProductSection from "./components/product/ProductSection";
 import ProductPage from "./components/product/ProductPage";
 import EditProductAdmin from "./components/product/EditProductAdmin";
 import AddUser from "./components/User/AddUser";
-import Statics from "./components/statics/Statics"
+import Footer from "./components/HomePage/Footer";
+import AddProduct from "./components/product/AddProduct";
 
 const customTheme = createTheme({
   palette: {
@@ -113,7 +113,16 @@ function App() {
                   </RequireAuth>
                 }
               />
+              <Route
+                path="admin/addProduct"
+                element={
+                  <RequireAuth>
+                    <AddProduct />
+                  </RequireAuth>
+                }
+              />
             </Routes>
+            <Footer></Footer>
           </BrowserRouter>
         </MyThemeComponent>
       </ThemeProvider>

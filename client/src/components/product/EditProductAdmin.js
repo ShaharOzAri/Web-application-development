@@ -137,19 +137,26 @@ export default function EditProductAdmin() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    multiline
-                    defaultValue={product.images}
-                    id="images"
-                    label="Product Images"
-                    name="images"
-                    autoComplete="images"
-                    onChange={(event) =>
-                      (updatedProduct["images"] = event.target.value)
-                    }
-                  />
+                  {product.images != null
+                    ? product.images.map((image, index) => {
+                        return (
+                          <TextField
+                            sx={{ my: 1 }}
+                            required
+                            fullWidth
+                            defaultValue={product.images[index]}
+                            key={"image" + index}
+                            id={"image" + index}
+                            label={"Product Image" + index}
+                            name={"image" + index}
+                            onChange={(event) => {
+                              updatedProduct["images"][index] =
+                                event.target.value;
+                            }}
+                          />
+                        );
+                      })
+                    : ""}
                 </Grid>
 
                 <Grid item xs={12}>
@@ -196,7 +203,7 @@ export default function EditProductAdmin() {
                       updatedProduct["category"] = event.target.value;
                     }}
                   >
-                    <MenuItem value="Bracelet">Bracelet</MenuItem>
+                    <MenuItem value="Bracelete">Bracelete</MenuItem>
                     <MenuItem value="Necklace">Necklace</MenuItem>
                   </Select>
                 </Grid>

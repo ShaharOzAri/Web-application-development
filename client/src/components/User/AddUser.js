@@ -18,21 +18,19 @@ const theme = createTheme();
 export default function AddUser() {
   var auth = useAuth();
   const navigate = useNavigate();
-  const handleSubmit = async (event) => {
+  const handleAddUser = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const user = {
+    const newUser = {
       email: data.get("email"),
       first_name: data.get("firstName"),
       last_name: data.get("lastName"),
       password: data.get("password"),
       role: data.get("role"),
     };
-    var response = await AddNewUser(user);
+    var response = await AddNewUser(newUser);
     if (response.status == 200) {
-      alert("vfjkvn");
-      auth.login(JSON.parse(auth.getUser()));
-      //   navigate(-1);
+      navigate(-1);
     } else if (response.status == 403) {
       alert("email already exist , please try another email");
     }
@@ -56,7 +54,7 @@ export default function AddUser() {
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmit}
+            onSubmit={handleAddUser}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
@@ -130,7 +128,7 @@ export default function AddUser() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                marginBottom: 5,
+                marginBottom: 10,
               }}
             ></Grid>
           </Box>
