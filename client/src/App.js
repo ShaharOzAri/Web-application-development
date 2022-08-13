@@ -19,6 +19,7 @@ import ProductSection from "./components/product/ProductSection";
 import ProductPage from "./components/product/ProductPage";
 import EditProductAdmin from "./components/product/EditProductAdmin";
 import AddUser from "./components/User/AddUser";
+import Statics from "./components/statics/Statics"
 
 const customTheme = createTheme({
   palette: {
@@ -50,6 +51,8 @@ function App() {
               <Route path="/createLocation" element={<CreateLocations />} />
               <Route path="/category/:category" element={<CategoryPage />} />
               <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/statics" element={<Statics />} />
+
 
               {/* <Route path="/user" element={<UserDetails />} /> */}
               <Route path="/user/" element={<UserDetails />} />
