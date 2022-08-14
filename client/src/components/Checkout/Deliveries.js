@@ -15,23 +15,29 @@ export default function Deliveries(props){
         setAddress(!isValidAddress);
     }
     // textAlign: "center",
+
+    // const placeOrderHandler=(order)=>{
+    // }
+
     return (
     <Container sx={{ height: 450, width: "80%", backgroundColor:"#fff",  mt: 3, borderRadius: 2 , boxShadow: 3 }}>
-               <Box  xs={20} sm={6} >
-                <Typography 
+               <Typography 
                 sx={{display: 'flex',fontWeight: 'bold',justifyContent:'center', alignContent: 'center', color:'black', fontSize: 25}}>
                     DELIVERY ADDRESS
                 </Typography>
+               
+               <Grid  xs={4} >
                 <ImageListItem sx={{ width: 300, height: 300, boxShadow:3, justifyItems:'left', display:'inline-flex',flexDirection: "row" }}> 
                          <img src={image} sx={{ width: '5'}}/>
                          </ImageListItem>
-                </Box>
+                </Grid>
+            <Grid container xs={8}>
          <Box  
            component="form"
            noValidate
            autoComplete="off"
           sx={{
-              display: "flex",
+            //   display: "flex",
               flexDirection: "column",
               alignItems: "center",
               whiteSpace:'normal'
@@ -43,11 +49,11 @@ export default function Deliveries(props){
                          </ImageListItem>
                 </Grid> */}
 
-                <Grid> 
+                {/* <Grid> 
                     <ImageListItem sx={{ width: 300, height: 300, boxShadow:3, justifyItems:'left', display:'inline-flex',flexDirection: "row" }}> 
                          <img src={image} sx={{ width: '5'}}/>
-                         </ImageListItem></Grid>
-                 <Grid item xs={14} sm={20} mt={3}>
+                         </ImageListItem></Grid> */}
+                 <Grid item xs={8}>
                 <Autocomplete
                     disablePortal
                     id="selectCity"
@@ -59,7 +65,7 @@ export default function Deliveries(props){
                     onChange={addressHandler}
                 />
                 </Grid>
-                <Grid item xs={14} sm={20} mt={3} >
+                <Grid item xs={8} >
                     
                 {isValidAddress ? <TextField
                     required
@@ -80,11 +86,12 @@ export default function Deliveries(props){
                         sx={{ width: 400 }}
                         />}
                 </Grid>
-                <Grid item xs={14} sm={20} mt={3} >
+                <Grid item xs={8} >
                 {isValidAddress ?  <TextField
                     required
                     id="Zip"
                     label="Zip / Postcode"
+                    type='code'
                     placeholder="Zip number"
                     sx={{ width: 400 }}
                     helperText=" "
@@ -100,23 +107,23 @@ export default function Deliveries(props){
 
                         />}
                 </Grid>
-                <Grid item xs={14} sm={20} mt={3} >
+                <Grid item xs={12} >
                     {/* <IconButton variant="contained"
                     size='large'
                     sx={{backgroundColor:'#dbc49dd2', position:'static'}}><LocalShippingIcon />SAVE ADDRESS</IconButton>
                  */}
-                    <Button 
+                    
+                </Grid>
+                {/* <Button 
                     variant="contained"
                     size='large'
+                    onSubmit={placeOrderHandler}
                     sx={{backgroundColor:'#dbc49dd2', alignItems: 'center', width: 400}}>
-                        
-                        SAVE ADDRESS
-                    </Button>
-                </Grid>
-
+                        Place order
+                </Button> */}
        
             </Box>  
-     
+            </Grid>
 
 
 
