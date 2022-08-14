@@ -29,6 +29,13 @@ export const AuthProvider = ({ children }) => {
   const [cartQty, setCartQty] = useState(calcCartQty());
   const [cartTotal, setCartTotal] = useState(calcCartTotal());
 
+  const getCartTotal = () => {
+    return cartTotal;
+  };
+
+  const getCartItems = () => {
+    return cartItems;
+  };
   //cart management
   useEffect(() => {
     if (cartItems == null || cartItems.length == 0) {

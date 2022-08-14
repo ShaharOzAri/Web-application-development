@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { updateUser } from "../../controller/UserController";
+import { updateUser, deleteuser } from "../../controller/UserController";
 import { useEffect, useState } from "react";
 
 export const UserDetails = () => {
@@ -43,6 +43,19 @@ export const UserDetails = () => {
       alert("somrthing went wrong");
     }
   };
+
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    const response = await deleteuser(user._id);
+    if (response.status == 200) {
+      auth.logout();
+      alert("delete");
+      navigate("/");
+    } else {
+      alert("something went wrong");
+    }
+  };
+
   return (
     <Container sx={{ textAlign: "center", maxWidth: 200, bgcolor: "#e0d9cc" }}>
       {userDetails != null ? (
@@ -52,10 +65,17 @@ export const UserDetails = () => {
           </Typography>
           <Button
             variant="contained"
-            sx={{ mb: 2, color: "black" }}
+            sx={{ m: 2, color: "black" }}
             onClick={handleLogout}
           >
             LogOut
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ m: 2, color: "black" }}
+            onClick={handleDelete}
+          >
+            Delete My User
           </Button>
           <Box
             sx={{

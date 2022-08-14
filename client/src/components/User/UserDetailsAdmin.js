@@ -35,7 +35,6 @@ export default function UserDetailsAdmin() {
   }, []);
 
   var updatedUser = user;
-  console.log(updatedUser);
   const navigate = useNavigate();
   const handleAllUsers = () => {
     navigate(-1);

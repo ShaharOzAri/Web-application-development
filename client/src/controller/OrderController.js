@@ -2,21 +2,13 @@ import axios from "axios";
 const url = process.env.REACT_APP_API_URL + "order/";
 
 export const AddNewOrder = (order) => {
-  return axios
-    .post(url + "create/", {
-      params: order,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  var res = axios.post(url + "create/", {
+    params: order,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return res;
 };
 
 export const getOrdersByDate = (date) => {

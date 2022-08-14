@@ -3,12 +3,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import {
-  Button,
-  ButtonGroup,
-  Experimental_CssVarsProvider,
-  Typography,
-} from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import { useState, useEffect } from "react";
 import { Container } from "@mui/system";
@@ -31,6 +26,7 @@ export default function FilterCheckBoxes(props) {
     "gold plated",
     "rose gold",
   ]);
+  const [value, setValue] = useState([0, 100]);
 
   const handleStyleChange = (e) => {
     if (e.target.checked === true) {
@@ -64,11 +60,17 @@ export default function FilterCheckBoxes(props) {
     ]);
   }, [productMaterial]);
 
-  function valuetext(value) {
-    return `${value}°C`;
-  }
+  useEffect(() => {
+    setProducts([
+      ...allProducts.filter(
+        (product) => product.price > value[0] && product.price < value[1]
+      ),
+    ]);
+  }, [value]);
 
-  const [value, setValue] = React.useState([20, 37]);
+  function valuetext(value) {
+    return value;
+  }
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -150,13 +152,22 @@ export default function FilterCheckBoxes(props) {
               Price
             </Typography>
             <Box sx={{ width: 300 }}>
-              <Slider
-                getAriaLabel={() => "Temperature range"}
-                value={value}
-                onChange={handleChange}
-                valueLabelDisplay="auto"
-                getAriaValueText={valuetext}
-              />
+              <Stack
+                spacing={2}
+                direction="row"
+                sx={{ mb: 1 }}
+                alignItems="center"
+              >
+                <Typography>{value[0]}</Typography>
+                <Slider
+                  getAriaLabel={() => "Price range"}
+                  value={value}
+                  onChange={handleChange}
+                  valueLabelDisplay="auto"
+                  getAriaValueText={valuetext}
+                />
+                <Typography>{value[1]}</Typography>
+              </Stack>
             </Box>
           </Grid>
         </Grid>
