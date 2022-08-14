@@ -26,18 +26,16 @@ export default function Deliveries(props){
                          <img src={image} sx={{ width: '5'}}/>
                          </ImageListItem>
                 </Box>
-         <Box   sx={{
+         <Box  
+           component="form"
+           noValidate
+           autoComplete="off"
+          sx={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               whiteSpace:'normal'
             }}>
-                <Box
-                component="form"
-                // sx={{'& .MuiTextField-root': { m: 1, width: '25ch' },}}
-                noValidate
-                autoComplete="off"
-                 > 
                     {/* <Grid item xs={24} md={12} sm={6} 
                       sx={{justifyItems:'left', flexDirection: "row", display: 'flex'}}>
                         <ImageListItem sx={{ width: 300, height: 300, boxShadow:3, justifyItems:'left', display:'inline-flex',flexDirection: "row" }}> 
@@ -118,7 +116,7 @@ export default function Deliveries(props){
 
        
             </Box>  
-        </Box>
+     
 
 
 

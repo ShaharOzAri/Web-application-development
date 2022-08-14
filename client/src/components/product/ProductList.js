@@ -48,7 +48,7 @@ export default function ProductList(props){
 
     return(
      
-        <Box sx={{boxShadow: 10, backgroundColor:'white'  }}>
+        <Box sx={{boxShadow: 3, backgroundColor:"#fff", width: "80%", mt: 3, borderRadius: 2  }} >
         {/* <TitleDivider Title="" /> */}
        <Typography sx={{fontWeight: 'bold', alignContent: 'center', color:'black'}}> Product list</Typography>
 

@@ -12,10 +12,10 @@ import Deliveries from "../components/Checkout/Deliveries";
 export default function CheckoutPage(props){
     return (
     
-    <Container  maxWidth='xxl'>
+    <Container  maxWidth='xxl' sx={{alignContent:'center', alignItems:'center', display:'inline', }}>
          <TitleDivider Title="CHECKOUT" />
        <ProductList productList={props.productList}/>
-       <TitleDivider Title="" sx={{}} />
+       <TitleDivider Title="" sx={{mt:3}} />
        {/* <CardReactFormContainer container="card-wrapper" 
        
           formInputsNames={
