@@ -3,7 +3,6 @@ const app = express();
 const cors = require("cors");
 app.use(cors());
 
-
 //Chat
 const http = require("http");
 const { Server } = require("socket.io");
@@ -35,6 +34,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(5000, () => {
+server.listen(4000, () => {
   console.log("server running");
 });

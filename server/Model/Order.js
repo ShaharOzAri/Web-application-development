@@ -7,12 +7,6 @@ const OrderSchema = new mongoose.Schema({
   totalSum: Number,
   userId: SchemaTypes.ObjectId,
   address: String,
-  // address: {
-  //   city: String,
-  //   street: String,
-  //   number: String,
-  //   postalCode: Number,
-  // },
 });
 
 const orders = mongoose.model("Orders", OrderSchema);

@@ -13,18 +13,20 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../controller/ProductController";
 import ProductPageIcons from "./ProductPageIcons";
+import { useAuth } from "../Utils/auth";
 
 const theme = createTheme();
 
 export default function ProductPage() {
   let { id } = useParams();
-  const [PageData, setPageData] = useState(null);
+  const [productData, setProductData] = useState(null);
+  const auth = useAuth();
 
   const getProductData = async () => {
     const response = await getProductById(id);
     if (response.status == 200) {
       //console.log(response.data.msg.images);
-      setPageData(response.data.msg);
+      setProductData(response.data.msg);
     } else {
       alert("something went wrong");
     }
@@ -34,7 +36,12 @@ export default function ProductPage() {
     getProductData();
   }, []);
 
-  return PageData != null ? (
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    auth.addCartProduct(productData);
+  };
+
+  return productData != null ? (
     <Container maxWidth="xxxl">
       <Grid
         container
@@ -53,8 +60,8 @@ export default function ProductPage() {
           sx={{ mb: 15 }}
         >
           <ImageList sx={{ width: 720, height: 720 }} cols={2} rowHeight={0}>
-            {PageData.images.map((item) => (
-              <ImageListItem>
+            {productData.images.map((item, index) => (
+              <ImageListItem key={index}>
                 <img
                   src={`${item}?w=164&h=164&fit=crop&auto=format`}
                   srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
@@ -68,6 +75,9 @@ export default function ProductPage() {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
               sx={{
                 mb: 45,
                 display: "flex",
@@ -81,7 +91,7 @@ export default function ProductPage() {
                 color={"black"}
                 align="center"
               >
-                {PageData.name}
+                {productData.name}
               </Typography>
               <Typography
                 component="h2"
@@ -90,7 +100,7 @@ export default function ProductPage() {
                 fontWeight="bold"
                 align="center"
               >
-                ${PageData.price}
+                ${productData.price}
               </Typography>
               <Divider sx={{ my: "20px" }} />
               <Typography
@@ -102,7 +112,7 @@ export default function ProductPage() {
                 Product Description
               </Typography>
               <Typography component="h3" color={"black"} align="center">
-                {PageData.description}
+                {productData.description}
               </Typography>
 
               <Button

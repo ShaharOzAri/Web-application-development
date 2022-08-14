@@ -4,16 +4,22 @@ import { getProductsByCategory } from "../../controller/ProductController";
 import { useState, useEffect } from "react";
 import ProductCard from "../product/ProductCard";
 import { Grid } from "@mui/material";
+import { Container } from "@mui/system";
+import FilterSection from "./FilterSection";
 
 export default function CategoryPage() {
   let { category } = useParams();
 
   const [products, setProducts] = useState(null);
+  const [allProducts, setAllProducts] = useState(null);
+  const [filterTab, setFilterTab] = useState(false);
 
   const getProducts = async () => {
     const res = await getProductsByCategory(category);
     if (res.status == 200) {
       setProducts(res.data.msg);
+      setAllProducts(res.data.msg);
+      setFilterTab(false);
     }
   };
 
@@ -27,7 +33,14 @@ export default function CategoryPage() {
   }, [category]);
 
   return (
-    <div>
+    <Container maxWidth="xl">
+      <FilterSection
+        products={products}
+        setProducts={setProducts}
+        allProducts={allProducts}
+        filterTab={filterTab}
+        setFilterTab={setFilterTab}
+      ></FilterSection>
       {products != null ? (
         <Grid
           container
@@ -36,9 +49,9 @@ export default function CategoryPage() {
           alignItems="center"
           justifyContent="center"
         >
-          {products.map((product) => {
+          {products.map((product, index) => {
             return (
-              <Grid item xs={3}>
+              <Grid item xs={3} key={index}>
                 <ProductCard product={product} />;
               </Grid>
             );
@@ -47,6 +60,6 @@ export default function CategoryPage() {
       ) : (
         ""
       )}
-    </div>
+    </Container>
   );
 }

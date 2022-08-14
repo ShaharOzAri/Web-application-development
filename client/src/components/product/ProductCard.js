@@ -17,6 +17,10 @@ const ProductCard = (props) => {
     navigate(`../product/${product._id}`);
   };
 
+  const handleClickAdmin = () => {
+    navigate(`/admin/product/${product._id}`);
+  };
+
   return product != null ? (
     <Card sx={{ maxWidth: 370, mx: 5 }}>
       <CardMedia
@@ -60,7 +64,7 @@ const ProductCard = (props) => {
             size="small"
             color="secondary"
             sx={{ color: "black" }}
-            onClick={handleClick}
+            onClick={handleClickAdmin}
           >
             Edit
           </Button>

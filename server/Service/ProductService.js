@@ -8,7 +8,6 @@ module.exports = class ProductService {
         return value;
       })
       .catch((error) => {
-        //return error;
         return null;
       });
   }
@@ -57,9 +56,7 @@ module.exports = class ProductService {
   }
 
   static async update(product) {
-    const res = await products.findByIdAndUpdate(product.id, {
-      product,
-    });
+    const res = await products.findByIdAndUpdate(product._id, product);
     if (res) {
       return res;
     } else {

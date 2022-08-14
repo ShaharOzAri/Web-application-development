@@ -11,7 +11,7 @@ export default function Map() {
     const recivedLocatios = await getLocations();
     if (recivedLocatios.status == 200) {
       setLocations(recivedLocatios.data.msg);
-      console.log(typeof recivedLocatios.data.msg);
+      // console.log(typeof recivedLocatios.data.msg);
     }
   };
 
@@ -27,13 +27,13 @@ export default function Map() {
 
   return (
     <Flex
-      position='relative'
-      flexDirection='column'
-      alignItems='center'
-      h='100vh'
-      w='100vw'
+      position="relative"
+      flexDirection="column"
+      alignItems="center"
+      h="100vh"
+      w="100vw"
     >
-      <Box position='absolute'   bottom={0} h='85%' w='80%'>
+      <Box position="absolute" bottom={0} h="85%" w="80%">
         <GoogleMap
           zoom={10}
           center={{ lat: 32.03514, lng: 34.876912 }}

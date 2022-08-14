@@ -6,10 +6,9 @@ import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import NavigationBar from "./components/NavBar/NavigationBar";
 import AboutUsPage from "./pages/AboutUsPage";
 import Chat from "./components/Chat/Chat";
-import Map from "./components/Map/Map";
 import CreateLocations from "./components/Map/CreateLocations";
 import CategoryPage from "./components/Category/CategoryPage";
-import { AuthProvider, useAuth } from "./components/Utils/auth";
+import { AuthProvider } from "./components/Utils/auth";
 import { UserDetails } from "./components/User/UserDetails";
 import { AdminHomePage } from "./components/Admin/AdminHomePage";
 import { RequireAuth } from "./components/Utils/RequireAuth";
@@ -17,6 +16,10 @@ import UserDetailsAdmin from "./components/User/UserDetailsAdmin";
 import UserListItem from "./components/User/UserListItem";
 import ProductSection from "./components/product/ProductSection";
 import ProductPage from "./components/product/ProductPage";
+import EditProductAdmin from "./components/product/EditProductAdmin";
+import AddUser from "./components/User/AddUser";
+import Footer from "./components/HomePage/Footer";
+import AddProduct from "./components/product/AddProduct";
 
 import CheckoutPage from "./pages/CheckoutPage";
 import img from "./components/images/maroco.png";
@@ -64,7 +67,7 @@ function App() {
               <Route path="/chat" element={<Chat />} />
               <Route path="/createLocation" element={<CreateLocations />} />
               <Route path="/category/:category" element={<CategoryPage />} />
-              <Route path="/productPage/:id" element={<ProductPage />} />
+              <Route path="/product/:id" element={<ProductPage />} />
 
               {/* <Route path="/user" element={<UserDetails />} /> */}
               <Route path="/user/" element={<UserDetails />} />
@@ -109,10 +112,37 @@ function App() {
                   </RequireAuth>
                 }
               />
-              <Route 
+             
+              <Route
+                path="admin/product/:productId"
+                element={
+                  <RequireAuth>
+                    <EditProductAdmin />
+                  </RequireAuth>
+                }
+              />
+               <RequireAuth> <Route 
               path="checkout" 
               element={<CheckoutPage productList={ARRAY} />}/>
+              </RequireAuth>
+              <Route
+                path="admin/addUser"
+                element={
+                  <RequireAuth>
+                    <AddUser />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="admin/addProduct"
+                element={
+                  <RequireAuth>
+                    <AddProduct />
+                  </RequireAuth>
+                }
+              />
             </Routes>
+            <Footer></Footer>
           </BrowserRouter>
         </MyThemeComponent>
       </ThemeProvider>
