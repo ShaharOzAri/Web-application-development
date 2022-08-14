@@ -13,7 +13,7 @@ import { AddNewOrder } from "../controller/OrderController";
 
 export default function CheckoutPage(props){
   const placeOrderHandler=(props)=>{
-    const order=new order; 
+    // const order=new order; 
 }
 
 

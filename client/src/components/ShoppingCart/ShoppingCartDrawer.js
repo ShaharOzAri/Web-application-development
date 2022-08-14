@@ -9,6 +9,7 @@ import ShoppingCartProduct from "./ShoppingCartProduct";
 import { Box, Grid } from "@mui/material";
 import { useAuth } from "../Utils/auth";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 400;
 
@@ -21,13 +22,16 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function ShoppingCartDrawer(props) {
+
+  const navigate= useNavigate(); 
+
   const handleDrawerClose = () => {
     props.setOpen(false);
   };
   const Auth = useAuth();
 
   const checkOut = () => {
-    alert("navigate to checkOut page");
+    navigate(`checkout`);    
   };
   return (
     <Drawer
@@ -131,6 +135,7 @@ export default function ShoppingCartDrawer(props) {
           </Grid>
         </Grid>
 
+        
         <Button
           onClick={checkOut}
           fullWidth
