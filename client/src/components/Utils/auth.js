@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
 
   const [cartQty, setCartQty] = useState(calcCartQty());
   const [cartTotal, setCartTotal] = useState(calcCartTotal());
+  
 
   const getCartTotal = () => {
     return cartTotal;
@@ -107,6 +108,7 @@ export const AuthProvider = ({ children }) => {
         cartItems,
         cartQty,
         cartTotal,
+        getCartTotal,
         login,
         logout,
         update,

@@ -50,9 +50,12 @@ export default function ProductList(props){
   };
 
   const updateTotalSum= ()=>{
-    let sum=list.reduce((total, currentValue)=> total = total + currentValue.price, 0);
+    console.log('sum total');
+    auth.getCartTotal();
 
-    return (<div>{!sum ? ( <p>no products yet.....</p>) : (<p>Total price: {sum}</p> )}</div>);
+    // let sum=list.reduce((total, currentValue)=> total = total + currentValue.price, 0);
+      return (<div>{!auth.cartTotal ? ( <p>no products yet.....</p>) : (<p>Total price: {auth.cartTotal}</p> )}</div>)
+    // return (<div>{! auth.cartTotal ? ( <p>no products yet.....</p>) : (<p>Total price: { auth.cartTotal}</p> )}</div>);
 
   }
 
@@ -63,7 +66,7 @@ export default function ProductList(props){
 
         <List sx={{display: 'flex', flexDirection: 'column',   color:'#eadeba' }}> 
 
-        {auth.cartItems.map(product => {return(
+        {auth.cartItems!=null ? (auth.cartItems.map(product => {return(
         <ListItem sx={{display: 'flex', flexDirection: 'row',  width: '100%'}}  >
             <Card sx={{display: 'flex', flexDirection: 'row', width: '100%'}}>
                     <ImageListItem sx={{ width: 200, height: 200, boxShadow:3 }}>
@@ -82,7 +85,10 @@ export default function ProductList(props){
             
             </CardContent>
             </Card>
-        </ListItem> );})}
+        </ListItem> );})): 
+        <Typography>
+          Cart Is Empty
+        </Typography>}
                 <Typography sx={{alignContent: 'left', color: 'black', fontFamily:'monospace', backgroundColor:'#f4f4f4'}}> {updateTotalSum()}    </Typography>
         </List>
         </Box>
