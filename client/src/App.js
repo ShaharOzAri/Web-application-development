@@ -1,3 +1,5 @@
+import CheckoutPage from "./pages/CheckoutPage";
+import img from "./components/images/maroco.png";
 import * as React from "react";
 import "./app.css";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
@@ -6,10 +8,9 @@ import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import NavigationBar from "./components/NavBar/NavigationBar";
 import AboutUsPage from "./pages/AboutUsPage";
 import Chat from "./components/Chat/Chat";
-import Map from "./components/Map/Map";
 import CreateLocations from "./components/Map/CreateLocations";
 import CategoryPage from "./components/Category/CategoryPage";
-import { AuthProvider, useAuth } from "./components/Utils/auth";
+import { AuthProvider } from "./components/Utils/auth";
 import { UserDetails } from "./components/User/UserDetails";
 import { AdminHomePage } from "./components/Admin/AdminHomePage";
 import { RequireAuth } from "./components/Utils/RequireAuth";
@@ -21,6 +22,8 @@ import EditProductAdmin from "./components/product/EditProductAdmin";
 import AddUser from "./components/User/AddUser";
 import Footer from "./components/HomePage/Footer";
 import AddProduct from "./components/product/AddProduct";
+import Statics from "./components/Statics/Statics";
+import OrderPage from "./pages/OrderPage";
 
 const customTheme = createTheme({
   palette: {
@@ -52,7 +55,13 @@ function App() {
               <Route path="/createLocation" element={<CreateLocations />} />
               <Route path="/category/:category" element={<CategoryPage />} />
               <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/statics" element={<Statics />} />
 
+              {/* <Route path="/statics" element={<Statics />} /> */}
+
+
+              <Route path="/checkout" element={<CheckoutPage/>}/>
+              <Route path="/orders" element={<OrderPage/>}/>
               {/* <Route path="/user" element={<UserDetails />} /> */}
               <Route path="/user/" element={<UserDetails />} />
               <Route
@@ -130,3 +139,4 @@ function App() {
 }
 
 export default App;
+

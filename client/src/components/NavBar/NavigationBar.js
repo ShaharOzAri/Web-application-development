@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { styled, useTheme } from "@mui/material/styles";
+import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,6 +16,7 @@ import SignUpDialog from "./SignUpDialog";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Utils/auth";
 import ToolbarButtons from "./ToolbarButtons";
+import Avatar from "@mui/material/Avatar";
 
 const drawerWidth = 400;
 
@@ -33,6 +35,15 @@ const AppBar = styled(MuiAppBar, {
     }),
     marginRight: drawerWidth,
   }),
+}));
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+  },
 }));
 
 export default function NavigationBar() {
@@ -77,6 +88,7 @@ export default function NavigationBar() {
           bgcolor: "#e0d9cc",
           justifyContent: "center",
           height: 80,
+          color: "black",
         }}
       >
         <Toolbar>
@@ -89,28 +101,44 @@ export default function NavigationBar() {
               onClick={() => imageClick()}
             />
           </Typography>
-          {!auth.user || JSON.parse(auth.getUser()).role == "cilent" ? (
+          {!auth.user || JSON.parse(auth.getUser()).role == "client" ? (
             <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="end"
               onClick={handleDrawerOpen}
-              sx={{ ...(open && { display: "none", mx: "15px" }) }}
+              sx={{ ...(open && { display: "none", mx: "15px" }), mx: 1 }}
             >
-              <ShoppingCartIcon sx={{ fontSize: "25px" }} />
+              <StyledBadge badgeContent={auth.cartQty}>
+                <ShoppingCartIcon sx={{ fontSize: "25px" }} />
+              </StyledBadge>
             </IconButton>
           ) : (
             " "
           )}
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="end"
-            onClick={handleClickOpen}
-            sx={{ ...(open && { display: "none", mx: "15px" }) }}
-          >
-            <PersonIcon sx={{ fontSize: "25px" }} />
-          </IconButton>
+          {!auth.user ? (
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="end"
+              onClick={handleClickOpen}
+              sx={{ ...(open && { display: "none", mx: "15px" }) }}
+            >
+              <PersonIcon sx={{ fontSize: "25px" }} />
+            </IconButton>
+          ) : (
+            <IconButton onClick={handleClickOpen}>
+              <Avatar
+                sx={{
+                  bgcolor: "black",
+                  height: "30px",
+                  width: "30px",
+                }}
+              >
+                {Array.from(JSON.parse(auth.getUser()).first_name)[0]}
+              </Avatar>
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
       <ShoppingCartDrawer

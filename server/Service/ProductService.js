@@ -23,6 +23,30 @@ module.exports = class ProductService {
       });
   }
 
+  static async getProductsNameGroupBy(){
+    return products.aggregate([
+      {
+        $group: {
+          _id: '$category',
+          "count": {"$sum":1},
+          "profit": {"$sum": "$total"}
+        }
+      }
+    ])
+  }
+
+  static async getProductsMaterialGroupBy(){
+    return products.aggregate([
+      {
+        $group: {
+          _id: '$material',
+          "count": {"$sum":1},
+          "profit": {"$sum": "$total"}
+        }
+      }
+    ])
+  }
+
   static async getProductById(id) {
     return products.findById(id).exec();
   }
