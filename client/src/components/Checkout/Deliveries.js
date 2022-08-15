@@ -10,11 +10,15 @@ import image from '../images/checkout_image.png';
 export default function Deliveries(props){
 
     const[isValidAddress, setAddress]= useState();
+
     
     const addressHandler=()=>{
         setAddress(!isValidAddress);
     }
 
+    function saveAddressHandler(){
+        
+    }
 
     return (
     <Container sx={{ height: 450, width: "80%", backgroundColor:"#fff",  mt: 3, borderRadius: 2 , boxShadow: 3 }}>
@@ -113,13 +117,22 @@ export default function Deliveries(props){
                  */}
                     
                 </Grid>
-                {/* <Button 
+                {isValidAddress ? (<Button 
                     variant="contained"
                     size='large'
-                    onSubmit={placeOrderHandler}
+                    onSubmit={saveAddressHandler}
                     sx={{backgroundColor:'#dbc49dd2', alignItems: 'center', width: 400}}>
-                        Place order
-                </Button> */}
+                        Save Address
+                </Button>): (
+                <Button 
+                    variant="contained"
+                    disabled
+                    size='large'
+                    // onSubmit={saveAddressHandler}
+                    sx={{backgroundColor:'#dbc49dd2', alignItems: 'center', width: 400}}>
+                        Save Address
+                </Button>)}
+              
        
             </Box>  
             </Grid>
