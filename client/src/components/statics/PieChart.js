@@ -1,9 +1,8 @@
 import React from 'react'
-import {Bar} from 'react-chartjs-2'
+import {Pie} from 'react-chartjs-2'
 import {Chart as ChartJS} from 'chart.js/auto'
-import { Box } from '@mui/material';
 
-function BarChart({chartData}) {
+function PieChart({chartData}) {
 
     const options = {
         responsive: true,
@@ -19,8 +18,8 @@ function BarChart({chartData}) {
       };
 
   return (
-    <Bar data={chartData} options={options}/>
+    <Pie data={chartData} options={options}/>
   )
 }
 
-export default BarChart
+export default PieChart

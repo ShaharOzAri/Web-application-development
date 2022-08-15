@@ -11,6 +11,24 @@ export const AddNewProduct = async (product) => {
   return res;
 };
 
+export const getProductsNameGroupBy = async () => {
+  var res = await axios.get(url + "getProductsNameGroupBy/", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return res;
+};
+
+export const getProductsMaterialGroupBy = async () => {
+  var res = await axios.get(url + "getProductsMaterialGroupBy/", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return res;
+};
+
 export const getAllProducts = async () => {
   var res = await axios.get(url + "getAll/", {
     headers: {

@@ -11,6 +11,15 @@ export const AddNewOrder = (order) => {
   return res;
 };
 
+export const getOrdersNameGroupBy = async () => {
+  var res = await axios.get(url + "getOrdersGroupBy/", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return res;
+};
+
 export const getOrdersByDate = (date) => {
   return axios
     .post(url + "getOrdersByDate/", {

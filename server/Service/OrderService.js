@@ -28,6 +28,18 @@ module.exports = class OrderService {
       });
   }
 
+  static async getOrdersNameGroupBy(){
+    return orders.aggregate([
+      {
+        $group: {
+          _id: '$date',
+          "count": {"$sum":1},
+          "profit": {"$sum": "$total"}
+        }
+      }
+    ])
+  }
+
   static async getOrdersByUser(user) {
     return orders
       .find({ userId: user })
