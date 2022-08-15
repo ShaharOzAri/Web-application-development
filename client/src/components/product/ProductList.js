@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { Container } from '@mui/material';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -54,43 +54,44 @@ export default function ProductList(props){
     auth.getCartTotal();
 
     // let sum=list.reduce((total, currentValue)=> total = total + currentValue.price, 0);
-      return (<div>{!auth.cartTotal ? ( <p>no products yet.....</p>) : (<p>Total price: {auth.cartTotal}</p> )}</div>)
+      return (<div>{!auth.cartTotal ? ( <p>no products yet.....</p>) : (<p>Total price: {auth.cartTotal} $</p> )}</div>)
     // return (<div>{! auth.cartTotal ? ( <p>no products yet.....</p>) : (<p>Total price: { auth.cartTotal}</p> )}</div>);
 
   }
 
     return(
      
-       <Box sx={{boxShadow: 3, backgroundColor:"#fff", width: "80%", mt: 3, borderRadius: 2  }} >
-       <Typography sx={{fontWeight: 'bold', alignContent: 'center', color:'black'}}> Product list</Typography>
+       <Container sx={{boxShadow: 3, backgroundColor:"#fff", width: "80%", mt: 3, borderRadius: 2 , backgroundColor: '#FDFDFD' }} >
+       <Typography sx={{display: 'flex',fontWeight: 'bold',justifyContent:'center', alignContent: 'center', color:'black', fontSize: 25}}> 
+       PRODUCT LIST</Typography>
 
-        <List sx={{display: 'flex', flexDirection: 'column',   color:'#eadeba' }}> 
+        <List sx={{display: 'flex', flexDirection: 'column',   color:'#F3E8DE' }}> 
 
         {auth.cartItems!=null ? (auth.cartItems.map(product => {return(
-        <ListItem sx={{display: 'flex', flexDirection: 'row',  width: '100%'}}  >
-            <Card sx={{display: 'flex', flexDirection: 'row', width: '100%'}}>
+        <ListItem sx={{display: 'flex', flexDirection: 'row',  width: '100%', boxShadow:3, mb: 2, borderRadius:2,  backgroundColor: '#FDFDFD'}}  >
+            {/* <Card sx={{display: 'flex', flexDirection: 'row', width: '100%', backgroundColor: '#FDFDFD'}}> */}
                     <ImageListItem sx={{ width: 200, height: 200, boxShadow:3 }}>
                          <img src={`${product.images[0]}`} sx={{width: '10px'}}/>
                     </ImageListItem>
-            <CardContent sx={{ flex: 'auto', flexDirection: 'row', fontFamily: 'monospace'}}>
-            <Typography sx={{fontWeight: 'bold', alignContent: 'right'}} > {product.name} </Typography>
-            <Typography sx={{alignContent: 'left'}} > {product.price} <EuroSymbolTwoToneIcon/> </Typography>
-            <Typography sx={{alignContent: 'left'}}>     </Typography>
-             {/* <button removeProduct={product.name} onClick={removeItemHandler}><IconButton><DeleteIcon /></IconButton></button> */}
-             {/* edge="end" aria-label="delete"  */}
+            <CardContent sx={{ flex: 'auto', flexDirection: 'row', fontFamily: 'monospace', color:'black'}}>
+            <Typography sx={{fontWeight: 'bold', alignContent: 'right'}} >  {product.name} </Typography>
+            <Typography sx={{alignContent: 'left'}} > <b>Price:</b> {product.price} $ </Typography>
+            <Typography sx={{alignContent: 'left'}}>  <b>Quantity:</b> {console.log('product id' + `${product._id}`)} {auth.calcProductQty(`${product._id}`)}  </Typography>
+            
              {console.log('print product')}
              {console.log(product)}
 
              <Button sx={{color:'black', fontSize:'12'}} removeProduct={product._id} onClick={removeItemHandler}><DeleteIcon />remove</Button>
             
             </CardContent>
-            </Card>
+            {/* </Card> */}
         </ListItem> );})): 
         <Typography>
           Cart Is Empty
         </Typography>}
                 <Typography sx={{alignContent: 'left', color: 'black', fontFamily:'monospace', backgroundColor:'#f4f4f4'}}> {updateTotalSum()}    </Typography>
         </List>
-        </Box>
+        </Container>
+      
     );
 }

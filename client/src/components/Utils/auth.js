@@ -17,6 +17,18 @@ export const AuthProvider = ({ children }) => {
     return counter;
   };
 
+  const calcProductQty = (id) => {
+    // var counter = 0;
+    // if (cartItems === null) {
+    //   return 0;
+    // }
+    console.log("Product quantity");
+    console.log(id);
+    const counter= cartItems.reduce((total, product)=> total+ (product._id === id), 0); 
+    console.log(counter);
+    return counter;
+  };
+
   const calcCartTotal = () => {
     var total = 0;
     if (cartItems === null) {
@@ -109,6 +121,8 @@ export const AuthProvider = ({ children }) => {
         cartQty,
         cartTotal,
         getCartTotal,
+        calcProductQty,
+        calcCartQty,
         login,
         logout,
         update,

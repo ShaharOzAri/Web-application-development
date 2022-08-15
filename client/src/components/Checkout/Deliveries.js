@@ -14,10 +14,7 @@ export default function Deliveries(props){
     const addressHandler=()=>{
         setAddress(!isValidAddress);
     }
-    // textAlign: "center",
 
-    // const placeOrderHandler=(order)=>{
-    // }
 
     return (
     <Container sx={{ height: 450, width: "80%", backgroundColor:"#fff",  mt: 3, borderRadius: 2 , boxShadow: 3 }}>
@@ -26,21 +23,23 @@ export default function Deliveries(props){
                     DELIVERY ADDRESS
                 </Typography>
                
-               <Grid  xs={4} >
-                <ImageListItem sx={{ width: 300, height: 300, boxShadow:3, justifyItems:'left', display:'inline-flex',flexDirection: "row" }}> 
+                <Grid container spacing={2} mt={3}>
+                    <Grid item sx={4}>
+                    <ImageListItem sx={{ width: 300, height: 300, boxShadow:3, justifyItems:'left', display:'inline-flex',flexDirection: "row" }}> 
                          <img src={image} sx={{ width: '5'}}/>
                          </ImageListItem>
-                </Grid>
-            <Grid container xs={8}>
-         <Box  
+                    </Grid>
+                    <Grid item  sx={8} >
+                    <Box  
            component="form"
            noValidate
            autoComplete="off"
-          sx={{
+           mt={4}
+          sx={{ alignContent:'center', display: 'flex',
             //   display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              whiteSpace:'normal'
+              whiteSpace:'normal', 
             }}>
                     {/* <Grid item xs={24} md={12} sm={6} 
                       sx={{justifyItems:'left', flexDirection: "row", display: 'flex'}}>
@@ -59,7 +58,7 @@ export default function Deliveries(props){
                     id="selectCity"
                     options={props.cities}
                     renderInput={(params) => <TextField {...params} label="City"  helperText='Check if your address is in the shipping area'
-                    sx={{ width: 400 }}
+                    sx={{ width: 500 }}
                     fullWidth
                     />}
                     onChange={addressHandler}
@@ -75,7 +74,7 @@ export default function Deliveries(props){
                     placeholder="Street & House number"
                     helperText=" "
 
-                    sx={{ width: 400 }}
+                    sx={{ width: 500 }}
                 /> :  <TextField
                         required
                         disabled
@@ -83,7 +82,7 @@ export default function Deliveries(props){
                         id="address"
                         label="Address"
                         helperText="Please enter a suitable city"
-                        sx={{ width: 400 }}
+                        sx={{ width: 500 }}
                         />}
                 </Grid>
                 <Grid item xs={8} >
@@ -93,7 +92,7 @@ export default function Deliveries(props){
                     label="Zip / Postcode"
                     type='code'
                     placeholder="Zip number"
-                    sx={{ width: 400 }}
+                    sx={{ width: 500 }}
                     helperText=" "
 
                     /> :  <TextField
@@ -103,7 +102,7 @@ export default function Deliveries(props){
                         id="outlined-disabled"
                         label="Zip / Postcode"
                         helperText="Please enter a suitable city"
-                        sx={{ width: 400 }}
+                        sx={{ width: 500 }}
 
                         />}
                 </Grid>
@@ -124,8 +123,7 @@ export default function Deliveries(props){
        
             </Box>  
             </Grid>
-
-
+        </Grid>
 
     </Container>
 
