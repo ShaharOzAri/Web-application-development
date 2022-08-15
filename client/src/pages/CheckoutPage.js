@@ -7,12 +7,23 @@ import CardReactFormContainer from 'card-react';
 import CreditCratPayment from "../components/Checkout/CreditCardPayment";
 import Deliveries from "../components/Checkout/Deliveries";
 import { Button} from "@mui/material";
+import { useAuth } from "../components/Utils/auth";
+import { useNavigate } from "react-router-dom";
 
 // import CreditCard from 'react-creditcard';
 import { AddNewOrder } from "../controller/OrderController";
 
 export default function CheckoutPage(props){
-  const placeOrderHandler=(props)=>{
+  const auth= useAuth();
+
+  const placeOrderHandler=()=>{
+    if( auth.cartItems===null){
+      alert("your ");
+    }
+    else{
+
+    }
+    
     // const order=new order; 
 }
 
@@ -22,20 +33,24 @@ export default function CheckoutPage(props){
     
     <Container  maxWidth='xxl' sx={{alignContent:'center', alignItems:'center', display:'inline', }}>
          <TitleDivider Title="CHECKOUT" />
-       <ProductList productList={props.productList}/>
-       <TitleDivider Title="" sx={{mt:3}} />
+       <ProductList mt={3} mb={3} productList={props.productList}/>
+       <br/>
+       <TitleDivider Title="" mt={3} />
 
       <Deliveries cities={cities} />
   {/* <CreditCratPayment /> */}
 
-  <Button 
-                    variant="contained"
-                    size='large'
-                    onSubmit={placeOrderHandler}
-                    sx={{backgroundColor:'#dbc49dd2', alignItems: 'center', width: 400}}>
-                        Place order
-                        {/* SAVE ADDRESS */}
-   </Button>
+      <Grid mt={3} sx={{display:'flex', alignContent:'center', alignItems:'center', flexDirection: 'column'}}>
+       <Button 
+         variant="contained"
+         size='large'
+         onClick={placeOrderHandler}
+         sx={{backgroundColor:'#dbc49dd2', alignItems: 'center', width: 400}}>
+          Place order
+        {/* SAVE ADDRESS */}
+       </Button>
+   </Grid> 
+ 
        
   
     </Container>
