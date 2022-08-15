@@ -2,9 +2,7 @@ const orders = require("../Model/Order");
 
 module.exports = class OrderService {
   static async insertOrder(order) {
-    console.log(order);
     var returnValue = await orders.insertMany(order);
-    console.log(returnValue[0]._doc);
     //check if all data has been saved
     if (
       Object.keys(order).length ==
