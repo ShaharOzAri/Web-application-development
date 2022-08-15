@@ -23,19 +23,29 @@ import { CardContent } from '@mui/material';
 import { useState } from 'react';
 import Button from "@mui/material/Button";
 import { DataGrid } from "@mui/x-data-grid";
+import { useAuth,AuthProvider } from '../Utils/auth';
+import EuroSymbolTwoToneIcon from '@mui/icons-material/EuroSymbolTwoTone';
 
 
 
 
 
 export default function ProductList(props){
-   const products=props.productList; 
+  const auth = useAuth();
+
+  console.log('start');
+  // console.log(auth.cartItems);
+  const products=props.productList; 
 
   const [list, updateList] = useState(products);
 
+
   const removeItemHandler= (e)=>{
-    let name=e.target.getAttribute("removeProduct");
-   updateList(list.filter(product => product.name !== name));
+    console.log('remove item');
+    console.log(1);
+    var p=e.target.getAttribute("removeProduct");
+    auth.removeCartProduct(p);
+  //  updateList(list.filter(product => product.name !== name));
     updateTotalSum();
   };
 
@@ -48,169 +58,33 @@ export default function ProductList(props){
 
     return(
      
-        <Box sx={{boxShadow: 3, backgroundColor:"#fff", width: "80%", mt: 3, borderRadius: 2  }} >
-        {/* <TitleDivider Title="" /> */}
+       <Box sx={{boxShadow: 3, backgroundColor:"#fff", width: "80%", mt: 3, borderRadius: 2  }} >
        <Typography sx={{fontWeight: 'bold', alignContent: 'center', color:'black'}}> Product list</Typography>
 
         <List sx={{display: 'flex', flexDirection: 'column',   color:'#eadeba' }}> 
 
-            
-            {/* <Card><ListItem>{props.ProductList.map(product => product.name)}</ListItem></Card> */}
-        
-        {list.map(product => {return(
+        {auth.cartItems.map(product => {return(
         <ListItem sx={{display: 'flex', flexDirection: 'row',  width: '100%'}}  >
             <Card sx={{display: 'flex', flexDirection: 'row', width: '100%'}}>
-                    <ImageListItem sx={{ width: 100, height: 100, boxShadow:3 }}>
-                         <img src={`${product.image}`} sx={{width: '10px'}}/>
+                    <ImageListItem sx={{ width: 200, height: 200, boxShadow:3 }}>
+                         <img src={`${product.images[0]}`} sx={{width: '10px'}}/>
                     </ImageListItem>
-                    <CardContent sx={{ flex: 'auto', flexDirection: 'row'}}>
+            <CardContent sx={{ flex: 'auto', flexDirection: 'row', fontFamily: 'monospace'}}>
             <Typography sx={{fontWeight: 'bold', alignContent: 'right'}} > {product.name} </Typography>
-            <Typography sx={{alignContent: 'left'}} > {product.price} </Typography>
+            <Typography sx={{alignContent: 'left'}} > {product.price} <EuroSymbolTwoToneIcon/> </Typography>
             <Typography sx={{alignContent: 'left'}}>     </Typography>
              {/* <button removeProduct={product.name} onClick={removeItemHandler}><IconButton><DeleteIcon /></IconButton></button> */}
              {/* edge="end" aria-label="delete"  */}
-             <Button sx={{color:'black', fontSize:'12'}} removeProduct={product.name} onClick={removeItemHandler}><DeleteIcon />remove</Button>
+             {console.log('print product')}
+             {console.log(product)}
 
+             <Button sx={{color:'black', fontSize:'12'}} removeProduct={product._id} onClick={removeItemHandler}><DeleteIcon />remove</Button>
+            
             </CardContent>
             </Card>
         </ListItem> );})}
-
-        <Typography sx={{alignContent: 'left', color: 'black', fontFamily:'monospace', backgroundColor:'#f4f4f4'}}> {updateTotalSum()}    </Typography>
+                <Typography sx={{alignContent: 'left', color: 'black', fontFamily:'monospace', backgroundColor:'#f4f4f4'}}> {updateTotalSum()}    </Typography>
         </List>
         </Box>
     );
 }
-
-
-// function generate(element) {
-//   return [0, 1, 2].map((value) =>
-//     React.cloneElement(element, {
-//       key: value,
-//     }),
-//   );
-// }
-
-// const Demo = styled('div')(({ theme }) => ({
-//   backgroundColor: theme.palette.background.paper,
-// }));
-
-// export default function InteractiveList() {
-//   const [dense, setDense] = React.useState(false);
-//   const [secondary, setSecondary] = React.useState(false);
-
-//   return (
-//     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
-//       <FormGroup row>
-//         <FormControlLabel
-//           control={
-//             <Checkbox
-//               checked={dense}
-//               onChange={(event) => setDense(event.target.checked)}
-//             />
-//           }
-//           label="Enable dense"
-//         />
-//         <FormControlLabel
-//           control={
-//             <Checkbox
-//               checked={secondary}
-//               onChange={(event) => setSecondary(event.target.checked)}
-//             />
-//           }
-//           label="Enable secondary text"
-//         />
-//       </FormGroup>
-//       <Grid container spacing={2}>
-//         <Grid item xs={12} md={6}>
-//           <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-//             Text only
-//           </Typography>
-//           <Demo>
-//             <List dense={dense}>
-//               {generate(
-//                 <ListItem>
-//                   <ListItemText
-//                     primary="Single-line item"
-//                     secondary={secondary ? 'Secondary text' : null}
-//                   />
-//                 </ListItem>,
-//               )}
-//             </List>
-//           </Demo>
-//         </Grid>
-//         <Grid item xs={12} md={6}>
-//           <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-//             Icon with text
-//           </Typography>
-//           <Demo>
-//             <List dense={dense}>
-//               {generate(
-//                 <ListItem>
-//                   <ListItemIcon>
-//                     <FolderIcon />
-//                   </ListItemIcon>
-//                   <ListItemText
-//                     primary="Single-line item"
-//                     secondary={secondary ? 'Secondary text' : null}
-//                   />
-//                 </ListItem>,
-//               )}
-//             </List>
-//           </Demo>
-//         </Grid>
-//       </Grid>
-//       <Grid container spacing={2}>
-//         <Grid item xs={12} md={6}>
-//           <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-//             Avatar with text
-//           </Typography>
-//           <Demo>
-//             <List dense={dense}>
-//               {generate(
-//                 <ListItem>
-//                   <ListItemAvatar>
-//                     <Avatar>
-//                       <FolderIcon />
-//                     </Avatar>
-//                   </ListItemAvatar>
-//                   <ListItemText
-//                     primary="Single-line item"
-//                     secondary={secondary ? 'Secondary text' : null}
-//                   />
-//                 </ListItem>,
-//               )}
-//             </List>
-//           </Demo>
-//         </Grid>
-//         <Grid item xs={12} md={6}>
-//           <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-//             Avatar with text and icon
-//           </Typography>
-//           <Demo>
-//             <List dense={dense}>
-//               {generate(
-//                 <ListItem
-//                   secondaryAction={
-//                     <IconButton edge="end" aria-label="delete">
-//                       <DeleteIcon />
-//                     </IconButton>
-//                   }
-//                 >
-//                   <ListItemAvatar>
-//                     <Avatar>
-//                       <FolderIcon />
-//                     </Avatar>
-//                   </ListItemAvatar>
-//                   <ListItemText
-//                     primary="Single-line item"
-//                     secondary={secondary ? 'Secondary text' : null}
-//                   />
-//                 </ListItem>,
-//               )}
-//             </List>
-//           </Demo>
-//         </Grid>
-//       </Grid>
-//     </Box>
-//   );
-// }

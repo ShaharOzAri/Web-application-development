@@ -64,8 +64,9 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const removeCartProduct = (product) => {
-    SetCartItems(cartItems.filter((x) => x._id !== product._id));
+  const removeCartProduct = (id) => {
+    console.log('in auth');
+    SetCartItems(cartItems.filter((x) => x._id !== id));
   };
 
   const changeQty = (product, quantity) => {
