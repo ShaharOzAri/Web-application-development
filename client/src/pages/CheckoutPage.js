@@ -20,27 +20,60 @@ export default function CheckoutPage(props){
 
   const navigate= useNavigate();
 
+  const createOrderProductsArr=()=>{
+      // auth.cartItems.map(x-> )
+      const orderArr= new Array; 
+      auth.cartItems.forEach(p => { 
+        orderArr.push({
+          id: p._id,
+          name: p.name, 
+          qty: p.qty, 
+        });
+      });
+      return orderArr; 
+  };
+
   const placeOrderHandler= async (event)=>{
     event.preventDefault();
-    if( auth.cartItems===null){
-      alert("your ");
-    }
-    else{
-      const currentDate = new Date();
-      const data = new FormData(event.currentTarget);
+
+    // if( auth.cartItems===null){
+    //   alert("your ");
+    // }
+    console.log("in place order");
+    const currentDate = new Date();
+    console.log(`${currentDate.getMonth()}`);
+    
+    const newOrder={
+      // date: `${currentDate.getDate()}/${currentDate.getMonth()+1}/${currentDate.getFullYear()}`,
+      // hour: `${currentDate.getHours()}:${currentDate.getMinutes()}`,
+      date:currentDate, 
+      productIds: createOrderProductsArr(),
+      totalSum: auth.getCartTotal(),
+      userEmail: auth.user.email,
+      address: address,
+    };
+    
+    // var response = await AddNewOrder(newOrder);
+    // if (response.status == 200) {
+    //   navigate(`orders`);
+    // } else if (response.status == 403) {
+    //   alert("Something went wrong,please try again");
+    // }
+    
+    console.log('print new order');
+    console.log(newOrder);
+    console.log(auth.getUser.email);
+
+      // const data = new FormData(event.currentTarget);
       
-      alert(currentDate);
-      const newOrder ={
-        date: `${currentDate.getDate()}/${currentDate.getMonth()+1}/${currentDate.getFullYear()}`,
-        productIds: Array,
-        totalSum: auth.cartTotal,
-        // userId: auth.getUser._id,
-        address: address,
-      };
       
+    };
+
+    const nav=()=> {
+      alert('NAv');
       navigate(`orders`);
-    }
-}
+    };
+
 
 
     return (

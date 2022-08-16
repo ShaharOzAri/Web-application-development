@@ -22,7 +22,7 @@ import EditProductAdmin from "./components/product/EditProductAdmin";
 import AddUser from "./components/User/AddUser";
 import Footer from "./components/HomePage/Footer";
 import AddProduct from "./components/product/AddProduct";
-import Statics from "./components/Statics/Statics";
+// import Statics from "./components/statics/Statics";
 import OrderPage from "./pages/OrderPage";
 
 const customTheme = createTheme({
@@ -55,7 +55,7 @@ function App() {
               <Route path="/createLocation" element={<CreateLocations />} />
               <Route path="/category/:category" element={<CategoryPage />} />
               <Route path="/product/:id" element={<ProductPage />} />
-              <Route path="/statics" element={<Statics />} />
+              {/* <Route path="/statics" element={<Statics />} /> */}
 
               {/* <Route path="/statics" element={<Statics />} /> */}
 
