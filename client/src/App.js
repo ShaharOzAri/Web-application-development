@@ -1,3 +1,5 @@
+import CheckoutPage from "./pages/CheckoutPage";
+import img from "./components/images/maroco.png";
 import * as React from "react";
 import "./app.css";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
@@ -20,6 +22,8 @@ import EditProductAdmin from "./components/product/EditProductAdmin";
 import AddUser from "./components/User/AddUser";
 import Footer from "./components/HomePage/Footer";
 import AddProduct from "./components/product/AddProduct";
+import Statics from "./components/Statics/Statics";
+import OrderPage from "./pages/OrderPage";
 
 const customTheme = createTheme({
   palette: {
@@ -51,7 +55,13 @@ function App() {
               <Route path="/createLocation" element={<CreateLocations />} />
               <Route path="/category/:category" element={<CategoryPage />} />
               <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/statics" element={<Statics />} />
 
+              {/* <Route path="/statics" element={<Statics />} /> */}
+
+
+              <Route path="/checkout" element={<CheckoutPage/>}/>
+              <Route path="/orders" element={<OrderPage/>}/>
               {/* <Route path="/user" element={<UserDetails />} /> */}
               <Route path="/user/" element={<UserDetails />} />
               <Route
@@ -129,3 +139,4 @@ function App() {
 }
 
 export default App;
+

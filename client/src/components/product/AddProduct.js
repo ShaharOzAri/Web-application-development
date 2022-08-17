@@ -37,7 +37,6 @@ export default function AddProduct() {
       }
       newProduct.images = images;
     }
-    console.log(newProduct);
     var response = await AddNewProduct(newProduct);
     if (response.status == 200) {
       navigate(-1);

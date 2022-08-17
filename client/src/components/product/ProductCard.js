@@ -44,7 +44,7 @@ const ProductCard = (props) => {
           textAlign="center"
           fontSize="20px"
         >
-          {product.price}
+          ${product.price}
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: "center" }}>

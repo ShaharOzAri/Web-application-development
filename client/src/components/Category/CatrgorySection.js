@@ -1,21 +1,18 @@
 import * as React from "react";
 import Grid from "@mui/material/Grid";
-import marroco from "../images/maroco.png";
-import italic from "../images/italic.png";
-import CategoryCard from "../Category/CategoryCard";
-import { Box } from "@mui/material";
+import CategoryCard from "./CategoryCard";
 
 export default function CategorySection() {
   var items = [
     {
-      src: marroco,
-      alt: "Marroco Food",
-      Title: "FROM MARROCO",
+      src: "https://cdn.onecklace.com/products/2605/product_2605_model_3_730.jpeg",
+      alt: "Necklace",
+      Title: "NECKLACES",
     },
     {
-      src: italic,
-      alt: "Italian Food",
-      Title: "FROM ITALY",
+      src: "https://cdn.onecklace.com/products/1411/product_1411_model_1_730.jpeg",
+      alt: "Bracelete",
+      Title: "BRACELETES",
     },
   ];
   return (

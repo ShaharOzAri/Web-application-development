@@ -23,6 +23,17 @@ router.route("/getOrdersByDate").get(async (request, response) => {
   response.status(403).send();
 });
 
+router.route("/getOrdersGroupBy").get(async (request, response) => {
+  var result = await OrderService.getOrdersNameGroupBy();
+  if (result != null) {
+    response.status(200).send({
+      msg: result,
+    });
+  } else {
+    response.status(403).send();
+  }
+});
+
 router.route("/getOrdersByUser").get(async (request, response) => {
   var result = await OrderService.getOrdersByUser(request.body.params);
   if (result != null) {

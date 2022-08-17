@@ -2,9 +2,7 @@ const orders = require("../Model/Order");
 
 module.exports = class OrderService {
   static async insertOrder(order) {
-    console.log(order);
     var returnValue = await orders.insertMany(order);
-    console.log(returnValue[0]._doc);
     //check if all data has been saved
     if (
       Object.keys(order).length ==
@@ -28,6 +26,18 @@ module.exports = class OrderService {
       .catch((error) => {
         return null;
       });
+  }
+
+  static async getOrdersNameGroupBy(){
+    return orders.aggregate([
+      {
+        $group: {
+          _id: '$date',
+          "count": {"$sum":1},
+          "profit": {"$sum": "$total"}
+        }
+      }
+    ])
   }
 
   static async getOrdersByUser(user) {

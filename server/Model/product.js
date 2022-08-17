@@ -9,6 +9,7 @@ const ProductSchema = new mongoose.Schema({
   material: { type: String, required: true },
   type: String,
   category: String,
+  numberOfOrders: Number,
 });
 
 const products = mongoose.model("Products", ProductSchema);

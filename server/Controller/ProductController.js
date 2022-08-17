@@ -25,6 +25,30 @@ router.route("/getAll").get(async (request, response) => {
   }
 });
 
+router.route("/getProductsNameGroupBy").get(async (request, response) => {
+  var result = await ProductService.getProductsNameGroupBy();
+  if (result != null) {
+    response.status(200).send({
+      msg: result,
+    });
+  } else {
+    response.status(403).send();
+  }
+});
+
+router.route("/getProductsMaterialGroupBy").get(async (request, response) => {
+  var result = await ProductService.getProductsMaterialGroupBy();
+  if (result != null) {
+    response.status(200).send({
+      msg: result,
+    });
+  } else {
+    response.status(403).send();
+  }
+});
+
+
+
 router.route("/getProductById").get(async (request, response) => {
   var result = await ProductService.getProductById(request.query.id);
   if (result != null) {
