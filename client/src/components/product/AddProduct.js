@@ -4,19 +4,40 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { AddNewProduct } from "../../controller/ProductController";
 import InputLabel from "@mui/material/InputLabel";
+import { getAllCategories } from "../../controller/CategoryController";
 
 export default function AddProduct() {
   const [material, setMaterial] = useState("");
   const [type, setType] = useState("");
   const [category, setCategory] = useState("");
   const [counter, setCounter] = useState(0);
+  const [categrories, setCategories] = useState("");
 
   const navigate = useNavigate();
+
+  const getCategoryNames = async () => {
+    var res = await getAllCategories();
+    // console.log(categories.data.msg);
+    if (res.status == 200) {
+      res = Array.from(res.data.msg);
+      res = res.map((i) => {
+        return i.name;
+      });
+      setCategories(res);
+      console.log(res);
+    } else {
+      console.log(res.data);
+    }
+  };
+
+  useEffect(() => {
+    getCategoryNames();
+  }, []);
 
   const handleAddProduct = async (event) => {
     event.preventDefault();
@@ -205,8 +226,14 @@ export default function AddProduct() {
                       setCategory(event.target.value);
                     }}
                   >
+                    {categrories != ""
+                      ? categrories.map((i) => {
+                          return <MenuItem value={i}>{i}</MenuItem>;
+                        })
+                      : ""}
+                    {/* 
                     <MenuItem value="Bracelete">Bracelete</MenuItem>
-                    <MenuItem value="Necklace">Necklace</MenuItem>
+                    <MenuItem value="Necklace">Necklace</MenuItem> */}
                   </Select>
                 </FormControl>
               </Grid>

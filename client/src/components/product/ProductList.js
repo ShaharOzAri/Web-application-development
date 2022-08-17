@@ -76,7 +76,7 @@ export default function ProductList(props){
             <CardContent sx={{ flex: 'auto', flexDirection: 'row', fontFamily: 'monospace', color:'black'}}>
             <Typography sx={{fontWeight: 'bold', alignContent: 'right'}} >  {product.name} </Typography>
             <Typography sx={{alignContent: 'left'}} > <b>Price:</b> {product.price} $ </Typography>
-            <Typography sx={{alignContent: 'left'}}>  <b>Quantity:</b> {console.log('product id' + `${product._id}`)} {auth.calcProductQty(`${product._id}`)}  </Typography>
+            <Typography sx={{alignContent: 'left'}}>  <b>Quantity:</b> {product.qty} </Typography>
             
              {console.log('print product')}
              {console.log(product)}

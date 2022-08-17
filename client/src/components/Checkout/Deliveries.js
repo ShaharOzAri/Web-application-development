@@ -6,18 +6,56 @@ import Box from '@mui/material/Box';
 import { useState } from "react";
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import image from '../images/checkout_image.png';
+import MenuItem from '@mui/material/MenuItem';
+
 
 export default function Deliveries(props){
 
-    const[isValidAddress, setAddress]= useState();
+    const[isValidAddress, setValidAddress]= useState();
+    const[fullAddress, setFullAddress]= useState(null);
+    const[city, setCity]= useState('');
+    const[addressString, setAddressString]= useState('');
+    const[zip, setZip]= useState('');
+
+    const newAddress = {
+        city: {type: String}, 
+        address: {type: String},
+        zip: {type: String},
+    };
+
+
+   
 
     
-    const addressHandler=()=>{
-        setAddress(!isValidAddress);
-    }
+    // const addressHandler=(event)=>{
+    //     setValidAddress(!isValidAddress);
+    //     // var address=event.target.value;
+    //     setCity(event.target.value);
+    //     console.log(event.target.value);
+    // }
 
-    function saveAddressHandler(){
+    function saveAddressHandler(event){
+
+        console.log("save address");
+       
+        event.preventDefault();
+        console.log(addressString);
+        if(newAddress.address!= null){
         
+        newAddress.city= city.label;
+        newAddress.address=addressString; 
+        newAddress.zip=zip;
+        // props.address=orderAddress;
+        console.log(newAddress);
+
+        props.setFinalAddress(`${newAddress.city}, ${addressString}, ${zip}`);
+        setFullAddress(newAddress);
+        console.log(fullAddress);
+        }
+        else{
+            alert('not');
+        }
+
     }
 
     return (
@@ -38,6 +76,7 @@ export default function Deliveries(props){
            component="form"
            noValidate
            autoComplete="off"
+           onSubmit={saveAddressHandler}
            mt={4}
           sx={{ alignContent:'center', display: 'flex',
             //   display: "flex",
@@ -57,16 +96,55 @@ export default function Deliveries(props){
                          <img src={image} sx={{ width: '5'}}/>
                          </ImageListItem></Grid> */}
                  <Grid item xs={8}>
+                {/* { <Autocomplete
+                    disablePortal
+                    id="city"
+                    name='city'
+                    value={city}
+                    options={props.cities}
+                    renderInput={
+                        (params) =>
+                         <TextField {...params} label="City"   helperText='Check if your address is in the shipping area'
+                        sx={{ width: 500 }}
+                        fullWidth/>}
+                        //<TextField {...params} label="City"   helperText='Check if your address is in the shipping area'
+
+                    //     (params)=>{
+                    //         params.map((c) => (
+                    //             <MenuItem key={c} value={c}>
+                    //               {c}
+                    //             </MenuItem>));
+                    // }}
+                    onChange={addressHandler}
+                /> } */}
+
+                
+                </Grid>
+                <Grid item xs={8}>
                 <Autocomplete
                     disablePortal
-                    id="selectCity"
+                    id="city"
+                    name='city'
+                    
+                    // value={city}
                     options={props.cities}
-                    renderInput={(params) => <TextField {...params} label="City"  helperText='Check if your address is in the shipping area'
-                    sx={{ width: 500 }}
-                    fullWidth
-                    />}
-                    onChange={addressHandler}
+                    renderInput={
+                        (params) =>
+                         <TextField {...params} label='City'  helperText='Check if your address is in the shipping area'
+                        sx={{ width: 500 }}
+                        fullWidth/>}
+                    onChange={(event, newCity)=>{
+                        setValidAddress(!isValidAddress);
+                        setCity(newCity);
+                       console.log(city);
+                    }}
                 />
+                    { console.log('check')}
+                        { console.log(city)}
+
+                    {/* {console.log(props.cities)} */}
+              
+
                 </Grid>
                 <Grid item xs={8} >
                     
@@ -75,15 +153,20 @@ export default function Deliveries(props){
                     id="disabledAddress"
                     label="Address"
                     defaultValue="Address"
+                    type="text"
                     placeholder="Street & House number"
                     helperText=" "
-
+                    onChange={(event)=>{
+                        setAddressString(event.target.value);
+                        console.log(addressString);
+                    }}
                     sx={{ width: 500 }}
                 /> :  <TextField
                         required
                         disabled
                         error
                         id="address"
+                        name='address'
                         label="Address"
                         helperText="Please enter a suitable city"
                         sx={{ width: 500 }}
@@ -92,13 +175,16 @@ export default function Deliveries(props){
                 <Grid item xs={8} >
                 {isValidAddress ?  <TextField
                     required
-                    id="Zip"
+                    id="zip"
                     label="Zip / Postcode"
-                    type='code'
+                    type='number'
                     placeholder="Zip number"
                     sx={{ width: 500 }}
                     helperText=" "
-
+                    onChange={(event)=>{
+                        setZip(event.target.value);
+                        console.log(zip);
+                    }}
                     /> :  <TextField
                         required
                         disabled
@@ -117,10 +203,10 @@ export default function Deliveries(props){
                  */}
                     
                 </Grid>
-                {isValidAddress ? (<Button 
+                {(isValidAddress) ? (<Button 
                     variant="contained"
                     size='large'
-                    onSubmit={saveAddressHandler}
+                    type="submit"
                     sx={{backgroundColor:'#dbc49dd2', alignItems: 'center', width: 400}}>
                         Save Address
                 </Button>): (
@@ -128,7 +214,7 @@ export default function Deliveries(props){
                     variant="contained"
                     disabled
                     size='large'
-                    // onSubmit={saveAddressHandler}
+                    // onClick={saveAddressHandler}
                     sx={{backgroundColor:'#dbc49dd2', alignItems: 'center', width: 400}}>
                         Save Address
                 </Button>)}

@@ -11,7 +11,11 @@ function VideoPlayer() {
         alignItems: "center",
       }}
     >
-      <ReactPlayer url="https://vimeo.com/722663800" />
+      <ReactPlayer
+        playing={true}
+        loop={true}
+        url="https://vimeo.com/722663800"
+      />
     </div>
   );
 }

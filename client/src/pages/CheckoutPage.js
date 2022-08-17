@@ -20,27 +20,79 @@ export default function CheckoutPage(props){
 
   const navigate= useNavigate();
 
+  const createOrderProductsArr=()=>{
+      // auth.cartItems.map(x-> )
+      const orderArr= new Array; 
+      auth.cartItems.forEach(p => { 
+        orderArr.push({
+          id: p._id,
+          name: p.name, 
+          qty: p.qty, 
+        });
+      });
+      return orderArr; 
+  };
+
   const placeOrderHandler= async (event)=>{
     event.preventDefault();
-    if( auth.cartItems===null){
-      alert("your ");
+    if(address == null){
+      alert('please insert a valid address');
     }
     else{
-      const currentDate = new Date();
-      const data = new FormData(event.currentTarget);
-      
-      alert(currentDate);
-      const newOrder ={
-        date: `${currentDate.getDate()}/${currentDate.getMonth()+1}/${currentDate.getFullYear()}`,
-        productIds: Array,
-        totalSum: auth.cartTotal,
-        // userId: auth.getUser._id,
-        address: address,
-      };
-      
-      navigate(`orders`);
+
+    
+
+    // if( auth.cartItems===null){
+    //   alert("your ");
+    // }
+    console.log("in place order");
+    const currentDate = new Date();
+    const userJson= JSON.parse(auth.getUser()); 
+    
+    const newOrder={
+      // date: `${currentDate.getDate()}/${currentDate.getMonth()+1}/${currentDate.getFullYear()}`,
+      // hour: `${currentDate.getHours()}:${currentDate.getMinutes()}`,
+      date:currentDate, 
+      productIds: createOrderProductsArr(),
+      totalSum: auth.getCartTotal(),
+      userEmail: userJson.email,
+      address: address,
+    };
+
+
+
+    
+    // var response = await AddNewOrder(newOrder);
+    // if (response.status == 200) {
+    //   navigate(`orders`);
+    // } else if (response.status == 403) {
+    //   alert("Something went wrong,please try again");
+    // }
+
+    console.log('axios');
+    var response= await AddNewOrder(newOrder);
+    console.log(response.data.msg._id);
+    if(response.status == 200){
+      navigate(`order/id=${response.data.msg._id}`);
+    }else if(response.status == 403){
+      alert("Something went wrong,please try again");
     }
-}
+    
+    console.log('print new order');
+    console.log(newOrder);
+    
+
+
+      // const data = new FormData(event.currentTarget);
+      
+    }
+    };
+
+    const nav=()=> {
+      alert('NAv');
+      navigate(`orders`);
+    };
+
 
 
     return (
@@ -52,7 +104,7 @@ export default function CheckoutPage(props){
        <br/>
        <TitleDivider Title="" mt={3} />
 
-      <Deliveries setAddress={address} cities={cities} />
+      <Deliveries setFinalAddress={setFinalAddress} cities={cities} />
   {/* <CreditCratPayment /> */}
 
       <Grid mt={3} sx={{display:'flex', alignContent:'center', alignItems:'center', flexDirection: 'column'}}>

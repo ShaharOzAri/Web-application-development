@@ -5,7 +5,7 @@ const OrderSchema = new mongoose.Schema({
   date: Date,
   productIds: Array,
   totalSum: Number,
-  userId: SchemaTypes.ObjectId,
+  userEmail: {type: String},
   address: String,
 });
 
