@@ -51,7 +51,7 @@ export const getProductById = async (id) => {
 };
 
 export const getProductByName = async (name) => {
-  var res = await axios.post(url + "getProductByName/", {
+  var res = await axios.get(url + "getProductByName/", {
     params: name,
     headers: {
       "Content-Type": "application/json",
