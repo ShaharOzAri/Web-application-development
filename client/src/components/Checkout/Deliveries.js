@@ -6,8 +6,9 @@ import Box from '@mui/material/Box';
 import { useState } from "react";
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import image from '../images/checkout_image.png';
-import MenuItem from '@mui/material/MenuItem';
-
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 export default function Deliveries(props){
 
@@ -16,6 +17,7 @@ export default function Deliveries(props){
     const[city, setCity]= useState('');
     const[addressString, setAddressString]= useState('');
     const[zip, setZip]= useState('');
+    const [checked, setChecked] = useState(false);
 
     const newAddress = {
         city: {type: String}, 
@@ -196,14 +198,17 @@ export default function Deliveries(props){
 
                         />}
                 </Grid>
-                <Grid item xs={12} >
+                <Grid item xs={8} >
                     {/* <IconButton variant="contained"
                     size='large'
                     sx={{backgroundColor:'#dbc49dd2', position:'static'}}><LocalShippingIcon />SAVE ADDRESS</IconButton>
                  */}
+                     <FormGroup>
+                    <FormControlLabel control={<Checkbox color="default" onChange={(event)=> {setChecked(!checked)}} />} sx={{color: 'black'}}label="Please confirm your address" />
+                    </FormGroup>
                     
                 </Grid>
-                {(isValidAddress) ? (<Button 
+                {(checked) ? (<Button 
                     variant="contained"
                     size='large'
                     type="submit"
