@@ -49,7 +49,7 @@ export default function CheckoutPage(props){
       date:currentDate, 
       productIds: createOrderProductsArr(),
       totalSum: auth.getCartTotal(),
-      userEmail: auth.user.email,
+      userEmail: JSON.parse(auth.getUser()).email,
       address: address,
     };
     
@@ -62,7 +62,7 @@ export default function CheckoutPage(props){
     
     console.log('print new order');
     console.log(newOrder);
-    console.log(auth.getUser.email);
+    console.log(JSON.parse(auth.getUser()));
 
       // const data = new FormData(event.currentTarget);
       

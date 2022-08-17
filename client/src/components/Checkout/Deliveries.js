@@ -16,7 +16,19 @@ export default function Deliveries(props){
         setAddress(!isValidAddress);
     }
 
-    function saveAddressHandler(){
+    function saveAddressHandler(event){
+        console.log("save address");
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        console.log(data.get("selectCity"));
+
+        const orderAddress = {
+            city: data.get("selectCity"), 
+            address: data.get("address"),
+            zip: data.get("zip"),
+        };
+        // props.address=orderAddress;
+        console.log(orderAddress);
         
     }
 
@@ -38,6 +50,8 @@ export default function Deliveries(props){
            component="form"
            noValidate
            autoComplete="off"
+           onSubmit={saveAddressHandler}
+
            mt={4}
           sx={{ alignContent:'center', display: 'flex',
             //   display: "flex",
@@ -59,7 +73,8 @@ export default function Deliveries(props){
                  <Grid item xs={8}>
                 <Autocomplete
                     disablePortal
-                    id="selectCity"
+                    id="city"
+                    name='city'
                     options={props.cities}
                     renderInput={(params) => <TextField {...params} label="City"  helperText='Check if your address is in the shipping area'
                     sx={{ width: 500 }}
@@ -84,6 +99,7 @@ export default function Deliveries(props){
                         disabled
                         error
                         id="address"
+                        name='address'
                         label="Address"
                         helperText="Please enter a suitable city"
                         sx={{ width: 500 }}
@@ -92,7 +108,7 @@ export default function Deliveries(props){
                 <Grid item xs={8} >
                 {isValidAddress ?  <TextField
                     required
-                    id="Zip"
+                    id="zip"
                     label="Zip / Postcode"
                     type='code'
                     placeholder="Zip number"
@@ -120,7 +136,7 @@ export default function Deliveries(props){
                 {isValidAddress ? (<Button 
                     variant="contained"
                     size='large'
-                    onSubmit={saveAddressHandler}
+                    type="submit"
                     sx={{backgroundColor:'#dbc49dd2', alignItems: 'center', width: 400}}>
                         Save Address
                 </Button>): (
@@ -128,7 +144,7 @@ export default function Deliveries(props){
                     variant="contained"
                     disabled
                     size='large'
-                    // onSubmit={saveAddressHandler}
+                    // onClick={saveAddressHandler}
                     sx={{backgroundColor:'#dbc49dd2', alignItems: 'center', width: 400}}>
                         Save Address
                 </Button>)}
