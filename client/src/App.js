@@ -62,7 +62,7 @@ function App() {
               {/* <Route path="/statics" element={<Statics />} /> */}
 
               <Route path="/checkout" element={<CheckoutPage />} />
-              <Route path="/orders" element={<OrderPage />} />
+              <Route path="/checkout/order" element={<OrderPage />} />
               {/* <Route path="/user" element={<UserDetails />} /> */}
               <Route path="/user/" element={<UserDetails />} />
               <Route

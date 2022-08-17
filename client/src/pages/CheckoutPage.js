@@ -36,12 +36,12 @@ export default function CheckoutPage(props){
   const placeOrderHandler= async (event)=>{
     event.preventDefault();
 
-    if( auth.cartItems===null){
-      alert("your ");
-    }
+    // if( auth.cartItems===null){
+    //   alert("your ");
+    // }
     console.log("in place order");
     const currentDate = new Date();
-    console.log(`${currentDate.getMonth()}`);
+    const userJson= JSON.parse(auth.getUser()); 
     
     const newOrder={
       // date: `${currentDate.getDate()}/${currentDate.getMonth()+1}/${currentDate.getFullYear()}`,
@@ -49,9 +49,12 @@ export default function CheckoutPage(props){
       date:currentDate, 
       productIds: createOrderProductsArr(),
       totalSum: auth.getCartTotal(),
-      userEmail: JSON.parse(auth.getUser()).email,
+      userEmail: userJson.email,
       address: address,
     };
+
+
+
     
     // var response = await AddNewOrder(newOrder);
     // if (response.status == 200) {
@@ -61,17 +64,18 @@ export default function CheckoutPage(props){
     // }
 
     console.log('axios');
-    // var response= await AddNewOrder(newOrder);
-    // // console.log(response.status.to);
-    // if(response.status == 200){
-    //   navigate(`orders`);
-    // }else if(response.status == 403){
-    //   alert("Something went wrong,please try again");
-    // }
+    var response= await AddNewOrder(newOrder);
+    // console.log(response.status.to);
+    if(response.status == 200){
+      navigate(`order`);
+    }else if(response.status == 403){
+      alert("Something went wrong,please try again");
+    }
     
     console.log('print new order');
     console.log(newOrder);
-    console.log(JSON.parse(auth.getUser()));
+    
+
 
       // const data = new FormData(event.currentTarget);
       
