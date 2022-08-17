@@ -4,17 +4,6 @@ const product = require("../Service/ProductService");
 module.exports = class OrderService {
   static async insertOrder(order) {
     var returnValue = await orders.insertMany(order);
-    // if (order != null) {
-    //   console.log(order.productIds.split(","));
-    //   order.productIds.toArray.map((product) => {
-    //     const p = product.getProductById(product.id);
-    //     p.numberOfOrders += product.qty;
-    //     if (product.update(p) == null) {
-    //       return null;
-    //     }
-    //   });
-    // }
-    //check if all data has been saved
     if (
       Object.keys(order).length ==
       Object.keys(returnValue[0]._doc).length - 2
@@ -26,7 +15,20 @@ module.exports = class OrderService {
   }
 
   static async getOrdersByDate(selectedDate) {
-    var res = await orders.find({ date: selectedDate });
+    var date = new Date(selectedDate);
+    let start = new Date(selectedDate);
+
+    let end = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate() + 1,
+      2,
+      59,
+      59
+    );
+    var res = await orders.find({
+      date: { $gte: start, $lte: end },
+    });
     if (res) return res;
     else return null;
   }
