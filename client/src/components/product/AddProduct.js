@@ -28,6 +28,7 @@ export default function AddProduct() {
       material: material,
       type: type,
       category: category,
+      numberOfOrders: 0,
     };
     var images = [];
     for (var i = 0; i < counter; i++) {

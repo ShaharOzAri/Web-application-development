@@ -16,7 +16,6 @@ function HomePageContent() {
         <MyCarousel></MyCarousel>
         <CategorySection></CategorySection>
         <BestSeller></BestSeller>
-        <ProductSection></ProductSection>
         <VideoPlayer></VideoPlayer>
       </Container>
     </>

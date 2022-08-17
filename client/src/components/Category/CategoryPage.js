@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
 import { getProductsByCategory } from "../../controller/ProductController";
+import { getCategoryByName } from "../../controller/CategoryController";
 import { useState, useEffect } from "react";
 import ProductCard from "../product/ProductCard";
 import TitleDivider from "../UI/TitleDivider";
@@ -14,6 +15,7 @@ export default function CategoryPage() {
   const [products, setProducts] = useState(null);
   const [allProducts, setAllProducts] = useState(null);
   const [filterTab, setFilterTab] = useState(false);
+  const [categoryDes, setCategoryDes] = useState(null);
 
   const getProducts = async () => {
     const res = await getProductsByCategory(category);
@@ -23,6 +25,18 @@ export default function CategoryPage() {
       setFilterTab(false);
     }
   };
+  const getCategories = async () => {
+    const response = await getCategoryByName(category);
+    if (response.status == 200) {
+      setCategoryDes(response.data.msg[0]);
+    } else {
+      alert("something went wrong");
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, [category]);
 
   useEffect(() => {
     setProducts(null);
@@ -36,27 +50,15 @@ export default function CategoryPage() {
   return (
     <div>
       <TitleDivider Title={category}></TitleDivider>
-      {category != "Bracelete" ? (
-        <Container
-          sx={{
-            color: "black",
-            textAlign: "center",
-            my: "15px",
-          }}
-        >
-          {categoryText[0]}
-        </Container>
-      ) : (
-        <Container
-          sx={{
-            color: "black",
-            textAlign: "center",
-            my: "15px",
-          }}
-        >
-          {categoryText[1]}
-        </Container>
-      )}
+      <Container
+        sx={{
+          color: "black",
+          textAlign: "center",
+          my: "15px",
+        }}
+      >
+        {categoryDes != null ? categoryDes.description : ""}
+      </Container>
       <Container maxWidth="xl">
         <FilterSection
           products={products}
