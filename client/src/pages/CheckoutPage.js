@@ -35,6 +35,12 @@ export default function CheckoutPage(props){
 
   const placeOrderHandler= async (event)=>{
     event.preventDefault();
+    if(address == null){
+      alert('please insert a valid address');
+    }
+    else{
+
+    
 
     // if( auth.cartItems===null){
     //   alert("your ");
@@ -79,7 +85,7 @@ export default function CheckoutPage(props){
 
       // const data = new FormData(event.currentTarget);
       
-      
+    }
     };
 
     const nav=()=> {
@@ -98,7 +104,7 @@ export default function CheckoutPage(props){
        <br/>
        <TitleDivider Title="" mt={3} />
 
-      <Deliveries setAddress={address} cities={cities} />
+      <Deliveries setFinalAddress={setFinalAddress} cities={cities} />
   {/* <CreditCratPayment /> */}
 
       <Grid mt={3} sx={{display:'flex', alignContent:'center', alignItems:'center', flexDirection: 'column'}}>
