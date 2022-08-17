@@ -12,40 +12,49 @@ import MenuItem from '@mui/material/MenuItem';
 export default function Deliveries(props){
 
     const[isValidAddress, setValidAddress]= useState();
-    const[fullAddress, setFullAddress]= useState('');
+    const[fullAddress, setFullAddress]= useState(null);
     const[city, setCity]= useState('');
     const[addressString, setAddressString]= useState('');
     const[zip, setZip]= useState('');
+
+    const newAddress = {
+        city: {type: String}, 
+        address: {type: String},
+        zip: {type: String},
+    };
 
 
    
 
     
-    const addressHandler=(event)=>{
-        setValidAddress(!isValidAddress);
-        // var address=event.target.value;
-        setCity(event.target.value);
-        console.log(event.target.value);
-    }
+    // const addressHandler=(event)=>{
+    //     setValidAddress(!isValidAddress);
+    //     // var address=event.target.value;
+    //     setCity(event.target.value);
+    //     console.log(event.target.value);
+    // }
 
     function saveAddressHandler(event){
-        console.log("save address");
-        event.preventDefault();
-      
-        const newAddress = {
-            city: {type: String}, 
-            address: {type: String},
-            zip: {type: String},
-        };
 
+        console.log("save address");
+       
+        event.preventDefault();
+        console.log(addressString);
+        if(newAddress.address!= null){
+        
         newAddress.city= city.label;
         newAddress.address=addressString; 
         newAddress.zip=zip;
         // props.address=orderAddress;
         console.log(newAddress);
 
-        props.setFinalAddress(`${newAddress.city}, ${addressString}, ${zip}`)
+        props.setFinalAddress(`${newAddress.city}, ${addressString}, ${zip}`);
+        setFullAddress(newAddress);
         console.log(fullAddress);
+        }
+        else{
+            alert('not');
+        }
 
     }
 
@@ -194,7 +203,7 @@ export default function Deliveries(props){
                  */}
                     
                 </Grid>
-                {isValidAddress ? (<Button 
+                {(isValidAddress) ? (<Button 
                     variant="contained"
                     size='large'
                     type="submit"
