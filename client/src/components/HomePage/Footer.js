@@ -26,7 +26,9 @@ const Footer = () => {
             <Heading>CONTACT US</Heading>
             <FooterLink>
               <FacebookShareButton
-                url={"https://peing.net/ja/"}
+                url={
+                  "https://www.facebook.com/profile.php?id=100083280215522&notif_id=1660661579838743&notif_t=profile_plus_admin_invite&ref=notif"
+                }
                 quote={"Onecklace jewelry"}
                 hashtag={"#Onecklace"}
                 description={"jewelry"}
@@ -37,43 +39,43 @@ const Footer = () => {
               </FacebookShareButton>
             </FooterLink>
             <FooterLink href="#">
-              <PhoneIcon sx={{ fontSize: "35px", color: "black" }}></PhoneIcon>
+              <PhoneIcon sx={{ fontSize: "30px", color: "black" }}></PhoneIcon>
               Phone
             </FooterLink>
 
             <FooterLink href="#">
-              <EmailIcon sx={{ fontSize: "35px", color: "black" }}></EmailIcon>
+              <EmailIcon sx={{ fontSize: "30px", color: "black" }}></EmailIcon>
               Email
             </FooterLink>
           </Column>
 
           <Column>
             <Heading>ABOUT US</Heading>
-            <FooterLink href="#">Our Mission</FooterLink>
-            <FooterLink href="#">Sustainability</FooterLink>
-            <FooterLink href="#">Stores</FooterLink>
-            <FooterLink href="#">Careers</FooterLink>
+            <FooterLink>Our Mission</FooterLink>
+            <FooterLink>Sustainability</FooterLink>
+            <FooterLink>Stores</FooterLink>
+            <FooterLink>Careers</FooterLink>
           </Column>
           <Column>
             <FooterLink>
               <GppGoodIcon
-                sx={{ fontSize: "40px", color: "black" }}
+                sx={{ fontSize: "35px", color: "black" }}
               ></GppGoodIcon>
               SECURE PAYMENT
             </FooterLink>
             <FooterLink>
               <FlightTakeoffIcon
-                sx={{ fontSize: "40px", color: "black" }}
+                sx={{ fontSize: "35px", color: "black" }}
               ></FlightTakeoffIcon>
               FREE SHIPPING ALL ORDERS
             </FooterLink>
             <FooterLink>
-              <SellIcon sx={{ fontSize: "40px", color: "black" }}></SellIcon>
+              <SellIcon sx={{ fontSize: "35px", color: "black" }}></SellIcon>
               BEST PRICES
             </FooterLink>
             <FooterLink>
               <AssignmentReturnIcon
-                sx={{ fontSize: "40px", color: "black" }}
+                sx={{ fontSize: "35px", color: "black" }}
               ></AssignmentReturnIcon>
               SECURE PAYMENT
             </FooterLink>
@@ -81,7 +83,14 @@ const Footer = () => {
         </Row>
       </Container>
       <Container>
-        <div style={{ textAlign: "center", fontSize: "15px", color: "black" }}>
+        <div
+          style={{
+            textAlign: "center",
+            fontSize: "15px",
+            color: "white",
+            background: "black",
+          }}
+        >
           Onecklace &copy;2022
         </div>
       </Container>
@@ -89,30 +98,3 @@ const Footer = () => {
   );
 };
 export default Footer;
-
-{
-  /* <Column>
-              <Heading>SUBSCRIBE OUR NEWSLETTER</Heading>
-              <Form>
-                <Email>
-                  <input
-                    style={{
-                      padding: "15px 20px",
-                      borderRadius: "5px",
-                      fontSize: "18px",
-                      color: "black",
-
-                      marginTop: "0",
-                    }}
-                    type="text"
-                    placeholder="Email address"
-                    name="mail"
-                    required
-                  />
-                </Email>
-                <Button type="button" name="button">
-                  Subscribe
-                </Button>
-              </Form>
-                </Column>*/
-}
