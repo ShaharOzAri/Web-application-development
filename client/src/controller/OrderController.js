@@ -1,7 +1,7 @@
 import axios from "axios";
 const url = process.env.REACT_APP_API_URL + "order/";
 
-export const AddNewOrder = (order) => {
+export const AddNewOrder = async (order) => {
   var res = axios.post(url + "create/", {
     params: order,
     headers: {
@@ -20,7 +20,7 @@ export const getOrdersNameGroupBy = async () => {
   return res;
 };
 
-export const getOrdersByDate = (date) => {
+export const getOrdersByDate =  async(date) => {
   return axios
     .post(url + "getOrdersByDate/", {
       params: date,

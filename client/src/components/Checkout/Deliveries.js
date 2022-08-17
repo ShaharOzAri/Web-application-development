@@ -12,8 +12,13 @@ export default function Deliveries(props){
     const[isValidAddress, setAddress]= useState();
 
     
-    const addressHandler=()=>{
+    const addressHandler=(event)=>{
         setAddress(!isValidAddress);
+        props.address.city=event.target.value;
+        console.log('props');
+        console.log(props);
+
+        console.log(event.target.value);
     }
 
     function saveAddressHandler(event){

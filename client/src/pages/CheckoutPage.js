@@ -36,9 +36,9 @@ export default function CheckoutPage(props){
   const placeOrderHandler= async (event)=>{
     event.preventDefault();
 
-    // if( auth.cartItems===null){
-    //   alert("your ");
-    // }
+    if( auth.cartItems===null){
+      alert("your ");
+    }
     console.log("in place order");
     const currentDate = new Date();
     console.log(`${currentDate.getMonth()}`);
@@ -57,6 +57,15 @@ export default function CheckoutPage(props){
     // if (response.status == 200) {
     //   navigate(`orders`);
     // } else if (response.status == 403) {
+    //   alert("Something went wrong,please try again");
+    // }
+
+    console.log('axios');
+    // var response= await AddNewOrder(newOrder);
+    // // console.log(response.status.to);
+    // if(response.status == 200){
+    //   navigate(`orders`);
+    // }else if(response.status == 403){
     //   alert("Something went wrong,please try again");
     // }
     
