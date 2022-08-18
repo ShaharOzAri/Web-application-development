@@ -11,12 +11,14 @@ import { useState } from "react";
 
 export default function CheckoutPage(props) {
   const auth = useAuth();
-  const [address, setFinalAddress] = useState(null);
+
+  const [city, setCity] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [zip, setZip] = useState(null);
 
   const navigate = useNavigate();
 
   const createOrderProductsArr = () => {
-    // auth.cartItems.map(x-> )
     const orderArr = new Array();
     auth.cartItems.forEach((p) => {
       orderArr.push({
@@ -28,46 +30,35 @@ export default function CheckoutPage(props) {
     return orderArr;
   };
 
+  const createAddress = () => {
+    if (city != null && address != null && zip != null) {
+      return `${city} , ${address} , ${zip}`;
+    } else {
+      alert("please enter address");
+      return false;
+    }
+  };
+
   const placeOrderHandler = async (event) => {
     event.preventDefault();
-    if (address == null) {
-      alert("please insert a valid address");
-    } else {
-      // if( auth.cartItems===null){
-      //   alert("your ");
-      // }
+    const finalAddress = createAddress();
+    if (finalAddress) {
       const currentDate = new Date();
       const userJson = JSON.parse(auth.getUser());
-
       const newOrder = {
-        // date: `${currentDate.getDate()}/${currentDate.getMonth()+1}/${currentDate.getFullYear()}`,
-        // hour: `${currentDate.getHours()}:${currentDate.getMinutes()}`,
         date: currentDate,
         productIds: createOrderProductsArr(),
         totalSum: auth.getCartTotal(),
         userEmail: userJson.email,
-        address: address,
+        address: finalAddress,
       };
-      // var response = await AddNewOrder(newOrder);
-      // if (response.status == 200) {
-      //   navigate(`orders`);
-      // } else if (response.status == 403) {
-      //   alert("Something went wrong,please try again");
-      // }
       var response = await AddNewOrder(newOrder);
-      console.log(response.data.msg._id);
       if (response.status == 200) {
         navigate(`order/id=${response.data.msg._id}`);
       } else if (response.status == 403) {
         alert("Something went wrong,please try again");
       }
-      // const data = new FormData(event.currentTarget);
     }
-  };
-
-  const nav = () => {
-    alert("NAv");
-    navigate(`orders`);
   };
 
   return (
@@ -79,7 +70,12 @@ export default function CheckoutPage(props) {
       <ProductList mt={3} mb={3} productList={props.productList} />
       <br />
       <TitleDivider Title="" mt={3} />
-      <Deliveries setFinalAddress={setFinalAddress} cities={cities} />
+      <Deliveries
+        cities={cities}
+        setCity={setCity}
+        setAddress={setAddress}
+        setZip={setZip}
+      />
       <Grid
         mt={3}
         sx={{
@@ -100,7 +96,6 @@ export default function CheckoutPage(props) {
           }}
         >
           Place order
-          {/* SAVE ADDRESS */}
         </Button>
       </Grid>
     </Container>

@@ -26,6 +26,7 @@ import Statics from "./components/Statics/Statics";
 import OrderPage from "./pages/OrderPage";
 import OrderListItem from "./components/Orders/OrderListItem";
 import OrderDetails from "./components/Orders/OrderDetails";
+import ChatsList from "./components/Chat/ChatsList";
 
 const customTheme = createTheme({
   palette: {
@@ -70,15 +71,24 @@ function App() {
                   </RequireAuth>
                 }
               />
-              {/* <Route
+              <Route
                 exact
-                path="/admin"
+                path="/admin/chats"
                 element={
                   <RequireAuth>
-                    <AdminHomePage />
+                    <ChatsList />
                   </RequireAuth>
                 }
-              /> */}
+              />
+              <Route
+                exact
+                path="/admin/chat/:id"
+                element={
+                  <RequireAuth>
+                    <Chat />
+                  </RequireAuth>
+                }
+              />
               <Route
                 path="/admin/userDetails"
                 element={
