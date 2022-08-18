@@ -1,78 +1,105 @@
 import TitleDivider from "../components/UI/TitleDivider";
-import CategoryCard from "../components/Category/CategoryCard";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Grid";
 import ProductList from "../components/product/ProductList";
-import CardReactFormContainer from 'card-react';
-import CreditCratPayment from "../components/Checkout/CreditCardPayment";
 import Deliveries from "../components/Checkout/Deliveries";
-import { Button} from "@mui/material";
+import { Button } from "@mui/material";
 import { useAuth } from "../components/Utils/auth";
 import { useNavigate } from "react-router-dom";
-
-// import CreditCard from 'react-creditcard';
 import { AddNewOrder } from "../controller/OrderController";
 import { useState } from "react";
 
-export default function CheckoutPage(props){
-  const auth= useAuth();
-  const [address, setFinalAddress]= useState(null); 
+export default function CheckoutPage(props) {
+  const auth = useAuth();
 
-  const navigate= useNavigate();
+  const [city, setCity] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [zip, setZip] = useState(null);
 
-  const placeOrderHandler= async (event)=>{
+  const navigate = useNavigate();
+
+  const createOrderProductsArr = () => {
+    const orderArr = new Array();
+    auth.cartItems.forEach((p) => {
+      orderArr.push({
+        id: p._id,
+        name: p.name,
+        qty: p.qty,
+      });
+    });
+    return orderArr;
+  };
+
+  const createAddress = () => {
+    if (city != null && address != null && zip != null) {
+      return `${city} , ${address} , ${zip}`;
+    } else {
+      alert("please enter address");
+      return false;
+    }
+  };
+
+  const placeOrderHandler = async (event) => {
     event.preventDefault();
-    if( auth.cartItems===null){
-      alert("your ");
-    }
-    else{
+    const finalAddress = createAddress();
+    if (finalAddress) {
       const currentDate = new Date();
-      const data = new FormData(event.currentTarget);
-      
-      alert(currentDate);
-      const newOrder ={
-        date: `${currentDate.getDate()}/${currentDate.getMonth()+1}/${currentDate.getFullYear()}`,
-        productIds: Array,
-        totalSum: auth.cartTotal,
-        // userId: auth.getUser._id,
-        address: address,
+      const userJson = JSON.parse(auth.getUser());
+      const newOrder = {
+        date: currentDate,
+        productIds: createOrderProductsArr(),
+        totalSum: auth.getCartTotal(),
+        userEmail: userJson.email,
+        address: finalAddress,
       };
-      
-      navigate(`orders`);
+      var response = await AddNewOrder(newOrder);
+      if (response.status == 200) {
+        navigate(`order/id=${response.data.msg._id}`);
+      } else if (response.status == 403) {
+        alert("Something went wrong,please try again");
+      }
     }
-}
+  };
 
-
-    return (
-      
-    
-    <Container  maxWidth='xxl' sx={{alignContent:'center', alignItems:'center', display:'inline', }}>
-         <TitleDivider Title="CHECKOUT" />
-       <ProductList mt={3} mb={3} productList={props.productList}/>
-       <br/>
-       <TitleDivider Title="" mt={3} />
-
-      <Deliveries setAddress={address} cities={cities} />
-  {/* <CreditCratPayment /> */}
-
-      <Grid mt={3} sx={{display:'flex', alignContent:'center', alignItems:'center', flexDirection: 'column'}}>
-       <Button 
-         variant="contained"
-         size='large'
-         onClick={placeOrderHandler}
-         sx={{backgroundColor:'#dbc49dd2', alignItems: 'center', width: 400}}>
+  return (
+    <Container
+      maxWidth="xxl"
+      sx={{ alignContent: "center", alignItems: "center", display: "inline" }}
+    >
+      <TitleDivider Title="CHECKOUT" />
+      <ProductList mt={3} mb={3} productList={props.productList} />
+      <br />
+      <TitleDivider Title="" mt={3} />
+      <Deliveries
+        cities={cities}
+        setCity={setCity}
+        setAddress={setAddress}
+        setZip={setZip}
+      />
+      <Grid
+        mt={3}
+        sx={{
+          display: "flex",
+          alignContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <Button
+          variant="contained"
+          size="large"
+          onClick={placeOrderHandler}
+          sx={{
+            backgroundColor: "#dbc49dd2",
+            alignItems: "center",
+            width: 400,
+          }}
+        >
           Place order
-        {/* SAVE ADDRESS */}
-       </Button>
-   </Grid> 
- 
-       
-  
+        </Button>
+      </Grid>
     </Container>
-    ); 
+  );
 }
 
-const cities = [
-  { label: 'Tzfat'},
-  { label: 'Tel-Aviv'},
-];
+const cities = [{ label: "Tzfat" }, { label: "Tel-Aviv" }];

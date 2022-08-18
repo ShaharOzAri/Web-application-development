@@ -31,8 +31,13 @@ export default function ShoppingCartDrawer(props) {
   const Auth = useAuth();
 
   const checkOut = () => {
-    navigate(`checkout`);    
+    if(Auth.getUser()==null){
+      alert("please sign in/sign up");
+    } else
+      navigate(`checkout`);    
+    handleDrawerClose();
   };
+
   return (
     <Drawer
       sx={{

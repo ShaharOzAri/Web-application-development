@@ -7,73 +7,83 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { useEffect, useState } from "react";
 import {
-  deleteuser,
-  getUserById,
-  updateUser,
-} from "../../controller/UserController";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import { SuccessSnackbar } from "../Utils/Snackbar";
+  deleteOrder,
+  getOrderById,
+  updateOrder,
+} from "../../controller/OrderController";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
-export default function UserDetailsAdmin() {
-  const { userId } = useParams();
-  console.log(userId);
-  const [user, setUser] = useState(null);
-  const [snackbar, setSnackbar] = useState(false);
-  const [snackbarMsg, setSnackbarMsg] = useState(null);
+export default function OrderDetails() {
+  const { orderId } = useParams();
+  console.log(orderId);
+  const [order, setOrder] = useState(null);
+  const [date, setDate] = useState(null);
 
-  const getUser = async (id) => {
-    var recivedUser = await getUserById(id);
+  const getOrder = async (id) => {
+    var recivedUser = await getOrderById(id);
     if (recivedUser.status == 200) {
-      setUser(recivedUser.data.msg);
+      setOrder(recivedUser.data.msg);
+      setDate(recivedUser.data.msg.date);
     }
   };
 
   useEffect(() => {
-    getUser(userId);
+    getOrder(orderId);
   }, []);
 
-  var updatedUser = user;
+  var updatedOrder = order;
   const navigate = useNavigate();
-  const handleAllUsers = () => {
+  const handleAllOrders = () => {
     navigate(-1);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await updateUser(updatedUser);
+    console.log(updatedOrder);
+    const response = await updateOrder(updatedOrder);
     if (response.status == 200) {
-      setSnackbarMsg("User Details Updated!");
-      setSnackbar(true);
-      navigate("/admin/users");
+      navigate("/admin/orders");
     } else {
-      alert("somrthing went wrong");
+      alert("something went wrong");
     }
   };
 
   const handleDelete = async (event) => {
     event.preventDefault();
-    const response = await deleteuser(updatedUser._id);
+    const response = await deleteOrder(updatedOrder._id);
     if (response.status == 200) {
       alert("delete");
-      navigate("/admin/users");
+      navigate("/admin/orders");
     } else {
-      alert("somrthing went wrong");
+      alert("something went wrong");
     }
   };
+
+  const handleChange = (pickedDate) => {
+    setDate(pickedDate.toISOString().split("T")[0]);
+  };
+
+  useEffect(() => {
+    if (updatedOrder != null) {
+      updatedOrder["date"] = "date";
+    }
+  }, [date]);
+
   return (
     <Container sx={{ textAlign: "center", maxWidth: 200, bgcolor: "#e0d9cc" }}>
-      {user != null ? (
+      {order != null ? (
         <Box sx={{ my: 5 }}>
           <Typography sx={{ fontSize: 40, color: "black" }}>
-            {user.first_name} {user.last_name} User Details
+            {order._id} Order Details
           </Typography>
           <Button
             variant="contained"
             sx={{ m: 2, color: "black" }}
-            onClick={handleAllUsers}
+            onClick={handleAllOrders}
           >
-            Back to All Users
+            Back to All Orders
           </Button>
 
           <Button
@@ -81,7 +91,7 @@ export default function UserDetailsAdmin() {
             sx={{ m: 2, color: "black" }}
             onClick={handleDelete}
           >
-            Delete User
+            Delete Order
           </Button>
           <Box
             sx={{
@@ -100,62 +110,59 @@ export default function UserDetailsAdmin() {
                 <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="given-name"
-                    defaultValue={user.first_name}
-                    name="firstName"
+                    defaultValue={order.userId}
+                    name="userId"
                     fullWidth
-                    id="firstName"
-                    label="First Name"
+                    id="userId"
+                    label="User"
                     autoFocus
                     onChange={(event) =>
-                      (updatedUser["first_name"] = event.target.value)
+                      (updatedOrder["userId"] = event.target.value)
                     }
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    fullWidth
-                    defaultValue={user.last_name}
-                    id="lastName"
-                    label="Last Name"
-                    name="lastName"
-                    autoComplete="family-name"
-                    onChange={(event) =>
-                      (updatedUser["last_name"] = event.target.value)
-                    }
-                  />
+                  {date != null ? (
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <DesktopDatePicker
+                        label="Date"
+                        inputFormat="dd/MM/yyyy"
+                        value={date}
+                        onChange={handleChange}
+                        renderInput={(params) => <TextField {...params} />}
+                      />
+                    </LocalizationProvider>
+                  ) : (
+                    ""
+                  )}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
                     fullWidth
-                    defaultValue={user.email}
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
+                    defaultValue={order.productIds}
+                    id="productIds"
+                    label="product Ids"
+                    name="productIds"
                     onChange={(event) =>
-                      (updatedUser["email"] = event.target.value)
+                      (updatedOrder["productIds"] = event.target.value)
                     }
                   />
                 </Grid>
                 <Grid item xs={12}></Grid>
               </Grid>
               <Grid item xs={12}>
-                <Select
+                <TextField
+                  required
                   fullWidth
-                  id="role"
-                  name="Role"
-                  defaultValue={user.role}
-                  label="role"
-                  onChange={(event) => {
-                    updatedUser["role"] = event.target.value;
-                    console.log(updatedUser);
-                  }}
-                >
-                  <MenuItem value="client">Client</MenuItem>
-                  <MenuItem value="admin">Admin</MenuItem>
-                </Select>
+                  defaultValue={order.address}
+                  id="address"
+                  label="Address"
+                  name="address"
+                  onChange={(event) =>
+                    (updatedOrder["address"] = event.target.value)
+                  }
+                />
               </Grid>
               <Button
                 type="submit"
@@ -181,10 +188,6 @@ export default function UserDetailsAdmin() {
       ) : (
         ""
       )}
-      <SuccessSnackbar
-        status={snackbar}
-        message={snackbarMsg}
-      ></SuccessSnackbar>
     </Container>
   );
 }

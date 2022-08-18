@@ -54,13 +54,16 @@ const ProductSection = () => {
           </Container>
         </Grid>
       )}
-      {products.map((product) => {
-        return (
-          <Grid item xs={3}>
-            <ProductCard product={product} />;
-          </Grid>
-        );
-      })}
+      {products
+        .sort((a, b) => b.numberOfOrders - a.numberOfOrders)
+        .slice(0, 4)
+        .map((product) => {
+          return (
+            <Grid item xs={3}>
+              <ProductCard product={product} />;
+            </Grid>
+          );
+        })}
     </Grid>
   );
 };

@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import { getAllCategories } from "../../controller/CategoryController";
 import { useNavigate } from "react-router-dom";
 
-const adminNavItems = ["users", "products", "orders", "statics"];
+const adminNavItems = ["users", "products", "orders", "chats"];
 
 export default function ToolbarButtons() {
   const auth = useAuth();

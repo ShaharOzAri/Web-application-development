@@ -100,4 +100,4 @@ function Statics() {
   )
 }
 
-export default Statics
+export default Statics;

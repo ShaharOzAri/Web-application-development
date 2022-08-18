@@ -1,9 +1,18 @@
 const express = require("express");
 const OrderService = require("../Service/OrderService");
+const ProductService = require("../Service/ProductService");
 const router = express.Router();
 
 router.route("/create").post(async (request, response) => {
-  var result = await OrderService.insertOrder(request.query);
+  var result = await OrderService.insertOrder(request.body.params);
+  result.productIds.map(async (product) => {
+    const p = await ProductService.getProductById(product.id);
+    p.numberOfOrders += product.qty;
+    const update = ProductService.update(p);
+    if (update == null) {
+      return null;
+    }
+  });
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -14,7 +23,7 @@ router.route("/create").post(async (request, response) => {
 });
 
 router.route("/getOrdersByDate").get(async (request, response) => {
-  var result = await OrderService.getOrdersByDate(request.body.params);
+  var result = await OrderService.getOrdersByDate(request.query[0]);
   if (result != null) {
     response.status(200).send({
       msg: result,
@@ -45,7 +54,7 @@ router.route("/getOrdersByUser").get(async (request, response) => {
 });
 
 router.route("/getOrderById").get(async (request, response) => {
-  var result = await OrderService.getOrderById(request.body.params);
+  var result = await OrderService.getOrderById(request.query[0]);
   if (result != null) {
     response.status(200).send({
       msg: result,
