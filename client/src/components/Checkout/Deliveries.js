@@ -25,7 +25,24 @@ export default function Deliveries(props){
         zip: {type: String},
     };
 
+    function confirmAddressHandler(event){
+        if(city!='' && addressString!= '' && zip!=''){
 
+        }
+            if(city===''){
+                alert('city');
+            }
+            else if(addressString===''){
+                alert('address')
+            }
+            else if(zip===''){
+                alert('zip')
+            }
+            else{
+            setChecked(!checked);
+        }
+ 
+    }
    
 
     
@@ -204,7 +221,10 @@ export default function Deliveries(props){
                     sx={{backgroundColor:'#dbc49dd2', position:'static'}}><LocalShippingIcon />SAVE ADDRESS</IconButton>
                  */}
                      <FormGroup>
-                    <FormControlLabel control={<Checkbox color="default" onChange={(event)=> {setChecked(!checked)}} />} sx={{color: 'black'}}label="Please confirm your address" />
+                    <FormControlLabel control={
+                    (city!='' && addressString!= '' && zip!='') ? (<Checkbox color="default" 
+                    onChange={()=>setChecked(!checked)}/>) : (<Checkbox disabled color="default" onChange={()=>setChecked(!checked)}/>) }
+                    sx={{color: 'black'}}label="Please confirm your address" />
                     </FormGroup>
                     
                 </Grid>
