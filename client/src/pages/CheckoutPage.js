@@ -73,7 +73,7 @@ export default function CheckoutPage(props){
     var response= await AddNewOrder(newOrder);
     console.log(response.data.msg._id);
     if(response.status == 200){
-      navigate(`order/id=${response.data.msg._id}`);
+      navigate(`order/${response.data.msg._id}`);
     }else if(response.status == 403){
       alert("Something went wrong,please try again");
     }

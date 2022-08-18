@@ -17,7 +17,7 @@ export default function Deliveries(props){
     const[city, setCity]= useState('');
     const[addressString, setAddressString]= useState('');
     const[zip, setZip]= useState('');
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(true);
 
     const newAddress = {
         city: {type: String}, 
@@ -153,14 +153,16 @@ export default function Deliveries(props){
                         sx={{ width: 500 }}
                         fullWidth/>}
                     onChange={(event, newCity)=>{
-                        setValidAddress(!isValidAddress);
                         setCity(newCity);
+                        {newCity===null ? setValidAddress(false):setValidAddress(true)}
+
                        console.log(city);
                     }}
-                />
+                
+                       />
                     { console.log('check')}
                         { console.log(city)}
-
+                    
                     {/* {console.log(props.cities)} */}
               
 
@@ -221,12 +223,29 @@ export default function Deliveries(props){
                     sx={{backgroundColor:'#dbc49dd2', position:'static'}}><LocalShippingIcon />SAVE ADDRESS</IconButton>
                  */}
                      <FormGroup>
-                    <FormControlLabel control={
+                    {/* <FormControlLabel control={
                     (city!='' && addressString!= '' && zip!='') ? (<Checkbox color="default" 
-                    onChange={()=>setChecked(!checked)}/>) : (<Checkbox disabled color="default" onChange={()=>setChecked(!checked)}/>) }
-                    sx={{color: 'black'}}label="Please confirm your address" />
+                    onChange={()=>setChecked(!checked)}/>) : (<Checkbox />} label="Disabled" />) }
+                    sx={{color: 'black'}}label="Please confirm your address" /> */}
                     </FormGroup>
+
+                    {/* <FormGroup> */}
+                        {/* {(city!='' && addressString!= '' && zip!='') ? 
+                        (<FormControlLabel control={<Checkbox color="default" onChange={()=>setChecked(!checked)}/>} sx={{color: 'black'}} label="Please confirm your address"/>):
+                        (<FormControlLabel disabled control={<Checkbox onChange={()=>setChecked(!checked)}/>} label="Please confirm your address" sx={{color: 'black'}}/>)} */}
                     
+                    {/* {(city==='' || addressString=== '' || zip==='') ? (<FormControlLabel disabled checked={checked} control={<Checkbox/>} onChange={(event)=>setChecked(event.target.checked)} label="Please confirm your address" sx={{color: 'black'}}/>) :
+                        (<FormControlLabel checked={checked} control={<Checkbox color="default" onChange={(event)=>setChecked(event.target.checked)}/>} sx={{color: 'black'}} label="Please confirm your address"/>)}
+                        
+                    
+                    <FormControlLabel checked={checked} control={<Checkbox color="default"  onChange={()=>{
+
+                    }}/> sx={{color: 'black'}} label="Please confirm your address"/>
+
+                    </FormGroup>
+
+                    
+                    <FormControlLabel disabled control={<Checkbox />} label="Disabled" /> */}
                 </Grid>
                 {(checked) ? (<Button 
                     variant="contained"
