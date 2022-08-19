@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { SuccessSnackbar } from "../Utils/Snackbar";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import Search from "../Category/Search";
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
@@ -38,6 +39,7 @@ const columns = [
 
 export default function DataGridDemo() {
   const [users, setUsers] = useState(null);
+  const [allUsers, setAllUsers] = useState([]);
 
   const getAll = async () => {
     var recivedUsers = await getAllUsers();
@@ -46,9 +48,8 @@ export default function DataGridDemo() {
       for (var i = 0; i < data.length; i++) {
         data[i].id = i + 1;
       }
-      console.log(data);
       setUsers(data);
-      //   console.log(data);
+      setAllUsers(data);
     }
   };
 
@@ -67,11 +68,19 @@ export default function DataGridDemo() {
         <Button
           fullWidth
           variant="contained"
-          sx={{ color: "black", mb: 5 }}
+          sx={{ color: "black", mb: 2 }}
           onClick={handleAddUser}
         >
           Add User
         </Button>
+      </Container>
+      <Container sx={{ mb: 2 }}>
+        <Search
+          data={users}
+          setData={setUsers}
+          allData={allUsers}
+          searchBy="email"
+        ></Search>
       </Container>
       <Container style={{ height: 400, width: "60%" }}>
         <DataGrid

@@ -7,16 +7,19 @@ import { useAuth } from "../Utils/auth";
 import Button from "@mui/material/Button";
 import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
+import Search from "../Category/Search";
 
 const ProductSection = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
 
   const getAll = async () => {
     const response = await getAllProducts();
     if (response.status == 200) {
       setProducts(response.data.msg);
+      setAllProducts(response.data.msg);
     } else {
       alert("something went wrong");
     }
@@ -51,6 +54,14 @@ const ProductSection = () => {
             >
               Add Product
             </Button>
+          </Container>
+          <Container>
+            <Search
+              data={products}
+              setData={setProducts}
+              allData={allProducts}
+              searchBy="name"
+            ></Search>
           </Container>
         </Grid>
       )}
