@@ -7,6 +7,8 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
 import SellIcon from "@mui/icons-material/Sell";
 import AssignmentReturnIcon from "@mui/icons-material/AssignmentReturn";
+import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
+import { useNavigate } from "react-router-dom";
 
 import {
   Box,
@@ -16,45 +18,59 @@ import {
   FooterLink,
   Heading,
 } from "./FooterStyles.js";
+import { padding } from "@mui/system";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <Box>
       <Container>
         <Row>
           <Column>
-            <Heading>CONTACT US</Heading>
-            <FooterLink>
-              <FacebookShareButton
-                url={
-                  "https://www.facebook.com/profile.php?id=100083280215522&notif_id=1660661579838743&notif_t=profile_plus_admin_invite&ref=notif"
-                }
-                quote={"Onecklace jewelry"}
-                hashtag={"#Onecklace"}
-                description={"jewelry"}
-                className="Demo__some-network__share-button"
-              >
-                <FacebookIcon size={30} />
-                Facebook
-              </FacebookShareButton>
-            </FooterLink>
-            <FooterLink href="#">
-              <PhoneIcon sx={{ fontSize: "30px", color: "black" }}></PhoneIcon>
-              Phone
+            <FooterLink href="aboutus">
+              {" "}
+              <Heading>ABOUT US </Heading>
             </FooterLink>
 
-            <FooterLink href="#">
-              <EmailIcon sx={{ fontSize: "30px", color: "black" }}></EmailIcon>
-              Email
+            <FooterLink>
+              Onecklace (Cutting Edge Jewellery LTD) is an international jewelry
+              manufacturer, our main office is based in Israel, that deals
+              exclusively with customized name necklaces
             </FooterLink>
           </Column>
+          <Column style={{ padding: "80px" }}>
+            <Row>
+              <FooterLink>
+                <FacebookShareButton
+                  url={
+                    "https://www.facebook.com/profile.php?id=100083280215522&notif_id=1660661579838743&notif_t=profile_plus_admin_invite&ref=notif"
+                  }
+                  quote={"Onecklace jewelry"}
+                  hashtag={"#Onecklace"}
+                  description={"jewelry"}
+                  className="Demo__some-network__share-button"
+                >
+                  <FacebookIcon size={40} />
+                </FacebookShareButton>
+              </FooterLink>
+              <FooterLink href="#">
+                <PhoneIcon
+                  sx={{ fontSize: "40px", color: "black" }}
+                ></PhoneIcon>
+              </FooterLink>
 
-          <Column>
-            <Heading>ABOUT US</Heading>
-            <FooterLink>Our Mission</FooterLink>
-            <FooterLink>Sustainability</FooterLink>
-            <FooterLink>Stores</FooterLink>
-            <FooterLink>Careers</FooterLink>
+              <FooterLink href="#">
+                <EmailIcon
+                  sx={{ fontSize: "40px", color: "black" }}
+                ></EmailIcon>
+              </FooterLink>
+              <FooterLink href="Chat">
+                <ChatBubbleOutlineOutlinedIcon
+                  sx={{ fontSize: "40px", color: "black" }}
+                ></ChatBubbleOutlineOutlinedIcon>
+              </FooterLink>
+            </Row>
           </Column>
           <Column>
             <FooterLink>
