@@ -9,7 +9,7 @@ import SellIcon from "@mui/icons-material/Sell";
 import AssignmentReturnIcon from "@mui/icons-material/AssignmentReturn";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "../Utils/auth";
 import {
   Box,
   Container,
@@ -20,9 +20,11 @@ import {
 } from "./FooterStyles.js";
 import { padding } from "@mui/system";
 import CurrenctWebService from "./CurrencyWebService.js";
+import ChatIcon from "./ChatIcon";
 
 const Footer = () => {
   const navigate = useNavigate();
+  const auth = useAuth();
 
   return (
     <Box>
@@ -67,11 +69,14 @@ const Footer = () => {
                   sx={{ fontSize: "40px", color: "black" }}
                 ></EmailIcon>
               </FooterLink>
-              <FooterLink href="Chat">
-                <ChatBubbleOutlineOutlinedIcon
-                  sx={{ fontSize: "40px", color: "black" }}
-                ></ChatBubbleOutlineOutlinedIcon>
-              </FooterLink>
+              {JSON.parse(auth.getUser()) != null &&
+              JSON.parse(auth.getUser()).role == "client" ? (
+                <FooterLink>
+                  <ChatIcon></ChatIcon>
+                </FooterLink>
+              ) : (
+                ""
+              )}
             </Row>
             <CurrenctWebService></CurrenctWebService>
           </Column>

@@ -25,6 +25,8 @@
     "react-chartjs-2": "^4.3.1",
     "react-creditcard": "^1.1.2",
     "react-dom": "^18.1.0",
+    "react-floating-button": "^1.1.1",
+    "react-icons": "^4.4.0",
     "react-material-ui-carousel": "^3.4.2",
     "react-player": "^2.10.1",
     "react-router-dom": "^6.3.0",

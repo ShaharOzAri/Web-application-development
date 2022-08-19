@@ -1,4 +1,4 @@
-.Chat {
+/* .Chat {
   width: 100vw;
   height: 100vh;
   background: #fff;
@@ -6,9 +6,9 @@
   font-family: "Open Sans", sans-serif;
   display: grid;
   place-items: center;
-}
+} */
 body {
-  margin: 0%;
+  margin: 5px;
   padding: 0%;
 }
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
@@ -53,6 +53,10 @@ body {
 .chat-window {
   width: 300px;
   height: 420px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 41%;
 }
 
 .chat-window p {

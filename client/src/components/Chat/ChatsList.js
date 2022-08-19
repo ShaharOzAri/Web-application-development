@@ -25,7 +25,7 @@ const columns = [
   {
     field: "email",
     headerName: "Email",
-    width: 350,
+    width: 200,
     editable: true,
   },
 ];
@@ -46,12 +46,12 @@ export default function ChatsList() {
 
   useEffect(() => {
     getAll();
-  }, []);
+  });
 
   const navigate = useNavigate();
   return (
     <Box>
-      <Container style={{ height: 400, width: "60%" }}>
+      <Container style={{ height: 300, width: "60%" }}>
         <DataGrid
           sx={{
             backgroundColor: "#e0d9cc",
@@ -65,7 +65,6 @@ export default function ChatsList() {
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
-          // checkboxSelection
           disableSelectionOnClick
         />
       </Container>
