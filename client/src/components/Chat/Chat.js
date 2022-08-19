@@ -1,41 +1,90 @@
 import * as React from "react";
+import Box from "@mui/material/Box";
 import io from "socket.io-client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Conver from "./Conver";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../Utils/auth";
 import "./Chat.css";
+import Button from "@mui/material/Button";
+import {
+  deleteuser,
+  getUserById,
+  updateUser,
+} from "../../controller/UserController";
 
 const socket = io.connect("http://localhost:5000");
 
 export default function Chat() {
-  const [username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
+  const { id } = useParams();
+  const auth = useAuth();
+  const loginUser = JSON.parse(auth.getUser());
+  const userName = loginUser.first_name;
+  const navigate = useNavigate();
+
+  const [room, setRoom] = useState(null);
 
   const joinRoom = () => {
-    if (username !== "" && room !== "") {
-      socket.emit("join_room", room);
+    if (loginUser.role === "admin") {
+      setRoom(id);
+      socket.emit("join_room", id);
+    } else {
+      setRoom(loginUser._id);
+      socket.emit("join_room", loginUser._id);
     }
   };
 
-  return (
-    <div className='Chat'>
-      <h3>Join A Chat</h3>
-      <input
-        type='text'
-        placeholder='User Name'
-        onChange={(event) => {
-          setUsername(event.target.value);
-        }}
-      ></input>
-      <input
-        type='text'
-        placeholder='Room'
-        onChange={(event) => {
-          setRoom(event.target.value);
-        }}
-      ></input>
-      <button onClick={joinRoom}>Join A Room</button>
+  const handleEndChat = async () => {
+    var user;
+    if (loginUser.role == "admin") {
+      var recivedUser = await getUserById(id);
+      if (recivedUser.status == 200) {
+        user = recivedUser.data.msg;
+        user.chat = false;
+      }
+    } else {
+      user = loginUser;
+      user.chat = false;
+    }
+    const response = await updateUser(user);
+    if (response.status == 200) {
+      navigate(-1);
+    } else {
+      alert("something went wrong");
+    }
+  };
 
-      <Conver socket={socket} username={username} room={room} />
+  useEffect(() => {
+    joinRoom();
+  });
+
+  return (
+    <Box sx={{
+      textAlign: "center",
+      fontWeight: "bold",
+      mt: 2,
+    }}>
+    <div className="Chat">
+      {loginUser.role === "admin" ? (
+        <Button
+          variant="contained"
+          sx={{ m: 1, color: "white", backgroundColor:"black" }}
+          onClick={() => navigate(-1)}
+        >
+          Back to all chats
+        </Button>
+      ) : (
+        ""
+      )}
+      <Conver socket={socket} username={userName} room={room} />
+      <Button
+        variant="contained"
+        sx={{ m: 2, color: "white", backgroundColor:"black"}}
+        onClick={handleEndChat}
+      >
+        End Chat
+      </Button>
     </div>
+    </Box>
   );
 }

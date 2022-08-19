@@ -12,7 +12,7 @@ function PieChart({chartData}) {
           },
           title: {
             display: true,
-            text: 'Product Type By Quantity',
+            text: 'Product Material By Quantity',
           },
         },
       };

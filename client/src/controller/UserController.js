@@ -2,6 +2,7 @@ import axios from "axios";
 const url = process.env.REACT_APP_API_URL + "user/";
 
 export const AddNewUser = async (user) => {
+  user.chat = false;
   try {
     var res = await axios.post(url + "signup/", {
       params: user,

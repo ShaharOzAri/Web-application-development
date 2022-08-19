@@ -24,7 +24,7 @@ export default function ShoppingCartProduct(props) {
   };
 
   const handleDelete = () => {
-    auth.removeCartProduct(product);
+    auth.removeCartProduct(product._id);
   };
 
   return (

@@ -52,7 +52,7 @@ function Statics() {
   const data = {
     labels: productsGroup.map((data)=>data._id),
     datasets: [{
-        label: "Price",
+        label: "Quantity",
         data: productsGroup.map((data)=>data.count),
         backgroundColor: [
           "rgba(75,192,192,1)",

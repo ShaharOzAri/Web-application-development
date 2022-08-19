@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const Box = styled.div`
-  bottom: 0;
-  background-color: #FEF8F0
+  background-color: #eaece5;
   color: black;
-  height:100%;
   text-align: center;
-  width:100%;
+  position: absolute;
+  left: 0;
+  button: 0;
+
+  width: 100%;
   font-family: acumin-pro, system-ui, sans-serif;
-  @media (max-width: 1000px) {
-    padding: 50px 30px;
-  }
+  padding-top: 30px;
 `;
 
 export const Container = styled.div`
@@ -18,10 +18,7 @@ export const Container = styled.div`
   flex-direction: column;
   font-family: "Pacifico", cursive;
   min-heigth: 100vh;
-  margin: -0.5rem -2rem;
   background-color: #e0d9cc;
-
-  box-sizing: inherit;
 `;
 
 export const Column = styled.div`
@@ -32,6 +29,7 @@ export const Column = styled.div`
   padding: 0.5em auto;
   min-height: 100%;
   text-align: left;
+  padding-left: 10px;
 `;
 
 export const Row = styled.div`
