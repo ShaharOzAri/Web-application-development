@@ -2,7 +2,7 @@ import {Container, Typography, Grid, Button} from '@mui/material';
 import { useAuth } from '../components/Utils/auth';
 import { useParams } from "react-router-dom";
 import { getOrderById } from '../controller/OrderController';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ImageListItem from "@mui/material/ImageListItem";
 import Oops from '../components/images/oops.png';
@@ -13,21 +13,17 @@ export default function OrderPage(props){
 const auth= useAuth();
 const userName=JSON.stringify(auth.getUser()).first_name;
 const [validUserOrder, setValidUserOrder]= useState(true); 
-let { orderId } = useParams();
+const { orderId } = useParams();
 const navigate= useNavigate(); 
 
 
 const isValidUserOrder= async ()=>{
-        console.log('order idddd');
-        // console.log(orderId);
-
         var response= await getOrderById(orderId);
-        console.log("'response'");
-
-        console.log(response);
         if(response.status == 200){
-            console.log(response);
-            if(response.data.msg.userEmail===auth.user.email){
+            // console.log(response);
+    
+            if(response.data.msg.userEmail===JSON.parse(auth.getUser()).email){
+                console.log(response.data.msg.userEmail);
                 setValidUserOrder(true);
             }
             else{
@@ -42,12 +38,14 @@ const isValidUserOrder= async ()=>{
 // isValidUserOrder();
 
 // isValidUserOrder();
+useEffect(()=>{isValidUserOrder()}, []);
+
 
 return(
 <Container mb={3} sx={{height: "80%", width: "80%", backgroundColor:"#fff",  mt: 3, borderRadius: 2 , boxShadow: 3, marginBottom: 10,  }}>
 
     <Grid Container mt={5}>
-        {(!validUserOrder) ? 
+        {!(validUserOrder) ? 
             (<Grid item sx={{height: 300}}>
                 <Grid item sx={{display:'flex', alignContent:'center',justifyContent:'center', alignItems:'center', flexDirection:'row'}}> 
                     <ImageListItem sx={{justifyContent:'center'}}> <img src={Oops} /></ImageListItem> 
