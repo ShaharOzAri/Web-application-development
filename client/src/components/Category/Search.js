@@ -5,7 +5,6 @@ import { Box } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 export default function Search(props) {
-  const data = props.data;
   const setData = props.setData;
   const [searchField, setSearchField] = useState("");
   const allData = props.allData;

@@ -1,4 +1,3 @@
-import { useAuth } from "../Utils/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Typography } from "@mui/material";
 import Button from "@mui/material/Button";

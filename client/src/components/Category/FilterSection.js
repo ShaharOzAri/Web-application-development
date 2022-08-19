@@ -1,22 +1,10 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import {
-  Button,
-  ButtonGroup,
-  Experimental_CssVarsProvider,
-  Typography,
-} from "@mui/material";
+import { Button, ButtonGroup } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import AddIcon from "@mui/icons-material/Add";
 import { useState, useEffect } from "react";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { Container } from "@mui/system";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import FilterCheckBoxes from "./FilterCheckBoxs";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";

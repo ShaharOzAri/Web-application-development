@@ -1,7 +1,5 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Stack, Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
@@ -14,7 +12,6 @@ import Slider from "@mui/material/Slider";
 
 export default function FilterCheckBoxes(props) {
   const setProducts = props.setProducts;
-  const products = props.products;
   const allProducts = props.allProducts;
   const [productStyle, setProductStyle] = useState([
     "cut out",
