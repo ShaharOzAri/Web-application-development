@@ -4,7 +4,6 @@ import CarouselImage from "./CarouselImage";
 import Banner1 from "../../images/banner1.png";
 import Banner2 from "../../images/banner2.png";
 import { Box } from "@mui/system";
-import VideoPlayer from "../../HomePage/VideoPlayer";
 
 function MyCarousel() {
   var images = [

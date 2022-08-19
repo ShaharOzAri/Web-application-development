@@ -8,7 +8,6 @@ import TitleDivider from "../UI/TitleDivider";
 import { Container } from "@mui/system";
 import { Grid } from "@mui/material";
 import FilterSection from "./FilterSection";
-import Search from "./Search";
 
 export default function CategoryPage() {
   let { category } = useParams();

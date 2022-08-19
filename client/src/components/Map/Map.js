@@ -11,7 +11,6 @@ export default function Map() {
     const recivedLocatios = await getLocations();
     if (recivedLocatios.status == 200) {
       setLocations(recivedLocatios.data.msg);
-      // console.log(typeof recivedLocatios.data.msg);
     }
   };
 

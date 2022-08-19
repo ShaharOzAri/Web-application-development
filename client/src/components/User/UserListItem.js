@@ -1,10 +1,8 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Container } from "@mui/material";
-import { createSearchParams, useNavigate } from "react-router-dom";
 import { getAllUsers } from "../../controller/UserController";
 import { useState, useEffect } from "react";
-import { SuccessSnackbar } from "../Utils/Snackbar";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Search from "../Category/Search";

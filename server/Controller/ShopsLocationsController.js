@@ -4,7 +4,6 @@ const router = express.Router();
 const shopsLocation = require("../Model/ShopsLocation");
 
 router.route("/createlocation").post((request, response) => {
-  //console.log(request.body.params);
   var location = request.body.params;
   ShopsLocationService.insertLocation(location);
 });

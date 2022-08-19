@@ -11,7 +11,6 @@ import CreateLocations from "./components/Map/CreateLocations";
 import CategoryPage from "./components/Category/CategoryPage";
 import { AuthProvider } from "./components/Utils/auth";
 import { UserDetails } from "./components/User/UserDetails";
-import { AdminHomePage } from "./components/Admin/AdminHomePage";
 import { RequireAuth } from "./components/Utils/RequireAuth";
 import UserDetailsAdmin from "./components/User/UserDetailsAdmin";
 import UserListItem from "./components/User/UserListItem";
@@ -61,7 +60,6 @@ function App() {
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/orders" element={<OrderPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
-
               <Route path="/checkout/order/:orderId" element={<OrderPage />} />
               {/* <Route path="/user" element={<UserDetails />} /> */}
               <Route path="/user/" element={<UserDetails />} />
