@@ -18,7 +18,6 @@ function HomePageContent() {
         <MyCarousel></MyCarousel>
         <CategorySection></CategorySection>
         <BestSeller></BestSeller>
-        <ProductSection></ProductSection>
         <VideoPlayer></VideoPlayer>
         {/* <ChatIcon></ChatIcon> */}
         {/* <CurrenctWebService></CurrenctWebService> */}

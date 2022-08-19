@@ -32,7 +32,7 @@ const customTheme = createTheme({
   palette: {
     primary: {
       main: "#eaece5",
-      contrastText: "white",
+      contrastText: "black",
     },
   },
 });

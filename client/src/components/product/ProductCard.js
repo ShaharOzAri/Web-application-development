@@ -25,7 +25,7 @@ const ProductCard = (props) => {
     <Card sx={{ maxWidth: 370, mx: 5 }}>
       <CardMedia
         component="img"
-        height="200"
+        height="250"
         image={product.images[0]}
         alt="Classic Name Necklace"
       />
