@@ -1,4 +1,5 @@
 import * as React from "react";
+import Box from "@mui/material/Box";
 import io from "socket.io-client";
 import { useState, useEffect } from "react";
 import Conver from "./Conver";
@@ -58,11 +59,16 @@ export default function Chat() {
   });
 
   return (
+    <Box sx={{
+      textAlign: "center",
+      fontWeight: "bold",
+      mt: 2,
+    }}>
     <div className="Chat">
       {loginUser.role === "admin" ? (
         <Button
           variant="contained"
-          sx={{ m: 5, color: "black" }}
+          sx={{ m: 1, color: "white", backgroundColor:"black" }}
           onClick={() => navigate(-1)}
         >
           Back to all chats
@@ -73,11 +79,12 @@ export default function Chat() {
       <Conver socket={socket} username={userName} room={room} />
       <Button
         variant="contained"
-        sx={{ m: 5, color: "black" }}
+        sx={{ m: 2, color: "white", backgroundColor:"black"}}
         onClick={handleEndChat}
       >
         End Chat
       </Button>
     </div>
+    </Box>
   );
 }
