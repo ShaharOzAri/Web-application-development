@@ -19,6 +19,7 @@ import {
   Heading,
 } from "./FooterStyles.js";
 import { padding } from "@mui/system";
+import CurrenctWebService from "./CurrencyWebService.js";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -30,16 +31,17 @@ const Footer = () => {
           <Column>
             <FooterLink href="aboutus">
               {" "}
-              <Heading>ABOUT US </Heading>
-            </FooterLink>
-
-            <FooterLink>
-              Onecklace (Cutting Edge Jewellery LTD) is an international jewelry
-              manufacturer, our main office is based in Israel, that deals
-              exclusively with customized name necklaces
+              <Heading style={{ fontSize: "35px", fontFamily: "monospace" }}>
+                ABOUT US{" "}
+              </Heading>
+              <FooterLink style={{ fontSize: "20px", fontFamily: "monospace" }}>
+                Onecklace (Cutting Edge Jewellery LTD) is an international
+                jewelry manufacturer, our main office is based in Israel, that
+                deals exclusively with customized name necklaces.
+              </FooterLink>
             </FooterLink>
           </Column>
-          <Column style={{ padding: "80px" }}>
+          <Column style={{ padding: "15px", fontFamily: "monospace" }}>
             <Row>
               <FooterLink>
                 <FacebookShareButton
@@ -71,8 +73,9 @@ const Footer = () => {
                 ></ChatBubbleOutlineOutlinedIcon>
               </FooterLink>
             </Row>
+            <CurrenctWebService></CurrenctWebService>
           </Column>
-          <Column>
+          <Column style={{ fontFamily: "monospace" }}>
             <FooterLink>
               <GppGoodIcon
                 sx={{ fontSize: "35px", color: "black" }}
