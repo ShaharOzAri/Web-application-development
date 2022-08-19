@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Search from "../Category/Search";
+import { useNavigate } from "react-router-dom";
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
@@ -51,6 +52,7 @@ export default function DataGridDemo() {
     }
   };
 
+  const navigate = useNavigate();
   const handleAddUser = () => {
     navigate("/admin/addUser");
   };
@@ -59,7 +61,6 @@ export default function DataGridDemo() {
     getAll();
   }, []);
 
-  const navigate = useNavigate();
   return (
     <Box>
       <Container style={{ width: "60%" }}>
