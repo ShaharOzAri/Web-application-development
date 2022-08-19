@@ -8,6 +8,7 @@ import ProductCard from "../product/ProductCard";
 import ProductSection from "../product/ProductSection";
 import VideoPlayer from "./VideoPlayer";
 import Footer from "./Footer";
+import CurrenctWebService from "./CurrencyWebService";
 
 function HomePageContent() {
   return (
@@ -18,6 +19,8 @@ function HomePageContent() {
         <BestSeller></BestSeller>
         <ProductSection></ProductSection>
         <VideoPlayer></VideoPlayer>
+        {/* <CurrenctWebService></CurrenctWebService> */}
+        <Footer></Footer>
       </Container>
     </>
   );
