@@ -18,11 +18,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const calcProductQty = (id) => {
-    // var counter = 0;
-    // if (cartItems === null) {
-    //   return 0;
-    // }
-    const counter= cartItems.reduce((total, product)=> total+ (product._id === id), 0); 
+    const counter = cartItems.reduce(
+      (total, product) => total + (product._id === id),
+      0
+    );
     return counter;
   };
 
@@ -37,7 +36,6 @@ export const AuthProvider = ({ children }) => {
 
   const [cartQty, setCartQty] = useState(calcCartQty());
   const [cartTotal, setCartTotal] = useState(calcCartTotal());
-  
 
   const getCartTotal = () => {
     return cartTotal;
@@ -76,6 +74,12 @@ export const AuthProvider = ({ children }) => {
 
   const removeCartProduct = (id) => {
     SetCartItems(cartItems.filter((x) => x._id !== id));
+  };
+
+  const clearCart = () => {
+    cartItems.map((item) => {
+      removeCartProduct(item._id);
+    });
   };
 
   const changeQty = (product, quantity) => {
@@ -126,6 +130,7 @@ export const AuthProvider = ({ children }) => {
         addCartProduct,
         removeCartProduct,
         changeQty,
+        clearCart,
       }}
     >
       {children}

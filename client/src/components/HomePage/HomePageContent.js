@@ -20,7 +20,7 @@ function HomePageContent() {
         <BestSeller></BestSeller>
         <ProductSection></ProductSection>
         <VideoPlayer></VideoPlayer>
-        <ChatIcon></ChatIcon>
+        {/* <ChatIcon></ChatIcon> */}
         {/* <CurrenctWebService></CurrenctWebService> */}
         <Footer></Footer>
       </Container>
