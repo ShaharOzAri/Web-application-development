@@ -23,7 +23,6 @@ export default function UserDetailsAdmin() {
   const [snackbarMsg, setSnackbarMsg] = useState(null);
 
   const getUser = async (id) => {
-    console.log(id);
     var recivedUser = await getUserById(id);
     if (recivedUser.status == 200) {
       setUser(recivedUser.data.msg);
