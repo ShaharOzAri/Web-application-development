@@ -2,7 +2,7 @@ import CurrencyInput from "./CurrencyInput";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function CurrenctWebService() {
+function CurrencyWebService() {
   const [amount1, setAmount1] = useState(1);
   const [amount2, setAmount2] = useState(1);
   const [currency1, setCurrency1] = useState("USD");
@@ -12,10 +12,14 @@ function CurrenctWebService() {
   useEffect(() => {
     axios
       .get(
-        "https://api.apilayer.com/fixer/latest?base=USD&apikey=Cv90q7PvOc7KUuFX3ldwqVIfHLXMoNQz"
+        "https://api.apilayer.com/fixer/latest?base=USD&apikey=yPmDGgjWFFHU4oLLMkSThFaLzKcinbpl"
       )
       .then((response) => {
-        setRates(response.data.rates);
+        if (response.request.status == 403) {
+          console.log("something went wrong");
+        } else {
+          setRates(response.data.rates);
+        }
       });
   }, []);
 
@@ -54,7 +58,9 @@ function CurrenctWebService() {
 
   return (
     <div>
-      <h1>Currency Converter</h1>
+      <h1 style={{ fontFamily: "monospace", fontSize: "30px" }}>
+        Currency Converter
+      </h1>
       <CurrencyInput
         onAmountChange={handleAmount1Change}
         onCurrencyChange={handleCurrency1Change}
@@ -73,4 +79,4 @@ function CurrenctWebService() {
   );
 }
 
-export default CurrenctWebService;
+export default CurrencyWebService;

@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 
 function CurrencyInput(props) {
+  console.log(props.CurrencyInput);
   return (
-    <div className="group">
+    <div className="group" style={{ fontFamily: "monospace" }}>
       <input
         type="text"
         value={props.amount}

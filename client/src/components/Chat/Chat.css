@@ -1,12 +1,4 @@
-/* .Chat {
-  width: 100vw;
-  height: 100vh;
-  background: #fff;
-  color: #212121;
-  font-family: "Open Sans", sans-serif;
-  display: grid;
-  place-items: center;
-} */
+
 body {
   margin: 5px;
   padding: 0%;
@@ -17,6 +9,22 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
+
+}
+
+.header-tran {
+  width: 300px;
+  height: 30px;
+  background: #dfd3bc;
+  transition: width 2s;
+  margin-left: 40%;
+  font-family: "monospace";
+
+}
+
+.header-tran:hover{
+  width: 340px;
+  background-color: #e0d9cc;
 }
 
 .joinChatContainer h3 {
@@ -72,9 +80,9 @@ body {
 .chat-window .chat-header p {
   display: block;
   padding: 0 1em 0 2em;
-  color: #fff;
-  font-weight: 700;
+  color: #e0d9cc;
   line-height: 45px;
+  text-shadow: 1px 1px #bdbbbb;
 }
 
 .chat-window .chat-body {
