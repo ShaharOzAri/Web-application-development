@@ -20,13 +20,18 @@ export default function CheckoutPage(props) {
 
   const createOrderProductsArr = () => {
     const orderArr = new Array();
-    auth.cartItems.forEach((p) => {
-      orderArr.push({
-        id: p._id,
-        name: p.name,
-        qty: p.qty,
+    if(auth.cartItems!=null){
+      auth.cartItems.forEach((p) => {
+        orderArr.push({
+          id: p._id,
+          name: p.name,
+          qty: p.qty,
+        });
       });
-    });
+    }else{
+      alert("Your cart is empty. Please add some products");
+
+    }
     return orderArr;
   };
 
@@ -42,12 +47,13 @@ export default function CheckoutPage(props) {
   const placeOrderHandler = async (event) => {
     event.preventDefault();
     const finalAddress = createAddress();
-    if (finalAddress) {
+    const finalProductArray= createOrderProductsArr();
+    if (finalAddress && finalProductArray) {
       const currentDate = new Date();
       const userJson = JSON.parse(auth.getUser());
       const newOrder = {
         date: currentDate,
-        productIds: createOrderProductsArr(),
+        productIds: finalProductArray,
         totalSum: auth.getCartTotal(),
         userEmail: userJson.email,
         address: finalAddress,
@@ -55,7 +61,7 @@ export default function CheckoutPage(props) {
       var response = await AddNewOrder(newOrder);
       if (response.status == 200) {
         auth.clearCart();
-        navigate(`order/id=${response.data.msg._id}`);
+        navigate(`order/${response.data.msg._id}`);
       } else if (response.status == 403) {
         alert("Something went wrong,please try again");
       }

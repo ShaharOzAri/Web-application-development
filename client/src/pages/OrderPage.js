@@ -12,21 +12,26 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 export default function OrderPage(props){
 const auth= useAuth();
 const userName=JSON.stringify(auth.getUser()).first_name;
-const [validUserOrder, setValidUserOrder]= useState(true); 
+const [validUserOrder, setValidUserOrder]= useState(false); 
 const { orderId } = useParams();
 const navigate= useNavigate(); 
 
 
 const isValidUserOrder= async ()=>{
-        var response= await getOrderById(orderId);
+        var response= await getOrderById(response);
+        console.log('response');
+      
+        console.log("response",response);
+
         if(response.status == 200){
-            // console.log(response);
-    
+            console.log("response",response);
             if(response.data.msg.userEmail===JSON.parse(auth.getUser()).email){
                 console.log(response.data.msg.userEmail);
                 setValidUserOrder(true);
             }
             else{
+                console.log(response.data.msg);
+
                 setValidUserOrder(false);
             }
         }else if(response.status == 403){
