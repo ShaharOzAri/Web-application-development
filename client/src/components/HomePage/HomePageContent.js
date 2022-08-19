@@ -9,6 +9,7 @@ import ProductSection from "../product/ProductSection";
 import VideoPlayer from "./VideoPlayer";
 import Footer from "./Footer";
 import ChatIcon from "./ChatIcon";
+import CurrenctWebService from "./CurrencyWebService";
 
 function HomePageContent() {
   return (
@@ -20,6 +21,8 @@ function HomePageContent() {
         <ProductSection></ProductSection>
         <VideoPlayer></VideoPlayer>
         <ChatIcon></ChatIcon>
+        {/* <CurrenctWebService></CurrenctWebService> */}
+        <Footer></Footer>
       </Container>
     </>
   );

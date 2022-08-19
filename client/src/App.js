@@ -59,10 +59,10 @@ function App() {
               <Route path="/category/:category" element={<CategoryPage />} />
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/statics" element={<Statics />} />
-              <Route path="/orders" element={<OrderPage/>}/>
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/orders" element={<OrderPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/checkout/order/:id" element={<OrderPage />} />
-              {/* <Route path="/user" element={<UserDetails />} /> */}
               <Route path="/user/" element={<UserDetails />} />
               <Route
                 exact
