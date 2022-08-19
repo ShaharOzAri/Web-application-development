@@ -1,5 +1,4 @@
 import CheckoutPage from "./pages/CheckoutPage";
-import img from "./components/images/maroco.png";
 import * as React from "react";
 import "./app.css";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
