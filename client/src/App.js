@@ -32,7 +32,7 @@ const customTheme = createTheme({
   palette: {
     primary: {
       main: "#eaece5",
-      contrastText: "white",
+      contrastText: "black",
     },
   },
 });
@@ -62,7 +62,9 @@ function App() {
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/orders" element={<OrderPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
-              <Route path="/checkout/order/:id" element={<OrderPage />} />
+
+              <Route path="/checkout/order/:orderId" element={<OrderPage />} />
+              {/* <Route path="/user" element={<UserDetails />} /> */}
               <Route path="/user/" element={<UserDetails />} />
               <Route
                 exact

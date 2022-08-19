@@ -54,6 +54,7 @@ export default function CheckoutPage(props) {
       };
       var response = await AddNewOrder(newOrder);
       if (response.status == 200) {
+        auth.clearCart();
         navigate(`order/id=${response.data.msg._id}`);
       } else if (response.status == 403) {
         alert("Something went wrong,please try again");

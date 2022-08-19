@@ -1,20 +1,23 @@
-import { Button } from '@mui/material';
-import React from 'react'
+import { Button } from "@mui/material";
+import React, { useEffect } from "react";
 import { FiMessageCircle } from "react-icons/fi";
 import { useAuth } from "../Utils/auth";
 import { useNavigate, useParams } from "react-router-dom";
+import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 
-import {
-  getUserById,
-  updateUser,
-} from "../../controller/UserController";
+import { getUserById, updateUser } from "../../controller/UserController";
 
 function ChatIcon() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const auth = useAuth();
   const loginUser = JSON.parse(auth.getUser());
-  const id = loginUser._id;
-  console.log("id", id);
+  var id;
+
+  useEffect(() => {
+    if (loginUser != null) {
+      const id = loginUser._id;
+    }
+  });
 
   const handleStartChat = async () => {
     var user;
@@ -27,8 +30,9 @@ function ChatIcon() {
       }
     }
     const response = await updateUser(user);
+    console.log(user);
     if (response.status == 200) {
-      navigate('/chat');
+      navigate("/chat");
     } else {
       alert("something went wrong");
     }
@@ -40,13 +44,15 @@ function ChatIcon() {
   //     //handleStartChat();
 
   // }
-  
+
   return (
     <Button onClick={handleStartChat}>
-      <FiMessageCircle size="4em" color="cornflowerblue" />
+      <ChatBubbleOutlineOutlinedIcon
+        sx={{ fontSize: "40px", color: "black" }}
+      ></ChatBubbleOutlineOutlinedIcon>
+      {/* <FiMessageCircle size="4em" color="cornflowerblue" /> */}
     </Button>
-  )
+  );
 }
 
-export default ChatIcon
-
+export default ChatIcon;

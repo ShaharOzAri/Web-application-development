@@ -47,6 +47,16 @@ export const getCategoryById = (id) => {
     );
 };
 
+export const getCategoryByName = async (name) => {
+  var res = await axios.get(url + "getCategoryByName/", {
+    params: name,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return res;
+};
+
 export const updateCategory = (category) => {
   return axios
     .post(url + "update/", {

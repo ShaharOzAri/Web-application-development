@@ -7,16 +7,15 @@ export const Box = styled.div`
   position: absolute;
   left: 0;
   button: 0;
-
   width: 100%;
-  font-family: acumin-pro, system-ui, sans-serif;
+  font-family: "monospace";
   padding-top: 30px;
 `;
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: "Pacifico", cursive;
+  font-family: "monospace";
   min-heigth: 100vh;
   background-color: #e0d9cc;
 `;
