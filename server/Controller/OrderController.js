@@ -60,9 +60,7 @@ router.route("/getOrderById").get(async (request, response) => {
       msg: result,
     });
   } else {
-    response.status(403).send({
-      msg: result,
-    });
+    response.status(403).send();
   }
 });
 
