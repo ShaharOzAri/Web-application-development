@@ -22,10 +22,7 @@ export const AuthProvider = ({ children }) => {
     // if (cartItems === null) {
     //   return 0;
     // }
-    console.log("Product quantity");
-    console.log(id);
     const counter= cartItems.reduce((total, product)=> total+ (product._id === id), 0); 
-    console.log(counter);
     return counter;
   };
 
@@ -78,7 +75,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const removeCartProduct = (id) => {
-    console.log('in auth');
     SetCartItems(cartItems.filter((x) => x._id !== id));
   };
 

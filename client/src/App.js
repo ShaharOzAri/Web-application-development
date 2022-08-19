@@ -22,8 +22,11 @@ import EditProductAdmin from "./components/product/EditProductAdmin";
 import AddUser from "./components/User/AddUser";
 import Footer from "./components/HomePage/Footer";
 import AddProduct from "./components/product/AddProduct";
-//import Statics from "./components/Statics/Statics";
+import Statics from "./components/Statics/Statics";
 import OrderPage from "./pages/OrderPage";
+import OrderListItem from "./components/Orders/OrderListItem";
+import OrderDetails from "./components/Orders/OrderDetails";
+import ChatsList from "./components/Chat/ChatsList";
 
 const customTheme = createTheme({
   palette: {
@@ -56,17 +59,36 @@ function App() {
               <Route path="/category/:category" element={<CategoryPage />} />
               <Route path="/product/:id" element={<ProductPage />} />
 
-              {/* <Route path="/statics" element={<Statics />} /> */}
+              <Route path="/statics" element={<Statics />} />
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/orders" element={<OrderPage />} />
-              {/* <Route path="/user" element={<UserDetails />} /> */}
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/checkout/order/:id" element={<OrderPage />} />
               <Route path="/user/" element={<UserDetails />} />
               <Route
                 exact
                 path="/admin"
                 element={
                   <RequireAuth>
-                    <AdminHomePage />
+                    <Statics />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                exact
+                path="/admin/chats"
+                element={
+                  <RequireAuth>
+                    <ChatsList />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                exact
+                path="/admin/chat/:id"
+                element={
+                  <RequireAuth>
+                    <Chat />
                   </RequireAuth>
                 }
               />
@@ -107,6 +129,22 @@ function App() {
                 element={
                   <RequireAuth>
                     <EditProductAdmin />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="admin/orders"
+                element={
+                  <RequireAuth>
+                    <OrderListItem />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="admin/order/:orderId"
+                element={
+                  <RequireAuth>
+                    <OrderDetails />
                   </RequireAuth>
                 }
               />

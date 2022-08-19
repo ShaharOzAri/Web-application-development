@@ -6,6 +6,7 @@ const usersSchema = new mongoose.Schema({
   last_name: String,
   password: String,
   role: String,
+  chat: Boolean,
 });
 
 const users = mongoose.model("Users", usersSchema);
