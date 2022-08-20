@@ -11,7 +11,7 @@ export default function Deliveries(props) {
   const setAddress = props.setAddress;
   const setZip = props.setZip;
 
-  const [isValidAddress, setValidAddress] = useState();
+  const [isValidAddress, setValidAddress] = useState(false);
 
   return (
     <Container
@@ -52,96 +52,99 @@ export default function Deliveries(props) {
             <img src={image} sx={{ width: "5" }} />
           </ImageListItem>
         </Grid>
-        <Box
-          component="form"
-          noValidate
-          autoComplete="off"
-          mt={4}
-          sx={{
-            alignContent: "center",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            whiteSpace: "normal",
-          }}
-        >
-          <Grid item xs={8}>
-            <Autocomplete
-              disablePortal
-              id="city"
-              name="city"
-              // value={city}
-              options={props.cities}
-              renderInput={(params) => (
+        <Grid item sx={8}>
+          <Box
+            component="form"
+            noValidate
+            autoComplete="off"
+            mt={4}
+            sx={{
+              alignContent: "center",
+              display: "flex",
+              //   display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              whiteSpace: "normal",
+            }}
+          >
+            <Grid item xs={8}>
+              <Autocomplete
+                disablePortal
+                id="city"
+                name="city"
+                // value={city}
+                options={props.cities}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="City"
+                    helperText="Check if your address is in the shipping area"
+                    sx={{ width: 500 }}
+                    fullWidth
+                  />
+                )}
+                onChange={(event, newCity) => {
+                  setValidAddress(!isValidAddress);
+                  setCity(newCity.label);
+                }}
+              />
+            </Grid>
+            <Grid item xs={8}>
+              {isValidAddress ? (
                 <TextField
-                  {...params}
-                  label="City"
-                  helperText="Check if your address is in the shipping area"
+                  required
+                  id="disabledAddress"
+                  label="Address"
+                  defaultValue="Address"
+                  type="text"
+                  placeholder="Street & House number"
+                  helperText=" "
+                  onChange={(event) => {
+                    setAddress(event.target.value);
+                  }}
                   sx={{ width: 500 }}
-                  fullWidth
+                />
+              ) : (
+                <TextField
+                  required
+                  disabled
+                  error
+                  id="address"
+                  name="address"
+                  label="Address"
+                  helperText="Please enter a suitable city"
+                  sx={{ width: 500 }}
                 />
               )}
-              onChange={(event, newCity) => {
-                setValidAddress(!isValidAddress);
-                setCity(newCity.label);
-              }}
-            />
-          </Grid>
-          <Grid item xs={8}>
-            {isValidAddress ? (
-              <TextField
-                required
-                id="disabledAddress"
-                label="Address"
-                defaultValue="Address"
-                type="text"
-                placeholder="Street & House number"
-                helperText=" "
-                onChange={(event) => {
-                  setAddress(event.target.value);
-                }}
-                sx={{ width: 500 }}
-              />
-            ) : (
-              <TextField
-                required
-                disabled
-                error
-                id="address"
-                name="address"
-                label="Address"
-                helperText="Please enter a suitable city"
-                sx={{ width: 500 }}
-              />
-            )}
-          </Grid>
-          <Grid item xs={8}>
-            {isValidAddress ? (
-              <TextField
-                required
-                id="zip"
-                label="Zip / Postcode"
-                type="number"
-                placeholder="Zip number"
-                sx={{ width: 500 }}
-                helperText=" "
-                onChange={(event) => {
-                  setZip(event.target.value);
-                }}
-              />
-            ) : (
-              <TextField
-                required
-                disabled
-                error
-                id="outlined-disabled"
-                label="Zip / Postcode"
-                helperText="Please enter a suitable city"
-                sx={{ width: 500 }}
-              />
-            )}
-          </Grid>
-        </Box>
+            </Grid>
+            <Grid item xs={8}>
+              {isValidAddress ? (
+                <TextField
+                  required
+                  id="zip"
+                  label="Zip / Postcode"
+                  type="number"
+                  placeholder="Zip number"
+                  sx={{ width: 500 }}
+                  helperText=" "
+                  onChange={(event) => {
+                    setZip(event.target.value);
+                  }}
+                />
+              ) : (
+                <TextField
+                  required
+                  disabled
+                  error
+                  id="outlined-disabled"
+                  label="Zip / Postcode"
+                  helperText="Please enter a suitable city"
+                  sx={{ width: 500 }}
+                />
+              )}
+            </Grid>
+          </Box>
+        </Grid>
       </Grid>
     </Container>
   );

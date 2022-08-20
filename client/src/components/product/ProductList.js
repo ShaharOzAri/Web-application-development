@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Container } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
@@ -13,9 +13,7 @@ import { useAuth } from "../Utils/auth";
 export default function ProductList(props) {
   const auth = useAuth();
 
-  const products = props.productList;
-
-  const [list, updateList] = useState(products);
+  // const products = props.productList;
 
   const removeItemHandler = (e) => {
     var p = e.target.getAttribute("removeProduct");
@@ -28,7 +26,7 @@ export default function ProductList(props) {
     return (
       <div>
         {!auth.cartTotal ? (
-          <p>no products yet.....</p>
+          <p>Total price: 0 $</p>
         ) : (
           <p>Total price: {auth.cartTotal} $</p>
         )}
@@ -37,7 +35,7 @@ export default function ProductList(props) {
   };
 
   return (
-    <Container
+    <Container 
       sx={{
         boxShadow: 3,
         backgroundColor: "#fff",
@@ -47,6 +45,7 @@ export default function ProductList(props) {
         backgroundColor: "#FDFDFD",
       }}
     >
+      <Grid item>
       <Typography
         sx={{
           display: "flex",
@@ -59,11 +58,12 @@ export default function ProductList(props) {
       >
         PRODUCT LIST
       </Typography>
-
+      </Grid>
       <List sx={{ display: "flex", flexDirection: "column", color: "#F3E8DE" }}>
         {auth.cartItems != null ? (
           auth.cartItems.map((product) => {
             return (
+              <Grid item>
               <ListItem
                 sx={{
                   display: "flex",
@@ -75,7 +75,6 @@ export default function ProductList(props) {
                   backgroundColor: "#FDFDFD",
                 }}
               >
-                {/* <Card sx={{display: 'flex', flexDirection: 'row', width: '100%', backgroundColor: '#FDFDFD'}}> */}
                 <ImageListItem sx={{ width: 200, height: 200, boxShadow: 3 }}>
                   <img src={`${product.images[0]}`} sx={{ width: "10px" }} />
                 </ImageListItem>
@@ -87,46 +86,52 @@ export default function ProductList(props) {
                     color: "black",
                   }}
                 >
-                  <Typography
-                    sx={{ fontWeight: "bold", alignContent: "right" }}
-                  >
-                    {" "}
-                    {product.name}{" "}
-                  </Typography>
-                  <Typography sx={{ alignContent: "left" }}>
-                    {" "}
-                    <b>Price:</b> {product.price} ${" "}
-                  </Typography>
-                  <Typography sx={{ alignContent: "left" }}>
-                    {" "}
-                    <b>Quantity:</b> {product.qty}{" "}
-                  </Typography>
-                  <Button
-                    sx={{ color: "black", fontSize: "12" }}
-                    removeProduct={product._id}
-                    onClick={removeItemHandler}
-                  >
+                  <Grid item  sx={{display: 'flex', flexDirection: "row"}}>  
+                  <Typography variant="button" sx={{ fontWeight: "bold",fontKerning:'normal', textShadow:'2px 3px 7px grey' , alignContent: "right", fontSize:20, paddingBottom:3 }} >{product.name}{" "}</Typography>
+                  </Grid>
+                
+                <Grid item>
+                  <Typography sx={{ alignContent: "left",fontSize:18, paddingBottom:2 }}><b>Price:</b> {product.price} $</Typography>
+                </Grid>
+                <Grid item>
+                  <Grid item sx={8}>
+                  <Typography sx={{ alignContent: "left",fontSize:18, paddingBottom:2 }}><b>Quantity:</b> {product.qty}</Typography>
+                  </Grid>
+                  <Grid item sx={{ display: 'flex', flexDirection:'right', justifyContent: "right", alignContent: "right",color: "black", fontSize: "12" }}>
+                  <Button size='large'sx={{color: "black", fontSize: "12" }} removeProduct={product._id}onClick={removeItemHandler}>
                     <DeleteIcon />
                     remove
                   </Button>
+                  </Grid>
+                </Grid>
                 </CardContent>
                 {/* </Card> */}
               </ListItem>
+              </Grid>
+
             );
           })
         ) : (
-          <Typography>Cart Is Empty</Typography>
+          <Grid item sx={{ display: 'flex', flexDirection:'row', justifyContent: "center", alignContent: "center",color: "#F26D7B"}}> 
+          <Typography variant="button" sx={{ fontWeight: "bold",fontKerning:'normal', textShadow:'2px 3px 7px pink' , fontSize:18, paddingBottom:3, paddingTop:2 }}>
+            Your cart Is Empty! <br/>
+            {/* Please add some products */}
+            </Typography>
+          </Grid>
+         
         )}
-        <Typography
+        <Typography  variant="button"
           sx={{
-            alignContent: "left",
+            display: 'flex', justifyContent: "right",
+            alignContent: "right",
             color: "black",
             fontFamily: "monospace",
             backgroundColor: "#f4f4f4",
+            fontWeight: "bold",
+            fontSize: 20, padding:0
           }}
         >
-          {" "}
-          {updateTotalSum()}{" "}
+          {updateTotalSum()}
         </Typography>
       </List>
     </Container>
