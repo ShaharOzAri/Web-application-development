@@ -18,24 +18,28 @@ const navigate= useNavigate();
 
 
 const isValidUserOrder= async ()=>{
-        var response= await getOrderById(response);
+        var response= await getOrderById(orderId);
         console.log('response');
       
         console.log("response",response);
 
         if(response.status == 200){
             console.log("response",response);
-            if(response.data.msg.userEmail===JSON.parse(auth.getUser()).email){
-                console.log(response.data.msg.userEmail);
-                setValidUserOrder(true);
+            if(response!=null){
+                if(response.data.msg.userEmail===JSON.parse(auth.getUser()).email){
+                    console.log(response.data.msg.userEmail);
+                    setValidUserOrder(true);
+                }
+                
             }
             else{
                 console.log(response.data.msg);
-
                 setValidUserOrder(false);
             }
         }else if(response.status == 403){
             console.log("Something went wrong,please try again");
+            setValidUserOrder(false);
+
         }
 
 }

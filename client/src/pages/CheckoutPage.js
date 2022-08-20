@@ -109,4 +109,27 @@ export default function CheckoutPage(props) {
   );
 }
 
-const cities = [{ label: "Tzfat" }, { label: "Tel-Aviv" }];
+const cities = 
+[{ label: "Tzfat" },
+ { label: "Tel-Aviv" },
+ { label: "Acre" },
+{ label: "Karmiel" }, 
+{ label: "Rishon LeZion" }, 
+{ label: "Tiberias" }, 
+{ label: "Modi'in-Maccabim-Re'ut" },
+{ label: "Kiryat Shmona" },
+{ label: "Holon" },
+{ label: "Hadera" },
+{ label: "Ashdod" },
+{ label: "Afula" },
+{ label: "Ashkelon" },
+{ label: "Bat Yam" },
+{ label: "Beersheba" },
+{ label: "Dimona" },
+{ label: "Herzliya" },
+{ label: "Jerusalem" },
+{ label: "Ramla" },
+{ label: "Rehovot" },
+{ label: "Yavne" },
+{ label: "Eilat" },
+];
