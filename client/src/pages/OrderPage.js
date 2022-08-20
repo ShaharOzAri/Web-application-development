@@ -44,9 +44,7 @@ const isValidUserOrder= async ()=>{
 
 }
 
-// isValidUserOrder();
 
-// isValidUserOrder();
 useEffect(()=>{isValidUserOrder()}, []);
 
 
@@ -88,34 +86,6 @@ return(
             <Grid item sx={{display:'flex', alignContent:'center',justifyContent:'center', alignItems:'center', flexDirection:'row',paddingTop:4 ,paddingBottom: 5}}>
                 <Button size="large" variant="contained" onClick={()=> navigate('/')} sx={{color: 'white', backgroundColor: '#1F1F1C'}} endIcon={<HomeRoundedIcon size="large"/>} >GO TO HOMEPAGE</Button>
             </Grid>
-        
-{/* 
-    <Typography 
-    sx={{display: 'flex',fontWeight: 'bold',justifyContent:'center', alignContent: 'center', color:'black', fontSize: 25}}>
-        YOUR ORDER RECIEVED
-    </Typography>
-
-    <Typography 
-        sx={{display: 'flex',justifyContent:'left', alignContent: 'center', color:'black', fontSize: 20}}>
-        Hey, {`${JSON.parse(auth.getUser()).first_name}`}!
-        {console.log(userName)}
-        <br/><br/><br/><br/>
-    
-
-
-    </Typography>
-
-    <Typography 
-        sx={{display: 'flex',justifyContent:'left', alignContent: 'center', color:'black', fontSize: 20}}>
-        <p>Thank you for your order.</p>
-        We will back to you soon as posible to finish your order.
-        Your order ID is: {`${JSON.parse(auth.getUser()).first_name}`}
-        we will contact you within 48 hours
-    </Typography>
-   
-        {console.log(orderId)} */}
-
-
  </Container>
  
  );

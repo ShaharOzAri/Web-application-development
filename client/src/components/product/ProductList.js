@@ -104,12 +104,6 @@ export default function ProductList(props) {
                   </Button>
                   </Grid>
                 </Grid>
-                {/* <Grid item sx={4}>
-                  <Button sx={{ alignContent: "right",color: "black", fontSize: "12" }} removeProduct={product._id}onClick={removeItemHandler}>
-                    <DeleteIcon />
-                    remove
-                  </Button>
-                  </Grid> */}
                 </CardContent>
                 {/* </Card> */}
               </ListItem>
