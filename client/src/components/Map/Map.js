@@ -11,7 +11,6 @@ export default function Map() {
     const recivedLocatios = await getLocations();
     if (recivedLocatios.status == 200) {
       setLocations(recivedLocatios.data.msg);
-      // console.log(typeof recivedLocatios.data.msg);
     }
   };
 
@@ -31,7 +30,6 @@ export default function Map() {
       flexDirection="column"
       alignItems="center"
       h="100vh"
-      w="100vw"
     >
       <Box position="absolute" bottom={0} h="85%" w="80%">
         <GoogleMap
@@ -40,10 +38,10 @@ export default function Map() {
           mapContainerStyle={{ width: "100%", height: "100%" }}
         >
           {locations != null
-            ? locations.map((marker) => (
+            ? locations.map((marker, index) => (
                 <Marker
                   position={{ lat: marker.latitude, lng: marker.longtitude }}
-                  key={marker.id}
+                  key={index}
                 />
               ))
             : ""}

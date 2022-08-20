@@ -10,12 +10,8 @@ export const AddNewCategory = (category) => {
       },
     })
     .then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
+      (response) => {},
+      (error) => {}
     );
 };
 
@@ -29,22 +25,14 @@ export const getAllCategories = async () => {
   return result;
 };
 
-export const getCategoryById = (id) => {
-  return axios
-    .post(url + "getCategoryById/", {
-      params: id,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+export const getCategoryById = async (id) => {
+  var res = await axios.post(url + "getCategoryById/", {
+    params: id,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return res;
 };
 
 export const getCategoryByName = async (name) => {
@@ -57,38 +45,22 @@ export const getCategoryByName = async (name) => {
   return res;
 };
 
-export const updateCategory = (category) => {
-  return axios
-    .post(url + "update/", {
-      params: category,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+export const updateCategory = async (category) => {
+  var res = await axios.post(url + "update/", {
+    params: category,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return res;
 };
 
-export const deleteCategory = (id) => {
-  return axios
-    .post(url + "delete/", {
-      params: id,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+export const deleteCategory = async (id) => {
+  var res = await axios.post(url + "delete/", {
+    params: id,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return res;
 };

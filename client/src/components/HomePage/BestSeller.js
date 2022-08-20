@@ -30,6 +30,7 @@ export default function BestSeller() {
         direction="row"
         alignItems="center"
         justifyContent="center"
+        sx={{ mb: 5 }}
       >
         {products
           .sort((a, b) => b.numberOfOrders - a.numberOfOrders)
@@ -37,7 +38,7 @@ export default function BestSeller() {
           .map((product, index) => {
             return (
               <Grid item xs={3} key={index}>
-                <ProductCard product={product} />;
+                <ProductCard product={product} />
               </Grid>
             );
           })}

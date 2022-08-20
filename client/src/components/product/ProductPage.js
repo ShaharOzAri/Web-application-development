@@ -25,7 +25,6 @@ export default function ProductPage() {
   const getProductData = async () => {
     const response = await getProductById(id);
     if (response.status == 200) {
-      //console.log(response.data.msg.images);
       setProductData(response.data.msg);
     } else {
       alert("something went wrong");

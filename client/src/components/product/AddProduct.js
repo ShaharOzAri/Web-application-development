@@ -22,16 +22,12 @@ export default function AddProduct() {
 
   const getCategoryNames = async () => {
     var res = await getAllCategories();
-    // console.log(categories.data.msg);
     if (res.status == 200) {
       res = Array.from(res.data.msg);
       res = res.map((i) => {
         return i.name;
       });
       setCategories(res);
-      console.log(res);
-    } else {
-      console.log(res.data);
     }
   };
 
@@ -227,8 +223,12 @@ export default function AddProduct() {
                     }}
                   >
                     {categrories != ""
-                      ? categrories.map((i) => {
-                          return <MenuItem value={i}>{i}</MenuItem>;
+                      ? categrories.map((i, index) => {
+                          return (
+                            <MenuItem key={index} value={i}>
+                              {i}
+                            </MenuItem>
+                          );
                         })
                       : ""}
                     {/* 

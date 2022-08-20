@@ -30,22 +30,14 @@ export const getOrdersByDate = async (date) => {
   return res;
 };
 
-export const getOrdersByUser = (user) => {
-  return axios
-    .post(url + "getOrdersByUser/", {
-      params: user,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+export const getOrdersByUser = async (user) => {
+  var res = await axios.get(url + "getOrdersByUser/", {
+    params: user,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return res;
 };
 
 export const getOrderById = async (id) => {

@@ -17,7 +17,6 @@ import { SuccessSnackbar } from "../Utils/Snackbar";
 
 export default function UserDetailsAdmin() {
   const { userId } = useParams();
-  console.log(userId);
   const [user, setUser] = useState(null);
   const [snackbar, setSnackbar] = useState(false);
   const [snackbarMsg, setSnackbarMsg] = useState(null);
@@ -150,7 +149,6 @@ export default function UserDetailsAdmin() {
                   label="role"
                   onChange={(event) => {
                     updatedUser["role"] = event.target.value;
-                    console.log(updatedUser);
                   }}
                 >
                   <MenuItem value="client">Client</MenuItem>

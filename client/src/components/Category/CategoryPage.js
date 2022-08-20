@@ -79,7 +79,7 @@ export default function CategoryPage() {
             {products.map((product, index) => {
               return (
                 <Grid item xs={3} key={index}>
-                  <ProductCard product={product} />;
+                  <ProductCard product={product} />
                 </Grid>
               );
             })}

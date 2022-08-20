@@ -168,7 +168,6 @@ export default function EditProductAdmin() {
                     label="material"
                     onChange={(event) => {
                       updatedProduct["material"] = event.target.value;
-                      console.log(updatedProduct);
                     }}
                   >
                     <MenuItem value="sterling silver">Sterling Silver</MenuItem>

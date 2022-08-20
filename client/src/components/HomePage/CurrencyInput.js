@@ -5,11 +5,11 @@ function CurrencyInput(props) {
     <div className="group" style={{ fontFamily: "monospace" }}>
       <input
         type="text"
-        value={props.amount}
+        value={props.amount.toString()}
         onChange={(ev) => props.onAmountChange(ev.target.value)}
       />
       <select
-        value={props.currency}
+        value={props.currency.toString()}
         onChange={(ev) => {
           props.onCurrencyChange(ev.target.value);
         }}

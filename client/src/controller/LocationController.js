@@ -1,21 +1,16 @@
 import axios from "axios";
 
-export const AddNewLocation = (location) => {
-  return axios
-    .post(process.env.REACT_APP_API_URL + "location/createlocation/", {
+export const AddNewLocation = async (location) => {
+  var res = await axios.post(
+    process.env.REACT_APP_API_URL + "location/createlocation/",
+    {
       params: location,
       headers: {
         "Content-Type": "application/json",
       },
-    })
-    .then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    }
+  );
+  return res;
 };
 
 export const getLocations = async () => {

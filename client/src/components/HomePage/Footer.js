@@ -27,16 +27,15 @@ const Footer = () => {
       <Container>
         <Row>
           <Column>
-            <FooterLink href="aboutus">
-              {" "}
+            <FooterLink href="/aboutus">
               <Heading style={{ fontSize: "35px", fontFamily: "monospace" }}>
                 ABOUT US{" "}
               </Heading>
-              <FooterLink style={{ fontSize: "20px", fontFamily: "monospace" }}>
-                Onecklace (Cutting Edge Jewellery LTD) is an international
-                jewelry manufacturer, our main office is based in Israel, that
-                deals exclusively with customized name necklaces.
-              </FooterLink>
+            </FooterLink>
+            <FooterLink style={{ fontSize: "20px", fontFamily: "monospace" }}>
+              Onecklace (Cutting Edge Jewellery LTD) is an international jewelry
+              manufacturer, our main office is based in Israel, that deals
+              exclusively with customized name necklaces.
             </FooterLink>
           </Column>
           <Column style={{ padding: "15px", fontFamily: "monospace" }}>

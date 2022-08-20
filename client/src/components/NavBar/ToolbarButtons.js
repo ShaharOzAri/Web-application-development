@@ -15,12 +15,9 @@ export default function ToolbarButtons() {
 
   const getCategoryNames = async () => {
     var categories = await getAllCategories();
-    // console.log(categories.data.msg);
     if (categories.status == 200) {
       categories = Array.from(categories.data.msg);
       setNavItems(categories);
-    } else {
-      console.log(categories.data);
     }
   };
 

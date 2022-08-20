@@ -4,12 +4,8 @@ module.exports = class ShopsLocationService {
   static async insertLocation(location) {
     shopsLocation
       .insertMany(location)
-      .then((value) => {
-        console.log("Location Saved Successfully");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      .then((value) => {})
+      .catch((error) => {});
   }
 
   static async getAllLocations() {

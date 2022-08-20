@@ -61,7 +61,7 @@ export const UserDetails = () => {
       {userDetails != null ? (
         <Box sx={{ my: 5 }}>
           <Typography sx={{ fontSize: 40, color: "black" }}>
-            Welcom {userDetails.first_name}
+            Welcome {userDetails.first_name}
           </Typography>
           <Button
             variant="contained"

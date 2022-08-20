@@ -1,5 +1,4 @@
 import CheckoutPage from "./pages/CheckoutPage";
-import img from "./components/images/maroco.png";
 import * as React from "react";
 import "./app.css";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
@@ -12,7 +11,6 @@ import CreateLocations from "./components/Map/CreateLocations";
 import CategoryPage from "./components/Category/CategoryPage";
 import { AuthProvider } from "./components/Utils/auth";
 import { UserDetails } from "./components/User/UserDetails";
-import { AdminHomePage } from "./components/Admin/AdminHomePage";
 import { RequireAuth } from "./components/Utils/RequireAuth";
 import UserDetailsAdmin from "./components/User/UserDetailsAdmin";
 import UserListItem from "./components/User/UserListItem";

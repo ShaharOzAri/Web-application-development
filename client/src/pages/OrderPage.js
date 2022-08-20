@@ -11,7 +11,6 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 
 export default function OrderPage(props) {
   const auth = useAuth();
-  const userName = JSON.stringify(auth.getUser()).first_name;
   const [validUserOrder, setValidUserOrder] = useState(false);
   const { orderId } = useParams();
   const navigate = useNavigate();
@@ -19,22 +18,16 @@ export default function OrderPage(props) {
   const isValidUserOrder = async () => {
     var response = await getOrderById(orderId);
     if (response.status == 200) {
-      // console.log(response);
-
       if (response.data.msg.userEmail === JSON.parse(auth.getUser()).email) {
-        console.log(response.data.msg.userEmail);
         setValidUserOrder(true);
       } else {
         setValidUserOrder(false);
       }
-    } else if (response.status == 403) {
-      console.log("Something went wrong,please try again");
+    } else if (response.status === 403 || response.status === 429) {
+      setValidUserOrder(false);
     }
   };
 
-  // isValidUserOrder();
-
-  // isValidUserOrder();
   useEffect(() => {
     isValidUserOrder();
   }, []);
@@ -159,7 +152,6 @@ export default function OrderPage(props) {
               We will contact you soon as posible to finish your order.
               <br />
               Your order ID is: {orderId}
-              {console.log(orderId)}
             </Typography>
           </Grid>
         )}
@@ -187,32 +179,6 @@ export default function OrderPage(props) {
           GO TO HOMEPAGE
         </Button>
       </Grid>
-
-      {/* 
-    <Typography 
-    sx={{display: 'flex',fontWeight: 'bold',justifyContent:'center', alignContent: 'center', color:'black', fontSize: 25}}>
-        YOUR ORDER RECIEVED
-    </Typography>
-
-    <Typography 
-        sx={{display: 'flex',justifyContent:'left', alignContent: 'center', color:'black', fontSize: 20}}>
-        Hey, {`${JSON.parse(auth.getUser()).first_name}`}!
-        {console.log(userName)}
-        <br/><br/><br/><br/>
-    
-
-
-    </Typography>
-
-    <Typography 
-        sx={{display: 'flex',justifyContent:'left', alignContent: 'center', color:'black', fontSize: 20}}>
-        <p>Thank you for your order.</p>
-        We will back to you soon as posible to finish your order.
-        Your order ID is: {`${JSON.parse(auth.getUser()).first_name}`}
-        we will contact you within 48 hours
-    </Typography>
-   
-        {console.log(orderId)} */}
     </Container>
   );
 }

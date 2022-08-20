@@ -59,7 +59,6 @@ export default function DataGridDemo() {
     var recivedUsers = await getOrdersByDate(date);
     if (recivedUsers.status == 200) {
       var data = recivedUsers.data.msg;
-      console.log(data);
       for (var i = 0; i < data.length; i++) {
         data[i].id = i + 1;
         data[i].date = data[i].date.split("T")[0];

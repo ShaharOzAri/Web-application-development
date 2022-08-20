@@ -22,8 +22,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function ShoppingCartDrawer(props) {
-
-  const navigate= useNavigate(); 
+  const navigate = useNavigate();
 
   const handleDrawerClose = () => {
     props.setOpen(false);
@@ -31,10 +30,9 @@ export default function ShoppingCartDrawer(props) {
   const Auth = useAuth();
 
   const checkOut = () => {
-    if(Auth.getUser()==null){
+    if (Auth.getUser() == null) {
       alert("please sign in/sign up");
-    } else
-      navigate(`checkout`);    
+    } else navigate(`checkout`);
     handleDrawerClose();
   };
 
@@ -140,7 +138,6 @@ export default function ShoppingCartDrawer(props) {
           </Grid>
         </Grid>
 
-        
         <Button
           onClick={checkOut}
           fullWidth
@@ -149,6 +146,7 @@ export default function ShoppingCartDrawer(props) {
             my: 3,
             bgcolor: "black",
             width: "90%",
+            color: "white",
           }}
         >
           Countinue to CheckOut

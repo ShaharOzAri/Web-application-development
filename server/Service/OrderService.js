@@ -60,7 +60,12 @@ module.exports = class OrderService {
   }
 
   static async getOrderById(id) {
-    return orders.findById(id).exec();
+    var res = await orders.findById(id).exec();
+    if (res) {
+      return res;
+    } else {
+      return null;
+    }
   }
 
   static async update(order) {
@@ -75,11 +80,5 @@ module.exports = class OrderService {
   static async delete(id) {
     await orders.findByIdAndRemove(id);
     return "ok";
-    // console.log(res);
-    // if (res) {
-    //   return res;
-    // } else {
-    //   return null;
-    // }
   }
 };

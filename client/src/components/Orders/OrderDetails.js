@@ -19,11 +19,17 @@ export default function OrderDetails() {
   const { orderId } = useParams();
   const [order, setOrder] = useState(null);
   const [date, setDate] = useState(null);
+  const [productIds, setProductIds] = useState(new Array());
 
   const getOrder = async (id) => {
     var recivedUser = await getOrderById(id);
     if (recivedUser.status == 200) {
       var res = recivedUser.data.msg;
+      var tmp = new Array();
+      res.productIds.forEach((element) => {
+        tmp.push(element.name);
+      });
+      setProductIds(tmp);
       setOrder(res);
       setDate(res.date);
     }
@@ -41,7 +47,6 @@ export default function OrderDetails() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(updatedOrder);
     const response = await updateOrder(updatedOrder);
     if (response.status == 200) {
       navigate("/admin/orders");
@@ -140,7 +145,7 @@ export default function OrderDetails() {
                   <TextField
                     required
                     fullWidth
-                    defaultValue={order.productIds}
+                    defaultValue={productIds}
                     id="productIds"
                     label="product Ids"
                     name="productIds"

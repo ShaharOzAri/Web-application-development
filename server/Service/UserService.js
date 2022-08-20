@@ -16,14 +16,12 @@ module.exports = class UserService {
     return users
       .find({ email: userEmail })
       .then((value) => {
-        // console.log(value);
         if (value.length == 0) {
           return null;
         }
         return value;
       })
       .catch((error) => {
-        // console.log(error);
         return null;
       });
   }

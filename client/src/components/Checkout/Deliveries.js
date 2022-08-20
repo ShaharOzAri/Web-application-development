@@ -92,9 +92,6 @@ export default function Deliveries(props) {
                   } else {
                     setValidAddress(false);
                   }
-
-                  console.log(event.target.value);
-                  console.log(event.target.value);
                 }}
               />
             </Grid>
