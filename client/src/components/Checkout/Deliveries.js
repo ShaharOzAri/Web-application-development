@@ -61,7 +61,6 @@ export default function Deliveries(props) {
             sx={{
               alignContent: "center",
               display: "flex",
-              //   display: "flex",
               flexDirection: "column",
               alignItems: "center",
               whiteSpace: "normal",
@@ -72,7 +71,6 @@ export default function Deliveries(props) {
                 disablePortal
                 id="city"
                 name="city"
-                // value={city}
                 options={props.cities}
                 renderInput={(params) => (
                   <TextField
@@ -83,9 +81,20 @@ export default function Deliveries(props) {
                     fullWidth
                   />
                 )}
-                onChange={(event, newCity) => {
-                  setValidAddress(!isValidAddress);
-                  setCity(newCity.label);
+                onSelect={(event) => {
+                  //(event, newCity)
+                  // setValidAddress(!isValidAddress);
+                  // setCity(newCity.label);
+
+                  if (event.target.value != "") {
+                    setValidAddress(true);
+                    setCity(event.target.value);
+                  } else {
+                    setValidAddress(false);
+                  }
+
+                  console.log(event.target.value);
+                  console.log(event.target.value);
                 }}
               />
             </Grid>
