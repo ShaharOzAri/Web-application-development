@@ -65,14 +65,14 @@ function CurrencyWebService() {
         onAmountChange={handleAmount1Change}
         onCurrencyChange={handleCurrency1Change}
         currencies={Object.keys(rates)}
-        amount={amount1}
+        amount={Number(amount1)}
         currency={currency1}
       />
       <CurrencyInput
         onAmountChange={handleAmount2Change}
         onCurrencyChange={handleCurrency2Change}
         currencies={Object.keys(rates)}
-        amount={amount2}
+        amount={Number(amount2)}
         currency={currency2}
       />
     </div>

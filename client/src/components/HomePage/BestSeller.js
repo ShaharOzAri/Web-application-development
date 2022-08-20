@@ -34,9 +34,9 @@ export default function BestSeller() {
         {products
           .sort((a, b) => b.numberOfOrders - a.numberOfOrders)
           .slice(0, 4)
-          .map((product) => {
+          .map((product, index) => {
             return (
-              <Grid item xs={3}>
+              <Grid item xs={3} key={index}>
                 <ProductCard product={product} />;
               </Grid>
             );

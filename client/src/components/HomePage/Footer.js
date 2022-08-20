@@ -7,8 +7,6 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
 import SellIcon from "@mui/icons-material/Sell";
 import AssignmentReturnIcon from "@mui/icons-material/AssignmentReturn";
-import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Utils/auth";
 import {
   Box,
@@ -18,12 +16,10 @@ import {
   FooterLink,
   Heading,
 } from "./FooterStyles.js";
-import { padding } from "@mui/system";
 import CurrenctWebService from "./CurrencyWebService.js";
 import ChatIcon from "./ChatIcon";
 
 const Footer = () => {
-  const navigate = useNavigate();
   const auth = useAuth();
 
   return (

@@ -57,9 +57,7 @@ export const UserDetails = () => {
   };
 
   return (
-    <Container
-      sx={{ justifyContent: "center", maxWidth: 200, bgcolor: "#e0d9cc" }}
-    >
+    <Container sx={{ textAlign: "center", maxWidth: 200, bgcolor: "#e0d9cc" }}>
       {userDetails != null ? (
         <Box sx={{ my: 5 }}>
           <Typography sx={{ fontSize: 40, color: "black" }}>

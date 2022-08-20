@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 function CurrencyInput(props) {
-  console.log(props.CurrencyInput);
   return (
     <div className="group" style={{ fontFamily: "monospace" }}>
       <input
@@ -11,10 +10,14 @@ function CurrencyInput(props) {
       />
       <select
         value={props.currency}
-        onChange={(ev) => props.onCurrencyChange(ev.target.value)}
+        onChange={(ev) => {
+          props.onCurrencyChange(ev.target.value);
+        }}
       >
-        {props.currencies.map((currency) => (
-          <option value={currency}>{currency}</option>
+        {props.currencies.map((currency, index) => (
+          <option key={index} value={currency}>
+            {currency}
+          </option>
         ))}
       </select>
     </div>

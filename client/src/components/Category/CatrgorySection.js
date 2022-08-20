@@ -27,6 +27,7 @@ export default function CategorySection() {
     >
       {items.map((item, i) => (
         <Grid
+          key={i}
           item
           xs={24}
           md={12}

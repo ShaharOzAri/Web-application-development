@@ -17,8 +17,3 @@ export default function SignUpDialog(props) {
     </Dialog>
   );
 }
-
-SignUpDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-};

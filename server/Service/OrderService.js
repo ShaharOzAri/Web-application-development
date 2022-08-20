@@ -60,9 +60,14 @@ module.exports = class OrderService {
   }
 
   static async getOrderById(id) {
-    return orders.findById(id).exec();
+    var res = await orders.findById(id).exec();
+    console.log(res);
+    if (res) {
+      return res;
+    } else {
+      return null;
+    }
   }
-  
 
   static async update(order) {
     const res = await orders.findByIdAndUpdate(order._id, order);

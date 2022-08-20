@@ -44,7 +44,7 @@ const ProductSection = () => {
       {auth.user == null || JSON.parse(auth.getUser()).role == "client" ? (
         ""
       ) : (
-        <Grid xs={12}>
+        <Grid item xs={12}>
           <Container>
             <Button
               fullWidth
@@ -65,9 +65,9 @@ const ProductSection = () => {
           </Container>
         </Grid>
       )}
-      {products.map((product) => {
+      {products.map((product, index) => {
         return (
-          <Grid item xs={3}>
+          <Grid item xs={3} key={index}>
             <ProductCard product={product} />;
           </Grid>
         );
