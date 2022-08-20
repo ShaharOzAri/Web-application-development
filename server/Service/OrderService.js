@@ -57,22 +57,17 @@ module.exports = class OrderService {
       .catch((error) => {
         return null;
       });
-  }
-
+  }  
+  
   static async getOrderById(id) {
-    return orders.findById(id).exec();
+    const res= await orders.findById(id).exec();
+    console.log('res',res)
+    if (res) {
+      return res;
+    } else {
+      return null;
+    }
   }
-  
-  
-  // static async getOrderById(id) {
-  //   const res= await orders.findById(id).exec();
-  //   console.log('res',res)
-  //   if (res) {
-  //     return res;
-  //   } else {
-  //     return null;
-  //   }
-  // }
   
 
   static async update(order) {
