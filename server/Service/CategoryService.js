@@ -27,6 +27,13 @@ module.exports = class CategoryService {
     return categories.findById(id).exec();
   }
 
+  static async getCategoryByName(categoryName) {
+    const res = await categories.find({ name: categoryName });
+    if (res) {
+      return res;
+    } else return null;
+  }
+
   static async update(category) {
     const res = await categories.findByIdAndUpdate(category.id, category);
     if (res) {

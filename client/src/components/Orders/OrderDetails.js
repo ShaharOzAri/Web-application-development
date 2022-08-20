@@ -17,15 +17,15 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 export default function OrderDetails() {
   const { orderId } = useParams();
-  console.log(orderId);
   const [order, setOrder] = useState(null);
   const [date, setDate] = useState(null);
 
   const getOrder = async (id) => {
     var recivedUser = await getOrderById(id);
     if (recivedUser.status == 200) {
-      setOrder(recivedUser.data.msg);
-      setDate(recivedUser.data.msg.date);
+      var res = recivedUser.data.msg;
+      setOrder(res);
+      setDate(res.date);
     }
   };
 
@@ -110,14 +110,14 @@ export default function OrderDetails() {
                 <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="given-name"
-                    defaultValue={order.userId}
-                    name="userId"
+                    defaultValue={order.userEmail}
+                    name="userEmail"
                     fullWidth
-                    id="userId"
+                    id="userEmail"
                     label="User"
                     autoFocus
                     onChange={(event) =>
-                      (updatedOrder["userId"] = event.target.value)
+                      (updatedOrder["userEmail"] = event.target.value)
                     }
                   />
                 </Grid>

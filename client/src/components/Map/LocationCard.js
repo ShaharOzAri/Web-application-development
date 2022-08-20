@@ -14,7 +14,6 @@ export default function LocationCard(props) {
         ...props.sx,
       }}
     >
-      <CardActionArea>
       <CardContent>
           <Typography component='div' letterSpacing={4} variant='h5'>
             {props.item.Title}
@@ -34,7 +33,6 @@ export default function LocationCard(props) {
           <p>{props.item.hours}</p>
           </Typography>
         </CardContent>
-      </CardActionArea>
     </Card>
   );
 }

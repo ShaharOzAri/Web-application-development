@@ -79,7 +79,7 @@ export default function NavigationBar() {
   };
 
   return (
-    <Box sx={{ display: "block", mb: 5, textAlign: "center", height: 90 }}>
+    <Box sx={{ display: "block", mb: 3, textAlign: "center", height: 90 }}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -93,7 +93,7 @@ export default function NavigationBar() {
       >
         <Toolbar>
           <ToolbarButtons></ToolbarButtons>
-          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
+          <Typography variant="h6" noWrap sx={{ flexGrow: 1, ml:-30 }} component="div">
             <img
               src="https://cdn.onecklace.com/images/logos/autographed_logo.webp"
               style={{ width: 160, height: "90%", cursor: "pointer" }}

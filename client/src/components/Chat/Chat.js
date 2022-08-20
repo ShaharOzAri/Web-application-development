@@ -64,6 +64,9 @@ export default function Chat() {
       fontWeight: "bold",
       mt: 2,
     }}>
+      <div className="header-tran">
+        Welcome To Our Live Chat
+      </div>
     <div className="Chat">
       {loginUser.role === "admin" ? (
         <Button
