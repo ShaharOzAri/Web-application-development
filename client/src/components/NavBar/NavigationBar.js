@@ -78,83 +78,113 @@ export default function NavigationBar() {
     }
   };
 
+  useEffect(() => {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById("logo");
+    ctx.drawImage(img, 1, 1);
+  });
+
   return (
-    <Box sx={{ display: "block", mb: 3, textAlign: "center", height: 90 }}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        open={open}
-        sx={{
-          bgcolor: "#e0d9cc",
-          justifyContent: "center",
-          height: 80,
-          color: "black",
-        }}
-      >
-        <Toolbar>
-          <ToolbarButtons></ToolbarButtons>
-          <Typography variant="h6" noWrap sx={{ flexGrow: 1, ml:-30 }} component="div">
-            <img
-              src="https://cdn.onecklace.com/images/logos/autographed_logo.webp"
-              style={{ width: 160, height: "90%", cursor: "pointer" }}
-              alt="Logo"
-              onClick={() => imageClick()}
-            />
-          </Typography>
-          {!auth.user || JSON.parse(auth.getUser()).role == "client" ? (
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="end"
-              onClick={handleDrawerOpen}
-              sx={{ ...(open && { display: "none", mx: "15px" }), mx: 1 }}
+    <nav>
+      <Box sx={{ display: "block", mb: 3, textAlign: "center", height: 90 }}>
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          open={open}
+          sx={{
+            bgcolor: "#e0d9cc",
+            justifyContent: "center",
+            height: 80,
+            color: "black",
+          }}
+        >
+          <Toolbar>
+            <ToolbarButtons></ToolbarButtons>
+            <Typography
+              variant="h6"
+              noWrap
+              sx={{ flexGrow: 1, ml: -30 }}
+              component="div"
             >
-              <StyledBadge badgeContent={auth.cartQty}>
-                <ShoppingCartIcon sx={{ fontSize: "25px" }} />
-              </StyledBadge>
-            </IconButton>
-          ) : (
-            " "
-          )}
-          {!auth.user ? (
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="end"
-              onClick={handleClickOpen}
-              sx={{ ...(open && { display: "none", mx: "15px" }) }}
-            >
-              <PersonIcon sx={{ fontSize: "25px" }} />
-            </IconButton>
-          ) : (
-            <IconButton onClick={handleClickOpen}>
-              <Avatar
-                sx={{
-                  bgcolor: "black",
-                  height: "30px",
-                  width: "30px",
+              <canvas
+                id="myCanvas"
+                onClick={() => imageClick()}
+                style={{
+                  width: 160,
+                  height: "90%",
+                  cursor: "pointer",
+                  marginTop: 25,
                 }}
+              ></canvas>
+              <img
+                id="logo"
+                src="https://cdn.onecklace.com/images/logos/autographed_logo.webp"
+                style={{
+                  width: 160,
+                  height: "90%",
+                  cursor: "pointer",
+                  display: "none",
+                }}
+                alt="Logo"
+                onClick={() => imageClick()}
+              />
+            </Typography>
+            {!auth.user || JSON.parse(auth.getUser()).role == "client" ? (
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="end"
+                onClick={handleDrawerOpen}
+                sx={{ ...(open && { display: "none", mx: "15px" }), mx: 1 }}
               >
-                {Array.from(JSON.parse(auth.getUser()).first_name)[0]}
-              </Avatar>
-            </IconButton>
-          )}
-        </Toolbar>
-      </AppBar>
-      <ShoppingCartDrawer
-        setOpen={setOpenShopping}
-        open={openShopping}
-      ></ShoppingCartDrawer>
-      <SignInDialog
-        setOpen={setOpenSignIn}
-        open={openSignIn}
-        signUp={setOpenSignUp}
-      ></SignInDialog>
-      <SignUpDialog
-        setOpen={setOpenSignUp}
-        open={openSignUp}
-        signIn={setOpenSignIn}
-      ></SignUpDialog>
-    </Box>
+                <StyledBadge badgeContent={auth.cartQty}>
+                  <ShoppingCartIcon sx={{ fontSize: "25px" }} />
+                </StyledBadge>
+              </IconButton>
+            ) : (
+              " "
+            )}
+            {!auth.user ? (
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="end"
+                onClick={handleClickOpen}
+                sx={{ ...(open && { display: "none", mx: "15px" }) }}
+              >
+                <PersonIcon sx={{ fontSize: "25px" }} />
+              </IconButton>
+            ) : (
+              <IconButton onClick={handleClickOpen}>
+                <Avatar
+                  sx={{
+                    bgcolor: "black",
+                    height: "30px",
+                    width: "30px",
+                  }}
+                >
+                  {Array.from(JSON.parse(auth.getUser()).first_name)[0]}
+                </Avatar>
+              </IconButton>
+            )}
+          </Toolbar>
+        </AppBar>
+        <ShoppingCartDrawer
+          setOpen={setOpenShopping}
+          open={openShopping}
+        ></ShoppingCartDrawer>
+        <SignInDialog
+          setOpen={setOpenSignIn}
+          open={openSignIn}
+          signUp={setOpenSignUp}
+        ></SignInDialog>
+        <SignUpDialog
+          setOpen={setOpenSignUp}
+          open={openSignUp}
+          signIn={setOpenSignIn}
+        ></SignUpDialog>
+      </Box>
+    </nav>
   );
 }

@@ -7,7 +7,12 @@ import AboutUsContent from "../components/Map/AboutUsContent";
 
 export default function AboutUsPage() {
   return (
-    <Container maxWidth='xxxl'>
+    <Container maxWidth="xxxl">
+      <header
+        style={{ textAlign: "center", fontSize: "200%", fontWeight: "bold" }}
+      >
+        About Us
+      </header>
       <AboutUsContent />
       <LocationSection />
       <Map />

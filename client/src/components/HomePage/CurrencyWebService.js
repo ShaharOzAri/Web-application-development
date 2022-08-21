@@ -9,19 +9,19 @@ function CurrencyWebService() {
   const [currency2, setCurrency2] = useState("EUR");
   const [rates, setRates] = useState([]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       "https://api.apilayer.com/fixer/latest?base=USD&apikey=D5mu2rKqv6QPpFbNiVVOxRIespyIRhlY"
-  //     )
-  //     .then((response) => {
-  //       if (response.request.status == 403) {
-  //         console.log("something went wrong");
-  //       } else {
-  //         setRates(response.data.rates);
-  //       }
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(
+        "https://api.apilayer.com/fixer/latest?base=USD&apikey=D5mu2rKqv6QPpFbNiVVOxRIespyIRhlY"
+      )
+      .then((response) => {
+        if (response.request.status == 403) {
+          console.log("something went wrong");
+        } else {
+          setRates(response.data.rates);
+        }
+      });
+  }, []);
 
   useEffect(() => {
     if (!!rates) {

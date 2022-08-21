@@ -22,7 +22,7 @@ export default function BestSeller() {
   }, []);
 
   return (
-    <>
+    <section>
       <TitleDivider Title="BEST SELLERS"></TitleDivider>
       <Grid
         container
@@ -43,6 +43,6 @@ export default function BestSeller() {
             );
           })}
       </Grid>
-    </>
+    </section>
   );
 }

@@ -16,27 +16,29 @@ export default function CategorySection() {
     },
   ];
   return (
-    <Grid
-      columns={24}
-      sx={{
-        flexGrow: 2,
-        textAlign: "center",
-        marginBottom: 5,
-      }}
-      container
-    >
-      {items.map((item, i) => (
-        <Grid
-          key={i}
-          item
-          xs={24}
-          md={12}
-          justifyContent="center"
-          sx={{ alignContent: "center", padding: "20px" }}
-        >
-          <CategoryCard sx={{ margin: "auto" }} key={i} item={item} />
-        </Grid>
-      ))}
-    </Grid>
+    <section>
+      <Grid
+        columns={24}
+        sx={{
+          flexGrow: 2,
+          textAlign: "center",
+          marginBottom: 5,
+        }}
+        container
+      >
+        {items.map((item, i) => (
+          <Grid
+            key={i}
+            item
+            xs={24}
+            md={12}
+            justifyContent="center"
+            sx={{ alignContent: "center", padding: "20px" }}
+          >
+            <CategoryCard sx={{ margin: "auto" }} key={i} item={item} />
+          </Grid>
+        ))}
+      </Grid>
+    </section>
   );
 }

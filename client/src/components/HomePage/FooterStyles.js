@@ -78,7 +78,7 @@ export const Email = styled.div`
   font-size: 18px;
 `;
 
-export const Heading = styled.p`
+export const Heading = styled.h1`
   font-size: 20px;
   color: black;
   margin-bottom: 10px;
